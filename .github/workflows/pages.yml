@@ -1,0 +1,65 @@
+# Publikuje katalog website/ jako podgląd na GitHub Pages.
+#
+# Zanim zadziała, w ustawieniach repozytorium trzeba raz wybrać:
+#   Settings → Pages → Build and deployment → Source: GitHub Actions
+#
+# Adres podglądu: https://nataliakulasiak-blip.github.io/governance/
+#
+# Podgląd jest celowo zamknięty dla wyszukiwarek — plik robots.txt jest
+# w trakcie wdrożenia podmieniany na wersję z „Disallow: /", żeby wersja
+# testowa nie konkurowała w Google z docelową domeną uraniatravel.pl.
+name: Publikuj podgląd strony
+
+on:
+  push:
+    branches:
+      - main
+      - claude/website-dinamico-elegante-bymr6z
+    paths:
+      - 'website/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Jednocześnie tylko jedno wdrożenie; nowszy push nie przerywa trwającego.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Przygotuj katalog do publikacji
+        run: |
+          cp -r website _site
+          printf 'User-agent: *\nDisallow: /\n' > _site/robots.txt
+          rm -f _site/README.md
+
+      - name: Sprawdź, czy nie zostały znaczniki do uzupełnienia
+        run: |
+          if grep -rl 'UZUPEŁNIJ' _site --include='*.html' > /tmp/todo.txt; then
+            echo "::warning::Strona zawiera jeszcze znaczniki [ADRES — UZUPEŁNIJ]:"
+            cat /tmp/todo.txt
+          fi
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

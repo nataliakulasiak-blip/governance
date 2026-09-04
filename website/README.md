@@ -51,14 +51,14 @@ Pełne treści artykułów na blogu pozostają po polsku.
 
 Wpisane są prawdziwe dane przekazane przez klienta:
 
-| Pole | Wartość |
-|---|---|
-| Nazwa | Urania — Języki, Podróże, Wolność |
-| E-mail | info@uraniatravel.pl |
-| Telefon / WhatsApp | +48 573 533 847 |
-| NIP | 5632464558 |
-| REGON | 543565701 |
-| Konto | PL15 1160 2202 0000 0006 9907 4199 |
+| Pole               | Wartość                            |
+| ------------------ | ---------------------------------- |
+| Nazwa              | Urania — Języki, Podróże, Wolność  |
+| E-mail             | info@uraniatravel.pl               |
+| Telefon / WhatsApp | +48 573 533 847                    |
+| NIP                | 5632464558                         |
+| REGON              | 543565701                          |
+| Konto              | PL15 1160 2202 0000 0006 9907 4199 |
 
 ## Co jeszcze trzeba uzupełnić
 
@@ -66,16 +66,16 @@ Poniższe pozycje są oznaczone w kodzie komentarzem `TODO` albo widocznym
 napisem `[ADRES — UZUPEŁNIJ]`, żeby nie trafiły przypadkiem na produkcję.
 Wyszukiwanie: `grep -rn "TODO\|UZUPEŁNIJ" .`
 
-| Co | Gdzie |
-|---|---|
-| Adres siedziby | `kontakt.html` — tabela danych firmy oraz sekcja mapy (trzy wystąpienia `[ADRES — UZUPEŁNIJ]`) |
-| Współrzędne mapy | `kontakt.html` — atrybut `data-map-src` i link „Wyznacz trasę" (obecnie 52.2310, 21.0150) |
+| Co                               | Gdzie                                                                                                                   |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Adres siedziby                   | `kontakt.html` — tabela danych firmy oraz sekcja mapy (trzy wystąpienia `[ADRES — UZUPEŁNIJ]`)                          |
+| Współrzędne mapy                 | `kontakt.html` — atrybut `data-map-src` i link „Wyznacz trasę" (obecnie 52.2310, 21.0150)                               |
 | Adresy profili społecznościowych | stopka każdej strony oraz sekcja kanałów w `index.html` i `kontakt.html` (obecnie `uraniatravel` na FB, IG, Telegramie) |
-| Pliki PDF dla klienta | linki `href="#"` w kolumnie „Dla klienta" w stopce i w `kontakt.html` |
-| Godziny otwarcia | `kontakt.html` (atrybuty `data-open` / `data-close`), stopka, JSON-LD — założono Pn–Pt 09:00–18:00 |
-| Domena | `https://uraniatravel.pl` w `canonical`, `hreflang`, Open Graph, `sitemap.xml`, `robots.txt`, JSON-LD |
-| Adres w polityce prywatności | `polityka-prywatnosci.html` — punkt 1 wymaga adresu siedziby |
-| Dostawca hostingu | `polityka-prywatnosci.html` — punkt 5, lista odbiorców danych |
+| Pliki PDF dla klienta            | linki `href="#"` w kolumnie „Dla klienta" w stopce i w `kontakt.html`                                                   |
+| Godziny otwarcia                 | `kontakt.html` (atrybuty `data-open` / `data-close`), stopka, JSON-LD — założono Pn–Pt 09:00–18:00                      |
+| Domena                           | `https://uraniatravel.pl` w `canonical`, `hreflang`, Open Graph, `sitemap.xml`, `robots.txt`, JSON-LD                   |
+| Adres w polityce prywatności     | `polityka-prywatnosci.html` — punkt 1 wymaga adresu siedziby                                                            |
+| Dostawca hostingu                | `polityka-prywatnosci.html` — punkt 5, lista odbiorców danych                                                           |
 
 Świadomie **nie** ma na stronie liczby klientów, ocen ani liczby lat
 działalności — takich danych nie otrzymaliśmy, a wpisywanie ich „na oko"
@@ -90,7 +90,11 @@ wiadomości w tle, dodaj do znacznika `<form>` w `kontakt.html` atrybut z adrese
 usługi przyjmującej `POST` z `FormData`, np.:
 
 ```html
-<form data-contact-form data-endpoint="https://formspree.io/f/TWOJ_ID" ...>
+<form
+  data-contact-form
+  data-endpoint="https://formspree.io/f/TWOJ_ID"
+  ...
+></form>
 ```
 
 Formularz ma walidację po stronie przeglądarki i ukryte pole-pułapkę `_gotcha`
@@ -119,6 +123,30 @@ Plik `404.html` jest gotowy, ale serwer musi wiedzieć, że ma go używać:
 - **Netlify / Vercel / GitHub Pages** — działa automatycznie,
 - **Apache** — dopisz do `.htaccess`: `ErrorDocument 404 /404.html`,
 - **nginx** — w bloku `server`: `error_page 404 /404.html;`
+
+## Podgląd online (GitHub Pages)
+
+W repozytorium jest workflow `.github/workflows/pages.yml`, który publikuje
+katalog `website/` na GitHub Pages po każdym pushu do `main` lub do gałęzi
+roboczej. Można go też uruchomić ręcznie z zakładki **Actions**.
+
+Żeby zadziałał, trzeba **raz** włączyć Pages w ustawieniach repozytorium:
+
+**Settings → Pages → Build and deployment → Source: `GitHub Actions`**
+
+Adres podglądu: `https://nataliakulasiak-blip.github.io/governance/`
+
+Dwie rzeczy, o których warto wiedzieć:
+
+- Podczas wdrożenia `robots.txt` jest podmieniany na wersję z `Disallow: /`.
+  Dzięki temu wersja testowa nie trafi do Google i nie będzie konkurować
+  z docelową domeną `uraniatravel.pl`. Na produkcji obowiązuje plik
+  `robots.txt` z repozytorium, który indeksowanie dopuszcza.
+- Workflow wypisuje ostrzeżenie w logu, jeśli w plikach HTML nadal są
+  znaczniki `[ADRES — UZUPEŁNIJ]`.
+
+Serwis działa zarówno w katalogu głównym domeny, jak i w podkatalogu —
+wszystkie odnośniki są względne.
 
 ## Podgląd lokalny
 
