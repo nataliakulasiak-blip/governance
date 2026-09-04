@@ -134,6 +134,11 @@ roboczej. Można go też uruchomić ręcznie z zakładki **Actions**.
 
 **Settings → Pages → Build and deployment → Source: `GitHub Actions`**
 
+Tego kroku nie da się zautomatyzować: token `GITHUB_TOKEN` używany przez
+Actions nie ma uprawnień do utworzenia witryny Pages (`Resource not
+accessible by integration`). Po kliknięciu wystarczy uruchomić workflow
+ponownie z zakładki **Actions → Publikuj podgląd strony → Run workflow**.
+
 Adres podglądu: `https://nataliakulasiak-blip.github.io/governance/`
 
 Dwie rzeczy, o których warto wiedzieć:

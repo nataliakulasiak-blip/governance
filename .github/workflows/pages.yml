@@ -1,8 +1,11 @@
 # Publikuje katalog website/ jako podgląd na GitHub Pages.
 #
-# Pages włącza się samo przy pierwszym uruchomieniu (enablement: true).
-# Jeśli organizacja tego zabrania, trzeba raz kliknąć ręcznie:
+# WYMAGANY JEDNORAZOWY KROK w ustawieniach repozytorium:
 #   Settings → Pages → Build and deployment → Source: GitHub Actions
+#
+# Automatyczne włączenie (enablement: true) nie działa — token GITHUB_TOKEN
+# w Actions nie ma uprawnień do tworzenia witryny Pages i zwraca błąd
+# „Resource not accessible by integration". Sprawdzone w uruchomieniu nr 2.
 #
 # Adres podglądu: https://nataliakulasiak-blip.github.io/governance/
 #
@@ -50,11 +53,7 @@ jobs:
             cat /tmp/todo.txt
           fi
 
-      # enablement: true włącza Pages przez API przy pierwszym uruchomieniu,
-      # dzięki czemu nie trzeba klikać w ustawieniach repozytorium.
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
