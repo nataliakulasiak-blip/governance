@@ -8,9 +8,12 @@ wystarczy wgrać katalog na dowolny hosting (Netlify, Vercel, GitHub Pages, zwyk
 ```
 website/
 ├── index.html                      strona główna (hero, kanały kontaktu, oferta, blog, CTA)
-├── kontakt.html                    pełna strona kontaktowa (kanały, godziny, dane firmy, dokumenty, formularz, mapa, FAQ)
+├── oferta.html                     cztery usługi w szczegółach + „Jak pracujemy"
+├── kontakt.html                    kanały, godziny, dane firmy, dokumenty, formularz, mapa, FAQ
 ├── faq.html                        FAQ z filtrami, wyszukiwarką i danymi strukturalnymi
 ├── blog.html                       lista wpisów
+├── polityka-prywatnosci.html       informacja RODO (tylko po polsku — wersja wiążąca)
+├── 404.html                        strona błędu (noindex)
 ├── blog/
 │   ├── jak-wybrac-kierunek.html
 │   ├── ubezpieczenie-turystyczne.html
@@ -19,7 +22,7 @@ website/
 │   ├── css/style.css               jeden arkusz: tokeny, motyw jasny/ciemny, komponenty
 │   ├── js/i18n.js                  słowniki 6 języków + silnik tłumaczeń
 │   ├── js/main.js                  motyw, menu, dok, godziny, mapa, FAQ, formularz
-│   └── img/                        miejsce na og-cover.jpg, logo.png, icon-192/512.png
+│   └── img/                        og-cover.jpg, logo.png, icon-192/512.png, apple-touch-icon.png
 ├── robots.txt
 ├── sitemap.xml
 └── site.webmanifest
@@ -71,7 +74,8 @@ Wyszukiwanie: `grep -rn "TODO\|UZUPEŁNIJ" .`
 | Pliki PDF dla klienta | linki `href="#"` w kolumnie „Dla klienta" w stopce i w `kontakt.html` |
 | Godziny otwarcia | `kontakt.html` (atrybuty `data-open` / `data-close`), stopka, JSON-LD — założono Pn–Pt 09:00–18:00 |
 | Domena | `https://uraniatravel.pl` w `canonical`, `hreflang`, Open Graph, `sitemap.xml`, `robots.txt`, JSON-LD |
-| Obrazy | do `assets/img/`: `og-cover.jpg` (1200×630), `logo.png`, `icon-192.png`, `icon-512.png` |
+| Adres w polityce prywatności | `polityka-prywatnosci.html` — punkt 1 wymaga adresu siedziby |
+| Dostawca hostingu | `polityka-prywatnosci.html` — punkt 5, lista odbiorców danych |
 
 Świadomie **nie** ma na stronie liczby klientów, ocen ani liczby lat
 działalności — takich danych nie otrzymaliśmy, a wpisywanie ich „na oko"
@@ -107,6 +111,14 @@ przeciw botom.
 - Mapa ładuje się dopiero po kliknięciu — żadne dane nie trafiają do zewnętrznego
   serwisu bez zgody użytkownika.
 - Zero zależności zewnętrznych poza krojem pisma z Google Fonts (jest fallback systemowy).
+
+## Strona 404
+
+Plik `404.html` jest gotowy, ale serwer musi wiedzieć, że ma go używać:
+
+- **Netlify / Vercel / GitHub Pages** — działa automatycznie,
+- **Apache** — dopisz do `.htaccess`: `ErrorDocument 404 /404.html`,
+- **nginx** — w bloku `server`: `error_page 404 /404.html;`
 
 ## Podgląd lokalny
 
