@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /assets/js/
+
+# Blokada agresywnych crawlerów AI (opcjonalna — usuń, jeśli niepotrzebna)
+User-agent: GPTBot
+Disallow: /
+
+Sitemap: https://uraniatravel.pl/sitemap.xml

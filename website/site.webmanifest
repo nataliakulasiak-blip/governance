@@ -1,0 +1,15 @@
+{
+  "name": "Urania Travel — biuro podróży",
+  "short_name": "Urania Travel",
+  "description": "Licencjonowane biuro podróży w Warszawie. Wyjazdy szyte na miarę.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fbfaf7",
+  "theme_color": "#0e6b83",
+  "lang": "pl",
+  "icons": [
+    { "src": "/assets/img/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
