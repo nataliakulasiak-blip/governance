@@ -1,6 +1,6 @@
-# Urania Travel — strona kontaktowa
+# Urania — Języki, Podróże, Wolność
 
-Statyczna, wielojęzyczna strona biura podróży. Bez frameworków, bez kroku budowania —
+Statyczna, wielojęzyczna strona biura podróży (kursy językowe, wycieczki szkolne, wyjazdy grupowe). Bez frameworków, bez kroku budowania —
 wystarczy wgrać katalog na dowolny hosting (Netlify, Vercel, GitHub Pages, zwykły FTP).
 
 ## Struktura
@@ -8,7 +8,7 @@ wystarczy wgrać katalog na dowolny hosting (Netlify, Vercel, GitHub Pages, zwyk
 ```
 website/
 ├── index.html                      strona główna (hero, kanały kontaktu, oferta, blog, CTA)
-├── kontakt.html                    pełna strona kontaktowa (kanały, godziny, dane firmy, formularz, mapa, FAQ)
+├── kontakt.html                    pełna strona kontaktowa (kanały, godziny, dane firmy, dokumenty, formularz, mapa, FAQ)
 ├── faq.html                        FAQ z filtrami, wyszukiwarką i danymi strukturalnymi
 ├── blog.html                       lista wpisów
 ├── blog/
@@ -44,27 +44,40 @@ musi się zgadzać z atrybutami `data-faq-index` / `data-post-index` w HTML.
 
 Pełne treści artykułów na blogu pozostają po polsku.
 
-## Dane do podmiany przed publikacją
+## Dane firmy w serwisie
 
-Wszystkie poniższe wartości są **przykładowe** — oryginalna strona uraniatravel.pl
-nie była osiągalna z tego środowiska, więc dane trzeba wpisać ręcznie.
-Najszybciej: `grep -rn "<szukana wartość>" .`
+Wpisane są prawdziwe dane przekazane przez klienta:
 
-| Co | Wartość przykładowa | Gdzie |
-|---|---|---|
-| Telefon biura | `+48 22 123 45 67` / `tel:+48221234567` | wszystkie pliki HTML |
-| Telefon alarmowy / WhatsApp | `+48 600 100 200` / `wa.me/48600100200` | wszystkie pliki HTML |
-| E-mail | `kontakt@uraniatravel.pl` | HTML + `assets/js/main.js` |
-| Telegram | `t.me/uraniatravel` | HTML |
-| Facebook / Instagram | `/uraniatravel` | HTML |
-| Adres | `ul. Podróżnicza 12/3, 00-001 Warszawa` | `kontakt.html`, stopka, JSON-LD |
-| Współrzędne mapy | `52.2310, 21.0150` | `kontakt.html` (`data-map-src`, link „Wyznacz trasę"), JSON-LD |
-| NIP / REGON / nr rejestru / konto | zera | `kontakt.html`, stopka, JSON-LD |
-| Domena | `https://uraniatravel.pl` | `canonical`, `hreflang`, OG, `sitemap.xml`, `robots.txt`, JSON-LD |
-| Godziny otwarcia | Pn–Pt 9–18, Sb 10–14 | `kontakt.html` (`data-open` / `data-close`), stopka, JSON-LD |
+| Pole | Wartość |
+|---|---|
+| Nazwa | Urania — Języki, Podróże, Wolność |
+| E-mail | info@uraniatravel.pl |
+| Telefon / WhatsApp | +48 573 533 847 |
+| NIP | 5632464558 |
+| REGON | 543565701 |
+| Konto | PL15 1160 2202 0000 0006 9907 4199 |
 
-Do katalogu `assets/img/` trzeba dodać: `og-cover.jpg` (1200×630), `logo.png`,
-`icon-192.png`, `icon-512.png`.
+## Co jeszcze trzeba uzupełnić
+
+Poniższe pozycje są oznaczone w kodzie komentarzem `TODO` albo widocznym
+napisem `[ADRES — UZUPEŁNIJ]`, żeby nie trafiły przypadkiem na produkcję.
+Wyszukiwanie: `grep -rn "TODO\|UZUPEŁNIJ" .`
+
+| Co | Gdzie |
+|---|---|
+| Adres siedziby | `kontakt.html` — tabela danych firmy oraz sekcja mapy (trzy wystąpienia `[ADRES — UZUPEŁNIJ]`) |
+| Współrzędne mapy | `kontakt.html` — atrybut `data-map-src` i link „Wyznacz trasę" (obecnie 52.2310, 21.0150) |
+| Adresy profili społecznościowych | stopka każdej strony oraz sekcja kanałów w `index.html` i `kontakt.html` (obecnie `uraniatravel` na FB, IG, Telegramie) |
+| Pliki PDF dla klienta | linki `href="#"` w kolumnie „Dla klienta" w stopce i w `kontakt.html` |
+| Godziny otwarcia | `kontakt.html` (atrybuty `data-open` / `data-close`), stopka, JSON-LD — założono Pn–Pt 09:00–18:00 |
+| Domena | `https://uraniatravel.pl` w `canonical`, `hreflang`, Open Graph, `sitemap.xml`, `robots.txt`, JSON-LD |
+| Obrazy | do `assets/img/`: `og-cover.jpg` (1200×630), `logo.png`, `icon-192.png`, `icon-512.png` |
+
+Świadomie **nie** ma na stronie liczby klientów, ocen ani liczby lat
+działalności — takich danych nie otrzymaliśmy, a wpisywanie ich „na oko"
+(zwłaszcza `aggregateRating` w danych strukturalnych) naraża serwis na
+karę od wyszukiwarki. Jeśli masz prawdziwe liczby, dopisz je w hero
+`index.html` i w JSON-LD.
 
 ## Formularz kontaktowy
 

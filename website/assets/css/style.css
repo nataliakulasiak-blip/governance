@@ -247,7 +247,8 @@ ul, ol { color: var(--ink-soft); }
 .brand__mark svg { width: 22px; height: 22px; }
 .brand__text { display: flex; flex-direction: column; line-height: 1.1; }
 .brand__name { font-family: var(--font-serif); font-size: 1.15rem; letter-spacing: -.02em; }
-.brand__tag { font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.brand__tag { font-size: .63rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; white-space: nowrap; }
+@media (max-width: 420px) { .header .brand__tag { display: none; } }
 
 .nav { margin-left: auto; }
 .nav__list { display: flex; align-items: center; gap: .25rem; list-style: none; margin: 0; padding: 0; }
@@ -327,9 +328,26 @@ ul, ol { color: var(--ink-soft); }
 }
 .hero__actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
 
-.hero__stats { display: flex; flex-wrap: wrap; gap: clamp(1.25rem, 4vw, 2.75rem); margin-top: 2.5rem; padding-top: 1.75rem; border-top: 1px solid var(--border); }
-.hero__stat b { display: block; font-family: var(--font-serif); font-size: 1.85rem; color: var(--brand-600); line-height: 1; }
-.hero__stat span { font-size: .84rem; color: var(--muted); }
+/* Lista usług pod hero — etykiety, nie liczby. */
+.hero__stats { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: 2.25rem; padding-top: 1.75rem; border-top: 1px solid var(--border); }
+.hero__stat {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .5rem .95rem; border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  border: 1px solid var(--border);
+  font-size: .86rem; font-weight: 600; color: var(--ink-soft);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  transition: border-color .25s var(--ease), color .25s var(--ease), transform .25s var(--ease);
+}
+.hero__stat::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%; flex: none;
+  background: linear-gradient(140deg, var(--brand-500), var(--gold-500));
+}
+.hero__stat:hover { border-color: var(--brand-300); color: var(--ink); transform: translateY(-2px); }
+
+/* Pasek zaufania: ikona + jedno zdanie. */
+.hero__trust { align-items: center; }
+.hero__trust .channel__icon { color: #2a1c05; }
 
 /* Karta „szybki kontakt" w hero */
 .quick-card {
