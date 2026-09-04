@@ -1042,3 +1042,11 @@ ul, ol { color: var(--ink-soft); }
   background: linear-gradient(150deg, var(--brand-600), var(--brand-900));
   opacity: .22;
 }
+
+/* Karty wyjazdów na stronie głównej i w ofercie */
+.trip-card { display: flex; flex-direction: column; }
+.trip-card p { flex: 0 0 auto; }
+.trip-mini { display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 1.25rem 0 0; padding-top: 1.15rem; border-top: 1px solid var(--border); }
+.trip-mini div { min-width: 8rem; }
+.trip-mini dt { font-size: .7rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem; }
+.trip-mini dd { margin: 0; font-size: .97rem; font-weight: 650; color: var(--ink); }
