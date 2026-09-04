@@ -955,3 +955,90 @@ ul, ol { color: var(--ink-soft); }
 .lang__menu button[aria-selected="true"]::after { content: "✓"; margin-left: auto; }
 .lang__menu .flag { font-size: 1.05rem; line-height: 1; }
 @media (max-width: 480px) { .lang__btn .code { display: none; } .lang__btn { padding: 0 .55rem; } }
+
+/* =========================================================================
+   20. Karta wyjazdu: fakty, program dzień po dniu, galeria
+   ========================================================================= */
+.muted { color: var(--muted); }
+
+/* Termin · cena · trasa */
+.trip-facts {
+  display: grid; gap: 1px; margin: clamp(2rem, 4vw, 2.75rem) 0 0;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  background: var(--border); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+}
+.trip-facts > div { background: var(--surface); padding: 1.15rem 1.35rem; }
+.trip-facts dt {
+  font-size: .72rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: .45rem;
+}
+.trip-facts dd { margin: 0; font-size: 1.02rem; font-weight: 600; }
+.trip-facts dd strong { font-family: var(--font-serif); font-size: 1.3rem; color: var(--brand-600); font-weight: 600; }
+.trip-facts dd .muted { font-weight: 500; font-size: .88rem; }
+.trip-facts__route { grid-column: span 2; }
+@media (max-width: 640px) { .trip-facts__route { grid-column: auto; } }
+
+.route-list { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; margin: 0; padding: 0; }
+.route-list li {
+  font-size: .84rem; font-weight: 600; color: var(--brand-700);
+  background: var(--brand-100); border-radius: 999px; padding: .3rem .7rem;
+}
+
+/* Program: oś czasu */
+.days { display: grid; gap: 0; max-width: 54rem; }
+.day { display: grid; grid-template-columns: 11rem 1fr; gap: clamp(1rem, 3vw, 2rem); position: relative; padding-block: 1.65rem; }
+.day + .day { border-top: 1px solid var(--border); }
+.day__mark { position: relative; padding-left: 1.5rem; }
+.day__mark::before {
+  content: ""; position: absolute; left: 0; top: .35rem; width: 11px; height: 11px; border-radius: 50%;
+  background: var(--surface); border: 2px solid var(--brand-500); z-index: 1;
+}
+.day__mark::after {
+  content: ""; position: absolute; left: 5px; top: .35rem; bottom: -1.65rem; width: 1px;
+  background: var(--border-2);
+}
+.day:last-child .day__mark::after { display: none; }
+.day__num {
+  display: block; font-size: .72rem; font-weight: 700; letter-spacing: .13em;
+  text-transform: uppercase; color: var(--brand-600);
+}
+.day__date { display: block; font-size: .86rem; color: var(--muted); font-variant-numeric: tabular-nums; margin-top: .2rem; }
+.day__body h3 { font-size: 1.18rem; margin-bottom: .45rem; }
+.day__body p { margin-bottom: 0; font-size: .96rem; }
+@media (max-width: 700px) {
+  .day { grid-template-columns: 1fr; gap: .65rem; }
+  .day__mark::after { display: none; }
+}
+
+/* Cena zawiera */
+.includes { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .7rem; }
+.includes li { position: relative; padding-left: 1.85rem; font-size: .95rem; color: var(--ink-soft); }
+.includes li::before {
+  content: ""; position: absolute; left: 0; top: .25em;
+  width: 1.2rem; height: 1.2rem; border-radius: 50%; background: var(--brand-100);
+}
+/* ptaszek: dwie krawędzie obrócone o 45° — bez dodatkowego SVG w każdej pozycji */
+.includes li::after {
+  content: ""; position: absolute; left: .36rem; top: .5em;
+  width: .48rem; height: .26rem;
+  border-left: 2px solid var(--brand-600); border-bottom: 2px solid var(--brand-600);
+  transform: rotate(-45deg);
+}
+
+/* Galeria zdjęć */
+.shots {
+  display: grid; gap: clamp(.75rem, 1.6vw, 1.15rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+}
+.shot { margin: 0; border-radius: var(--radius); overflow: hidden; background: var(--surface-2); border: 1px solid var(--border); }
+.shot img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; transition: transform .6s var(--ease); }
+.shot:hover img { transform: scale(1.04); }
+.shot figcaption { padding: .8rem 1rem 1rem; font-size: .84rem; color: var(--muted); }
+/* Dopóki plik zdjęcia nie zostanie wgrany, kafelek pokazuje spokojny gradient
+   zamiast ikony zepsutego obrazka. */
+.shot--empty::before {
+  content: ""; display: block; aspect-ratio: 3 / 4;
+  background: linear-gradient(150deg, var(--brand-600), var(--brand-900));
+  opacity: .22;
+}
