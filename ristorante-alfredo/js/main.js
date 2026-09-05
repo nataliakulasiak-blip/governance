@@ -131,6 +131,51 @@
     });
   }
 
+  /* ---- Il cassetto delle foto ----
+     Ogni disegno dichiara un nome con data-foto. Se in images/foto/ esiste
+     un file con quel nome (.jpg o .webp), prende il posto dell'illustrazione:
+     basta caricare la fotografia, senza toccare il codice. */
+  (function () {
+    var ESTENSIONI = [".jpg", ".jpeg", ".webp", ".png"];
+
+    function cerca(nome, quandoTrovata) {
+      var indice = 0;
+
+      function prova() {
+        if (indice >= ESTENSIONI.length) return;
+        var immagine = new Image();
+        var percorso = "images/foto/" + nome + ESTENSIONI[indice];
+        indice += 1;
+        immagine.onload = function () {
+          quandoTrovata(percorso);
+        };
+        immagine.onerror = prova;
+        immagine.src = percorso;
+      }
+
+      prova();
+    }
+
+    document.querySelectorAll("img[data-foto]").forEach(function (disegno) {
+      cerca(disegno.dataset.foto, function (percorso) {
+        disegno.removeAttribute("width");
+        disegno.removeAttribute("height");
+        disegno.src = percorso;
+      });
+    });
+
+    var copertina = document.querySelector(".copertina");
+    if (copertina) {
+      cerca("copertina", function (percorso) {
+        copertina.style.setProperty(
+          "--copertina-foto",
+          'url("' + percorso + '")',
+        );
+        copertina.classList.add("copertina--foto");
+      });
+    }
+  })();
+
   /* ---- Mappa: la carichiamo solo se OpenStreetMap è raggiungibile ----
      Se la rete la blocca resta il riquadro con l'indirizzo, senza schermate
      di errore del browser. */

@@ -358,7 +358,7 @@ h4 {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("../images/sala.svg");
+  background-image: var(--copertina-foto, url("../images/sala.svg"));
   background-size: cover;
   background-position: center;
   opacity: 0.55;
@@ -382,6 +382,29 @@ h4 {
       rgba(42, 10, 16, 0.28) 0%,
       rgba(42, 10, 16, 0.04) 40%,
       rgba(42, 10, 16, 0.5) 100%
+    );
+}
+
+/* Con una fotografia al posto del disegno: colori pieni e velo piu' deciso,
+   perche' il testo resti leggibile anche su un'immagine chiara. */
+.copertina--foto::before {
+  opacity: 1;
+  mix-blend-mode: normal;
+}
+
+.copertina--foto::after {
+  background:
+    radial-gradient(
+      130% 95% at 50% 38%,
+      rgba(42, 10, 16, 0.1) 0%,
+      rgba(42, 10, 16, 0.32) 62%,
+      rgba(42, 10, 16, 0.62) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(42, 10, 16, 0.42) 0%,
+      rgba(42, 10, 16, 0.18) 40%,
+      rgba(42, 10, 16, 0.66) 100%
     );
 }
 
@@ -1079,6 +1102,29 @@ h4 {
 
   .copertina {
     min-height: 100svh;
+  }
+
+  /* Con una fotografia al posto del disegno: colori pieni e velo piu' deciso,
+   perche' il testo resti leggibile anche su un'immagine chiara. */
+  .copertina--foto::before {
+    opacity: 1;
+    mix-blend-mode: normal;
+  }
+
+  .copertina--foto::after {
+    background:
+      radial-gradient(
+        130% 95% at 50% 38%,
+        rgba(42, 10, 16, 0.1) 0%,
+        rgba(42, 10, 16, 0.32) 62%,
+        rgba(42, 10, 16, 0.62) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(42, 10, 16, 0.42) 0%,
+        rgba(42, 10, 16, 0.18) 40%,
+        rgba(42, 10, 16, 0.66) 100%
+      );
   }
 
   .copertina__contenuto {

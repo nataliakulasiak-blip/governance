@@ -59,6 +59,19 @@ resta visibile se la mappa non può caricarsi. **Le coordinate `41.8955, 12.5040
 approssimative**: vanno verificate sul posto e aggiornate in tre punti — l'`src`
 dell'iframe e i due collegamenti in `index.html`, e il campo `geo` dei dati strutturati.
 
+## Le fotografie
+
+Le immagini in `images/` sono illustrazioni vettoriali provvisorie. Per sostituirle con
+fotografie **non serve modificare il codice**: si caricano i file in `images/foto/` con
+i nomi indicati in [`images/foto/LEGGIMI.md`](images/foto/LEGGIMI.md) e il sito, in
+apertura, cerca ogni nome e usa la fotografia se la trova (prova `.jpg`, `.jpeg`,
+`.webp`, `.png`, in quest'ordine). Se il file non c'è, resta il disegno: nessuna
+immagine rotta.
+
+Nel markup ogni illustrazione dichiara il proprio posto con `data-foto="nome"`; la
+copertina usa la variabile CSS `--copertina-foto` e, quando la foto c'è, passa a colori
+pieni con una velatura piu' decisa perché il testo resti leggibile.
+
 ## Prenotazioni
 
 - **WhatsApp** — il modulo di `index.html` non invia nulla a un server: compone il
