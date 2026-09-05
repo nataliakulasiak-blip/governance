@@ -1,6 +1,6 @@
 /** Disegno delle sei viste. Nessuna vista modifica i dati: quello sta in app.js. */
 const Views = (() => {
-  const { $, esc, money, percent, shortDate, relativeDays } = UI;
+  const { $, esc, money, money2, percent, shortDate, relativeDays } = UI;
 
   const titleOf = (pkg) => pkg.title[currentLang] ?? pkg.title.it;
   const descOf = (pkg) => pkg.desc[currentLang] ?? pkg.desc.it ?? "";
@@ -137,9 +137,9 @@ const Views = (() => {
                 ${esc(t("pkg.groupSize"))} ${pkg.groupSize}</span>
             </td>
             <td class="num">${money(pkg.price)}</td>
-            <td class="num">${money(cost)}</td>
+            <td class="num">${money2(cost)}</td>
             <td class="num ${margin < 0 ? "bad" : "good"}">
-              ${money(margin)}
+              ${money2(margin)}
               <span class="muted">${pkg.price > 0 ? percent((margin / pkg.price) * 100) : "—"}</span>
             </td>
             <td class="num">${even === null ? "—" : even}</td>
@@ -334,8 +334,46 @@ const Views = (() => {
     });
   }
 
+  /** Prospetto di quadratura: dai ricavi al risultato, riga per riga. */
+  function reconciliation() {
+    const r = Model.reconcile();
+    const rows = [
+      { label: t("acc.tripRevenue"), value: r.tripRevenue },
+      { label: t("acc.tripCost"), value: -r.tripCost },
+      { label: t("acc.tripMargin"), value: r.tripMargin, total: true },
+      // Compare solo quando c'è: acconti tenuti su viaggi annullati.
+      ...(r.kept !== 0 ? [{ label: t("acc.kept"), value: r.kept }] : []),
+      { label: t("acc.overheads"), value: -r.overheads },
+      { label: t("acc.otherIncome"), value: r.otherIncome },
+      { label: t("acc.result"), value: r.result, total: true },
+    ];
+
+    const ok = r.difference === 0;
+    $("#acc-reconcile").innerHTML = `
+      <h2>${esc(t("acc.reconcile"))}</h2>
+      <dl class="ledger-rows">
+        ${rows
+          .map(
+            (row) => `
+          <div class="ledger-row${row.total ? " is-total" : ""}">
+            <dt>${esc(row.label)}</dt>
+            <dd class="${row.value < 0 ? "bad" : "good"}">${money(row.value)}</dd>
+          </div>`,
+          )
+          .join("")}
+        <div class="ledger-row is-total">
+          <dt>${esc(t("acc.expected"))}</dt>
+          <dd class="${r.expected < 0 ? "bad" : "good"}">${money(r.expected)}</dd>
+        </div>
+      </dl>
+      <p class="ledger-check ${ok ? "good" : "bad"}">
+        ${esc(ok ? t("acc.checkOk") : t("acc.checkBad", { amount: money(r.difference) }))}
+      </p>`;
+  }
+
   function accounting() {
     const totals = Model.accounts();
+    reconciliation();
     $("#acc-stats").innerHTML = [
       { label: t("acc.collected"), value: money(totals.collected) },
       { label: t("acc.toCollect"), value: money(totals.toCollect) },
@@ -380,7 +418,10 @@ const Views = (() => {
             </td>
             <td>
               <strong>${esc(movementLabel(m))}</strong>
-              <span class="muted">${esc(m.source === "manual" ? t("acc.manual") : t("acc.auto"))}</span>
+              <span class="muted">
+                ${esc(m.source === "manual" ? t("acc.manual") : t("acc.auto"))}
+                ${m.cancelled ? `· ${esc(t("status.cancelled"))}` : ""}
+              </span>
             </td>
             <td>${esc(movementReference(m))}</td>
             <td>${esc(t(`kind.${m.category}`))}</td>

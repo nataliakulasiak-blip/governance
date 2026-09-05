@@ -14,12 +14,24 @@ const UI = (() => {
   const esc = (text) =>
     String(text ?? "").replace(/[&<>"']/g, (ch) => HTML_ESCAPES[ch]);
 
+  // Lo zero negativo (-0) esiste in JavaScript e stamperebbe "-0 €".
+  const zero = (value) => (value === 0 ? 0 : value);
+
   const money = (amount) =>
     new Intl.NumberFormat(locale(), {
       style: "currency",
       currency: "EUR",
       maximumFractionDigits: 0,
-    }).format(Math.round(amount));
+    }).format(zero(Math.round(amount)));
+
+  /** Come money(), ma con i centesimi: per i valori divisi fra i partecipanti. */
+  const money2 = (amount) =>
+    new Intl.NumberFormat(locale(), {
+      style: "currency",
+      currency: "EUR",
+      minimumFractionDigits: Number.isInteger(amount) ? 0 : 2,
+      maximumFractionDigits: 2,
+    }).format(zero(amount));
 
   const percent = (value) =>
     new Intl.NumberFormat(locale(), { maximumFractionDigits: 0 }).format(
@@ -102,6 +114,7 @@ const UI = (() => {
     $$,
     esc,
     money,
+    money2,
     percent,
     longDate,
     shortDate,

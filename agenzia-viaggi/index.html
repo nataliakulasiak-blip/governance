@@ -236,6 +236,7 @@
       <!-- ====================== CONTABILITÀ ====================== -->
       <section id="view-accounting" class="view" hidden>
         <div class="stats" id="acc-stats"></div>
+        <section class="ledger" id="acc-reconcile"></section>
 
         <div class="toolbar">
           <div class="field">
@@ -450,8 +451,12 @@
               data-i18n="pkg.addCost"
             ></button>
           </div>
+          <p class="hint" data-i18n="pkg.unitHelp"></p>
+          <div class="unit-legend" id="p-unit-legend"></div>
+          <div class="cost-head" id="p-costs-head"></div>
           <div class="rows" id="p-costs"></div>
           <p class="hint" id="p-costs-empty" data-i18n="pkg.noCosts"></p>
+          <div class="cost-total" id="p-costs-total"></div>
         </section>
 
         <section class="block">

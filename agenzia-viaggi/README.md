@@ -38,6 +38,45 @@ Il prezzo di listino resta un campo libero: il suggerimento si applica con un
 clic, ma l'ultima parola è dell'operatore. Finché non ha almeno una data, il
 pacchetto resta in bozza e non compare in catalogo.
 
+#### Come si compila una voce di costo
+
+Una riga per ogni cosa che si paga a un fornitore, con l'importo che si paga,
+non quello che si vende.
+
+| Casella   | Cosa contiene                                                                                        |
+| --------- | ---------------------------------------------------------------------------------------------------- |
+| Categoria | Hotel, Trasporto, Guida, Ingressi, Pasti, Assicurazione, Altro: raggruppa i pagamenti in contabilità |
+| Voce      | nome libero, es. "Camera doppia mezza pensione"; se vuoto vale il nome della categoria               |
+| Fornitore | chi si paga: comparirà come scadenza da pagare                                                       |
+| Importo   | quanto si paga, in euro                                                                              |
+| Unità     | come si moltiplica l'importo (sotto)                                                                 |
+
+L'unità è l'unica scelta che, se sbagliata, falsa pareggio e last minute:
+
+- **a persona** — × partecipanti (volo, biglietto, assicurazione);
+- **a persona / notte** — × partecipanti × notti (camera, mezza pensione);
+- **a gruppo** — una volta sola, quanti che siano (pullman, permessi, guida a
+  forfait);
+- **a gruppo / notte** — una volta per notte (guida o autista a giornata).
+
+La regola: se la spesa cresce aggiungendo una persona è _a persona_, se si paga
+uguale comunque è _a gruppo_.
+
+Ogni riga mostra quanto pesa ai partecipanti previsti, in totale e a testa, e in
+fondo compare il totale della scheda. Esempio con tre notti e venti partecipanti:
+
+| Voce          | Importo | Unità             | Costo a 20 |
+| ------------- | ------: | ----------------- | ---------: |
+| Hotel         |      45 | a persona / notte |    2.700 € |
+| Ingressi      |      25 | a persona         |      500 € |
+| Assicurazione |      12 | a persona         |      240 € |
+| Pullman       |   1.200 | a gruppo          |    1.200 € |
+| Guida         |     200 | a gruppo / notte  |      600 € |
+
+Da cui: costi fissi 1.800 €, costo variabile 172 € a persona, costo a persona
+262 €, prezzo suggerito 330 € con ricarico 25%, pareggio a 12 partecipanti,
+pavimento last minute 190 €.
+
 ### 2. Partenze e last minute — gruppi fino a 25 persone
 
 Ogni partenza ha la sua scheda con posti venduti, ricavi, costi, margine e stato
@@ -64,9 +103,25 @@ I movimenti non si inseriscono a mano: nascono dai dati.
 - A mano si aggiunge solo ciò che non nasce da un viaggio: affitto, stipendi,
   pubblicità.
 
-Ogni voce si segna incassata o pagata (e si riapre se serve). In cima: incassato,
-da incassare, pagato, da pagare, cassa e saldo previsto; le scadenze superate
-sono marcate. Esportazione CSV di prenotazioni e movimenti.
+Ogni voce si segna incassata o pagata (e si riapre se serve); l'importo di una
+voce saldata resta congelato anche se il gruppo cambia. In cima: incassato, da
+incassare, pagato, da pagare, cassa e saldo previsto; le scadenze superate sono
+marcate. Esportazione CSV di prenotazioni e movimenti.
+
+**Quadratura.** Sotto i totali c'è il prospetto: ricavi dei viaggi, costi dei
+fornitori, margine, spese generali, altre entrate, risultato. Il prospetto è una
+ripartizione del registro — ogni movimento cade in una riga e in una sola — e
+l'ultima riga confronta il risultato con il saldo previsto: se i due numeri non
+coincidono il programma lo dice, invece di far finta di niente.
+
+Gli importi sono arrotondati all'euro una volta sola, quando una voce di costo
+diventa denaro: il margine di una partenza è quindi esattamente la somma delle
+righe registrate in contabilità. I valori divisi fra i partecipanti (costo e
+margine a persona) mostrano i centesimi.
+
+Caso particolare: se una prenotazione viene annullata dopo che l'acconto è stato
+incassato, quei soldi restano in cassa. La previsione sparisce, la voce incassata
+resta con la sua etichetta e finisce nella riga _Da prenotazioni annullate_.
 
 ## Il resto
 

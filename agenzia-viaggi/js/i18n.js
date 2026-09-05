@@ -615,6 +615,92 @@ const STRINGS = {
     pl: "Data rozliczenia",
     en: "Settled on",
   },
+  "pkg.rowTotal": {
+    it: "Costo a {n} partecipanti",
+    pl: "Koszt dla {n} uczestników",
+    en: "Cost for {n} participants",
+  },
+  "pkg.sheetTotal": {
+    it: "Totale scheda",
+    pl: "Razem karta",
+    en: "Sheet total",
+  },
+  "pkg.unitHelp": {
+    it: "Cresce con il numero di persone? «a persona». Lo paghi uguale comunque? «a gruppo».",
+    pl: "Rośnie z liczbą osób? „za osobę”. Płacisz tyle samo niezależnie od liczby? „za grupę”.",
+    en: "Does it grow with head count? “per person”. Same price regardless? “per group”.",
+  },
+  "pkg.unitExample.person": {
+    it: "es. volo, biglietto, assicurazione",
+    pl: "np. przelot, bilet, ubezpieczenie",
+    en: "e.g. flight, ticket, insurance",
+  },
+  "pkg.unitExample.personNight": {
+    it: "es. camera d’albergo, mezza pensione",
+    pl: "np. nocleg, śniadanie z obiadokolacją",
+    en: "e.g. hotel room, half board",
+  },
+  "pkg.unitExample.group": {
+    it: "es. pullman, permessi, guida a forfait",
+    pl: "np. autokar, zezwolenia, przewodnik ryczałt",
+    en: "e.g. coach, permits, flat-fee guide",
+  },
+  "pkg.unitExample.night": {
+    it: "es. guida o autista a giornata",
+    pl: "np. przewodnik lub kierowca dziennie",
+    en: "e.g. guide or driver per day",
+  },
+  "acc.reconcile": {
+    it: "Quadratura",
+    pl: "Zestawienie",
+    en: "Reconciliation",
+  },
+  "acc.tripRevenue": {
+    it: "Ricavi dei viaggi",
+    pl: "Przychód z wyjazdów",
+    en: "Trip revenue",
+  },
+  "acc.tripCost": {
+    it: "Costi dei viaggi (fornitori)",
+    pl: "Koszty wyjazdów (dostawcy)",
+    en: "Trip costs (suppliers)",
+  },
+  "acc.tripMargin": {
+    it: "Margine dei viaggi",
+    pl: "Marża z wyjazdów",
+    en: "Trip margin",
+  },
+  "acc.kept": {
+    it: "Da prenotazioni annullate",
+    pl: "Z anulowanych rezerwacji",
+    en: "From cancelled bookings",
+  },
+  "acc.overheads": {
+    it: "Spese generali",
+    pl: "Koszty ogólne",
+    en: "Overheads",
+  },
+  "acc.otherIncome": {
+    it: "Altre entrate",
+    pl: "Pozostałe wpływy",
+    en: "Other income",
+  },
+  "acc.result": { it: "Risultato", pl: "Wynik", en: "Result" },
+  "acc.checkOk": {
+    it: "I conti tornano: saldo previsto uguale al risultato.",
+    pl: "Zgadza się: saldo planowane równe wynikowi.",
+    en: "It ties out: expected balance equals the result.",
+  },
+  "acc.checkBad": {
+    it: "Differenza di {amount}: c’è un movimento che non torna.",
+    pl: "Różnica {amount}: jakaś operacja się nie zgadza.",
+    en: "Off by {amount}: an entry does not tie out.",
+  },
+  "acc.settledShare": {
+    it: "già regolato {amount}",
+    pl: "rozliczono {amount}",
+    en: "{amount} settled",
+  },
   "acc.askDelete": {
     it: "Eliminare questo movimento manuale?",
     pl: "Usunąć tę ręczną operację?",

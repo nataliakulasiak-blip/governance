@@ -836,7 +836,7 @@ dialog::backdrop {
 /* --------------------------------------------- schede in dialogo */
 
 dialog.wide {
-  width: min(880px, 96vw);
+  width: min(1040px, 96vw);
 }
 
 .dialog-form {
@@ -958,4 +958,180 @@ dialog.wide {
 
 .dialog-form .field {
   min-width: 110px;
+}
+
+/* ------------------------------------------------- scheda dei costi */
+
+.cost-head,
+.cost-row {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1.2fr 0.7fr 1.3fr 1.15fr 28px;
+  gap: 8px;
+  align-items: center;
+}
+
+.cost-head {
+  padding: 0 4px 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.cost-row {
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.cost-row:hover {
+  background: var(--surface-2);
+}
+
+.num-input {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.cost-sum {
+  margin: 0;
+  font-size: 14px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.cost-sum span {
+  display: block;
+  font-size: 12px;
+}
+
+.cost-total {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.cost-total strong {
+  font-size: 17px;
+}
+
+.unit-legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 6px;
+  margin: 8px 0 12px;
+}
+
+.unit-chip {
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.unit-chip strong {
+  display: block;
+  color: var(--text);
+  font-size: 13px;
+}
+
+/* --------------------------------------------------- quadratura */
+
+.ledger {
+  margin: 0 0 24px;
+  padding: 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.ledger h2 {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+
+.ledger-rows {
+  margin: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.ledger-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 14px;
+}
+
+.ledger-row dt,
+.ledger-row dd {
+  margin: 0;
+}
+
+.ledger-row dd {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.ledger-row.is-total {
+  border-bottom: 0;
+  border-top: 1px solid var(--line);
+  font-weight: 700;
+}
+
+.ledger-row.is-total dd {
+  font-size: 16px;
+}
+
+.ledger-check {
+  margin: 12px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Testa e piede del dialogo sempre raggiungibili mentre si scorre. */
+.dialog-head,
+.dialog-foot {
+  position: sticky;
+  z-index: 1;
+  background: var(--surface);
+}
+
+.dialog-head {
+  top: -20px;
+  margin: -20px -20px 0;
+  padding: 20px 20px 10px;
+}
+
+.dialog-foot {
+  bottom: -20px;
+  margin: 0 -20px -20px;
+  padding: 12px 20px 20px;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 860px) {
+  .cost-head {
+    display: none;
+  }
+
+  .cost-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cost-sum {
+    text-align: left;
+  }
 }

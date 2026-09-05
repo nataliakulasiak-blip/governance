@@ -134,10 +134,24 @@ const Model = (() => {
     return { fixed, variable };
   }
 
-  const costOf = (pkg, pax) => {
-    const { fixed, variable } = costParts(pkg);
-    return pax > 0 ? fixed + variable * pax : fixed;
-  };
+  /**
+   * Importo di una singola voce di costo per un dato numero di partecipanti,
+   * arrotondato all'euro. È l'unica funzione che trasforma una voce in denaro:
+   * la usano sia il conto della partenza sia i movimenti di contabilità, così
+   * il margine coincide sempre con la somma delle righe registrate.
+   */
+  function costLine(pkg, cost, pax) {
+    const amount = Number(cost.amount) || 0;
+    const people = Math.max(0, pax);
+    if (cost.unit === "person") return Math.round(amount * people);
+    if (cost.unit === "personNight")
+      return Math.round(amount * people * pkg.nights);
+    if (cost.unit === "night") return Math.round(amount * pkg.nights);
+    return Math.round(amount);
+  }
+
+  const costOf = (pkg, pax) =>
+    (pkg.costs ?? []).reduce((sum, cost) => sum + costLine(pkg, cost, pax), 0);
 
   const costPerPerson = (pkg, pax) => (pax > 0 ? costOf(pkg, pax) / pax : 0);
 
@@ -362,55 +376,54 @@ const Model = (() => {
   function movements() {
     const list = [];
 
-    state.bookings
-      .filter((b) => b.status !== "cancelled")
-      .forEach((b) => {
-        const deposit = Math.round(b.total * DEPOSIT_SHARE);
-        list.push({
+    // Una prenotazione annullata sparisce dalle previsioni, ma se l'acconto
+    // era già stato incassato quei soldi restano in cassa e nel prospetto.
+    state.bookings.forEach((b) => {
+      const cancelled = b.status === "cancelled";
+      const deposit = Math.round(b.total * DEPOSIT_SHARE);
+
+      [
+        {
           id: `in:${b.ref}:deposit`,
-          kind: "in",
           category: "deposit",
-          due: b.createdAt.slice(0, 10),
           labelKey: "acc.deposit",
-          labelParams: { ref: b.ref },
-          reference: b.ref,
-          client: b.name,
+          due: b.createdAt.slice(0, 10),
           amount: deposit,
-          source: "auto",
-        });
-        list.push({
+        },
+        {
           id: `in:${b.ref}:balance`,
-          kind: "in",
           category: "balance",
-          due: shiftDays(b.date, -BALANCE_DAYS),
           labelKey: "acc.balance",
+          due: shiftDays(b.date, -BALANCE_DAYS),
+          amount: b.total - deposit,
+        },
+      ].forEach((entry) => {
+        if (cancelled && !settledOf(entry.id)) return;
+        list.push({
+          ...entry,
+          kind: "in",
           labelParams: { ref: b.ref },
           reference: b.ref,
           client: b.name,
-          amount: b.total - deposit,
           source: "auto",
+          cancelled,
         });
       });
+    });
 
     state.packages.forEach((pkg) => {
       pkg.departures.forEach((dep) => {
         const pax = seatsTaken(pkg.id, dep.date);
-        if (pax === 0) return;
         (pkg.costs ?? []).forEach((cost) => {
-          const unit = Number(cost.amount) || 0;
-          const amount = Math.round(
-            cost.unit === "person"
-              ? unit * pax
-              : cost.unit === "personNight"
-                ? unit * pax * pkg.nights
-                : cost.unit === "night"
-                  ? unit * pkg.nights
-                  : unit,
-          );
-          if (amount === 0) return;
+          const id = `out:${pkg.id}:${dep.date}:${cost.id}`;
+          const amount = costLine(pkg, cost, pax);
+          // Senza partecipanti non c'è nulla da pagare, a meno che il
+          // fornitore sia già stato saldato: quella spesa resta.
+          if (!settledOf(id) && (pax === 0 || amount === 0)) return;
           list.push({
-            id: `out:${pkg.id}:${dep.date}:${cost.id}`,
+            id,
             kind: "out",
+            cancelled: pax === 0,
             category: cost.kind,
             due: shiftDays(dep.date, -SUPPLIER_DAYS),
             label: cost.label,
@@ -467,6 +480,44 @@ const Model = (() => {
     };
   }
 
+  /**
+   * Quadratura: il saldo previsto dei movimenti deve coincidere con il
+   * risultato (margine dei viaggi meno le spese generali). Se la differenza
+   * non è zero c'è un movimento che non torna, e la vista lo dice.
+   */
+  function reconcile() {
+    const list = movements();
+    const sum = (rows) => rows.reduce((total, m) => total + m.amount, 0);
+
+    const auto = list.filter((m) => m.source === "auto");
+    const manual = list.filter((m) => m.source === "manual");
+
+    const tripRevenue = sum(
+      auto.filter((m) => m.kind === "in" && !m.cancelled),
+    );
+    const tripCost = sum(auto.filter((m) => m.kind === "out" && !m.cancelled));
+    const keptIn = sum(auto.filter((m) => m.kind === "in" && m.cancelled));
+    const keptOut = sum(auto.filter((m) => m.kind === "out" && m.cancelled));
+    const overheads = sum(manual.filter((m) => m.kind === "out"));
+    const otherIncome = sum(manual.filter((m) => m.kind === "in"));
+
+    const kept = keptIn - keptOut;
+    const result = tripRevenue - tripCost + kept - overheads + otherIncome;
+    const totals = accounts();
+
+    return {
+      tripRevenue,
+      tripCost,
+      tripMargin: tripRevenue - tripCost,
+      kept,
+      overheads,
+      otherIncome,
+      result,
+      expected: totals.expected,
+      difference: totals.expected - result,
+    };
+  }
+
   /** Conto economico dei viaggi: ricavi, costi e margine per pacchetto. */
   function tripResults() {
     return state.packages
@@ -499,6 +550,7 @@ const Model = (() => {
     deletePackage,
     newPackageId,
     costParts,
+    costLine,
     costOf,
     costPerPerson,
     suggestedPrice,
@@ -524,6 +576,7 @@ const Model = (() => {
     addManual,
     deleteManual,
     accounts,
+    reconcile,
     tripResults,
   };
 })();

@@ -1,6 +1,6 @@
 /** Le tre finestre di lavoro: prenotazione, scheda pacchetto, movimento manuale. */
 const Editors = (() => {
-  const { $, $$, esc, money, options, toast } = UI;
+  const { $, $$, esc, money, money2, options, toast } = UI;
 
   /* ====================================================== prenotazione */
 
@@ -141,21 +141,77 @@ const Editors = (() => {
   function costRow(cost) {
     return `
       <div class="cost-row" data-cost="${esc(cost.id)}">
-        <select data-field="kind">
+        <select data-field="kind" aria-label="${esc(t("pkg.costKind"))}">
           ${options(COST_KINDS, (k) => t(`kind.${k}`), cost.kind)}
         </select>
         <input data-field="label" value="${esc(cost.label)}"
-               placeholder="${esc(t("pkg.costLabel"))}" />
+               placeholder="${esc(t("pkg.costLabel"))}"
+               aria-label="${esc(t("pkg.costLabel"))}" />
         <input data-field="supplier" value="${esc(cost.supplier)}"
-               placeholder="${esc(t("pkg.costSupplier"))}" />
-        <input data-field="amount" type="number" min="0" step="1" value="${cost.amount}"
-               aria-label="${esc(t("pkg.costAmount"))}" />
-        <select data-field="unit">
+               placeholder="${esc(t("pkg.costSupplier"))}"
+               aria-label="${esc(t("pkg.costSupplier"))}" />
+        <input data-field="amount" class="num-input" type="number" min="0" step="1"
+               value="${cost.amount}" aria-label="${esc(t("pkg.costAmount"))}" />
+        <select data-field="unit" aria-label="${esc(t("pkg.costUnit"))}">
           ${options(COST_UNITS, (u) => t(`unit.${u}`), cost.unit)}
         </select>
+        <p class="cost-sum">
+          <strong data-row-amount="${esc(cost.id)}"></strong>
+          <span class="muted" data-row-person="${esc(cost.id)}"></span>
+        </p>
         <button type="button" class="icon-btn" data-drop-cost="${esc(cost.id)}"
                 aria-label="${esc(t("common.delete"))}">×</button>
       </div>`;
+  }
+
+  /** Intestazione delle colonne e legenda delle unità. */
+  function renderCostHead() {
+    const pax = Model.refPax(draft);
+    $("#p-costs-head").innerHTML = [
+      t("pkg.costKind"),
+      t("pkg.costLabel"),
+      t("pkg.costSupplier"),
+      t("pkg.costAmount"),
+      t("pkg.costUnit"),
+      t("pkg.rowTotal", { n: pax }),
+      "",
+    ]
+      .map((label) => `<span>${esc(label)}</span>`)
+      .join("");
+
+    $("#p-unit-legend").innerHTML = COST_UNITS.map(
+      (unit) => `<span class="unit-chip">
+          <strong>${esc(t(`unit.${unit}`))}</strong>
+          ${esc(t(`pkg.unitExample.${unit}`))}
+        </span>`,
+    ).join("");
+  }
+
+  /**
+   * Aggiorna gli importi calcolati riga per riga e il totale della scheda
+   * senza ridisegnare i campi, così chi sta scrivendo non perde il cursore.
+   */
+  function updateCostTotals() {
+    const pax = Model.refPax(draft);
+    renderCostHead();
+    draft.costs.forEach((cost) => {
+      const total = Model.costLine(draft, cost, pax);
+      const amountCell = $(`[data-row-amount="${cost.id}"]`);
+      const personCell = $(`[data-row-person="${cost.id}"]`);
+      if (amountCell) amountCell.textContent = money(total);
+      if (personCell) {
+        personCell.textContent =
+          pax > 0 ? `${money2(total / pax)} ${t("common.perPerson")}` : "";
+      }
+    });
+
+    const { fixed, variable } = Model.costParts(draft);
+    $("#p-costs-total").innerHTML = draft.costs.length
+      ? `<span>${esc(t("pkg.sheetTotal"))}</span>
+         <strong>${money(Model.costOf(draft, pax))}</strong>
+         <span class="muted">${esc(t("pkg.fixedCost"))} ${money(fixed)} ·
+           ${esc(t("pkg.variableCost"))} ${money(variable)}</span>`
+      : "";
   }
 
   function departureRow(dep) {
@@ -172,8 +228,11 @@ const Editors = (() => {
   }
 
   function renderCosts() {
+    renderCostHead();
     $("#p-costs").innerHTML = draft.costs.map(costRow).join("");
     $("#p-costs-empty").hidden = draft.costs.length > 0;
+    $("#p-costs-head").hidden = draft.costs.length === 0;
+    updateCostTotals();
   }
 
   function renderDepartures() {
@@ -185,6 +244,7 @@ const Editors = (() => {
   }
 
   function renderFigures() {
+    updateCostTotals();
     const { fixed, variable } = Model.costParts(draft);
     const pax = Model.refPax(draft);
     const cost = Model.costPerPerson(draft, pax);
@@ -197,11 +257,11 @@ const Editors = (() => {
     $("#p-figures").innerHTML = [
       { label: t("pkg.fixedCost"), value: money(fixed) },
       { label: t("pkg.variableCost"), value: money(variable) },
-      { label: t("pkg.costPerPerson"), value: money(cost) },
+      { label: t("pkg.costPerPerson"), value: money2(cost) },
       { label: t("pkg.suggested"), value: money(suggested) },
       {
         label: t("pkg.marginPerPerson"),
-        value: money(margin),
+        value: money2(margin),
         tone: margin < 0 ? "bad" : "good",
       },
       {
