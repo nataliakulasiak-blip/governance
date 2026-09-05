@@ -369,12 +369,20 @@ h4 {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(42, 10, 16, 0.72) 0%,
-    rgba(42, 10, 16, 0.35) 42%,
-    rgba(42, 10, 16, 0.85) 100%
-  );
+  /* vignettatura: bordi in ombra, centro pulito sotto il titolo */
+  background:
+    radial-gradient(
+      130% 95% at 50% 38%,
+      rgba(42, 10, 16, 0) 0%,
+      rgba(42, 10, 16, 0.3) 62%,
+      rgba(42, 10, 16, 0.72) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(42, 10, 16, 0.5) 0%,
+      rgba(42, 10, 16, 0.12) 40%,
+      rgba(42, 10, 16, 0.78) 100%
+    );
 }
 
 .copertina__contenuto {
