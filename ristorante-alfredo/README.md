@@ -30,6 +30,35 @@ Caratteri: _Cormorant Garamond_ (titoli), _Jost_ (testo), _Pinyon Script_ (corsi
 | `diario-*.html`             | tre articoli (dati strutturati `BlogPosting`)                         |
 | `robots.txt`, `sitemap.xml` | indicizzazione                                                        |
 
+## Codici QR
+
+Generati in locale con [segno](https://pypi.org/project/segno/), nessun servizio
+esterno: `pip install segno && python3 strumenti/genera-qr.py`. I file finiscono in
+`images/qr-*.svg` (vettoriali, nitidi a qualsiasi dimensione).
+
+| Codice              | Contenuto                                                            |
+| ------------------- | -------------------------------------------------------------------- |
+| `qr-menu.svg`       | l'indirizzo di `menu.html`                                           |
+| `qr-wifi.svg`       | `WIFI:T:WPA;S:Alfredo-Ospiti;P:…;;` — il telefono si collega da solo |
+| `qr-recensione.svg` | il modulo di recensione Google della scheda del ristorante           |
+
+Le costanti da cambiare (indirizzo del menu, SSID e password del Wi-Fi, Place ID di
+Google) sono in cima a `strumenti/genera-qr.py`; dopo la modifica si rilancia lo
+script. **Il Place ID è un segnaposto**: finché non viene sostituito, il codice della
+recensione non porta a nessuna scheda. Si ricava dalla
+[documentazione Google Places](https://developers.google.com/maps/documentation/places/web-service/place-id).
+
+La pagina `qr.html` stampa una scheda per pagina (Ctrl+P / Cmd+P), senza intestazione
+né piè di pagina.
+
+## Mappa
+
+La sezione «Dove siamo» della home incorpora la mappa di OpenStreetMap (nessuna chiave
+API, nessun cookie). Dietro l'iframe c'è un riquadro di riserva con l'indirizzo, che
+resta visibile se la mappa non può caricarsi. **Le coordinate `41.8955, 12.5040` sono
+approssimative**: vanno verificate sul posto e aggiornate in tre punti — l'`src`
+dell'iframe e i due collegamenti in `index.html`, e il campo `geo` dei dati strutturati.
+
 ## Prenotazioni
 
 - **WhatsApp** — il modulo di `index.html` non invia nulla a un server: compone il
@@ -47,7 +76,8 @@ I dati di contatto sono segnaposto realistici: vanno sostituiti con quelli veri.
 3. Dominio `https://www.ristorantealfredoroma.it` nei tag `canonical`, Open Graph,
    `sitemap.xml` e `robots.txt`.
 4. Partita IVA nel piè di pagina.
-5. **Immagini**: le illustrazioni in `images/` sono vettoriali provvisorie. Sostituirle
+5. Dati dei codici QR e coordinate della mappa (vedi le due sezioni qui sopra).
+6. **Immagini**: le illustrazioni in `images/` sono vettoriali provvisorie. Sostituirle
    con fotografie reali (stesso nome file, oppure aggiornando `src` e
    `background-image` in `css/style.css` per `sala.svg`). Formato consigliato: JPEG o
    WebP, 1600 px di lato lungo per la galleria, 2000 px per la copertina.

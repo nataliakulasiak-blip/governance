@@ -131,6 +131,30 @@
     });
   }
 
+  /* ---- Mappa: la carichiamo solo se OpenStreetMap è raggiungibile ----
+     Se la rete la blocca resta il riquadro con l'indirizzo, senza schermate
+     di errore del browser. */
+  var mappa = document.querySelector("[data-mappa]");
+  if (mappa) {
+    var sonda = new Image();
+
+    sonda.onload = function () {
+      var telaio = document.createElement("iframe");
+      telaio.title = "Mappa: Via Principe Amedeo 126, Roma";
+      telaio.loading = "lazy";
+      telaio.referrerPolicy = "no-referrer-when-downgrade";
+      telaio.src =
+        "https://www.openstreetmap.org/export/embed.html?bbox=" +
+        encodeURIComponent(mappa.dataset.bbox) +
+        "&layer=mapnik&marker=" +
+        encodeURIComponent(mappa.dataset.marker);
+      mappa.appendChild(telaio);
+    };
+
+    /* piastrella della zona di piazza Vittorio */
+    sonda.src = "https://tile.openstreetmap.org/16/35044/24353.png";
+  }
+
   /* ---- Anno corrente nel piè di pagina ---- */
   document.querySelectorAll("[data-anno]").forEach(function (elemento) {
     elemento.textContent = String(new Date().getFullYear());

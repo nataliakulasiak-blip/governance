@@ -1496,3 +1496,224 @@ h4 {
 .pie__colonne a:hover {
   color: var(--oro-chiaro);
 }
+
+/* --------------------------------------------------------------------------
+   Mappa
+   -------------------------------------------------------------------------- */
+
+.mappa {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--sabbia-scura);
+  background: var(--sabbia);
+  overflow: hidden;
+}
+
+.mappa iframe {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Visibile quando la mappa non può essere caricata (anteprima, rete assente) */
+.mappa__riserva {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 0.6rem;
+  padding: 2.5rem;
+  text-align: center;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(90, 22, 34, 0.07) 0 1px,
+      transparent 1px 46px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(90, 22, 34, 0.07) 0 1px,
+      transparent 1px 46px
+    ),
+    var(--sabbia);
+}
+
+.mappa__riserva strong {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  color: var(--bordeaux);
+}
+
+.mappa__riserva span {
+  font-size: 0.94rem;
+  opacity: 0.8;
+}
+
+.mappa__spillo {
+  color: var(--rosso);
+}
+
+.indicazioni {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.6rem;
+}
+
+.mezzi {
+  list-style: none;
+  margin: 1.4rem 0 0;
+  padding: 0;
+}
+
+.mezzi li {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+  gap: 0.9rem;
+  align-items: baseline;
+  padding: 0.55rem 0;
+  border-bottom: 1px dotted rgba(90, 22, 34, 0.22);
+  font-size: 0.96rem;
+}
+
+.mezzi li:last-child {
+  border-bottom: none;
+}
+
+.mezzi b {
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rosso);
+}
+
+/* --------------------------------------------------------------------------
+   Codici QR
+   -------------------------------------------------------------------------- */
+
+.qr-griglia {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.qr-scheda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+  padding: 2.4rem 1.8rem 2.2rem;
+  background: var(--crema);
+  border: 1px solid var(--sabbia-scura);
+}
+
+.qr-scheda__codice {
+  width: min(210px, 68%);
+  /* l'attributo height del tag renderebbe definita anche l'altezza */
+  height: auto;
+  aspect-ratio: 1;
+  padding: 0.9rem;
+  margin-bottom: 1.2rem;
+  background: #fff;
+  border: 1px solid var(--sabbia-scura);
+}
+
+.qr-scheda h3 {
+  font-size: 1.5rem;
+  color: var(--bordeaux);
+}
+
+.qr-scheda p {
+  margin: 0;
+  font-size: 0.92rem;
+  opacity: 0.8;
+  max-width: 30ch;
+}
+
+.qr-scheda__dato {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rosso);
+}
+
+/* Marchio Google nei suoi colori, per il codice delle recensioni */
+.google {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 1.75rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.google .g-blu {
+  color: #4285f4;
+}
+
+.google .g-rosso {
+  color: #ea4335;
+}
+
+.google .g-giallo {
+  color: #fbbc05;
+}
+
+.google .g-verde {
+  color: #34a853;
+}
+
+.stelle {
+  display: flex;
+  gap: 0.25rem;
+  color: #fbbc05;
+  margin: 0.2rem 0 0.4rem;
+}
+
+@media (max-width: 900px) {
+  .qr-griglia {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin-inline: auto;
+  }
+
+  .mezzi li {
+    grid-template-columns: 2rem 1fr;
+  }
+}
+
+/* Fogli da stampare: una scheda per pagina, senza cornici del sito */
+@media print {
+  .testata,
+  .whatsapp-flottante,
+  .pie,
+  .qr-stampa-nota {
+    display: none !important;
+  }
+
+  .qr-griglia {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .qr-scheda {
+    break-inside: avoid;
+    page-break-after: always;
+    border: 1px solid #999;
+    min-height: 90vh;
+    justify-content: center;
+  }
+
+  .qr-scheda__codice {
+    width: 55mm;
+    border-color: #999;
+  }
+}
