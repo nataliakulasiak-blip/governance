@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sala del ristorante">
+  <defs>
+    <linearGradient id="muro" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5a1622"/>
+      <stop offset="55%" stop-color="#3d0e17"/>
+      <stop offset="100%" stop-color="#240810"/>
+    </linearGradient>
+    <radialGradient id="lampada" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f6dfa8" stop-opacity="0.95"/>
+      <stop offset="60%" stop-color="#d8b878" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#d8b878" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="tavolo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eadfc8"/>
+      <stop offset="100%" stop-color="#c9b189"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#muro)"/>
+  <g fill="none" stroke="#b8914f" stroke-opacity="0.28" stroke-width="3">
+    <path d="M180 900V420a140 140 0 0 1 280 0v480"/>
+    <path d="M660 900V380a140 140 0 0 1 280 0v520"/>
+    <path d="M1140 900V420a140 140 0 0 1 280 0v480"/>
+  </g>
+  <g opacity="0.5">
+    <circle cx="320" cy="300" r="170" fill="url(#lampada)"/>
+    <circle cx="800" cy="250" r="210" fill="url(#lampada)"/>
+    <circle cx="1280" cy="300" r="170" fill="url(#lampada)"/>
+  </g>
+  <g stroke="#b8914f" stroke-opacity="0.5" stroke-width="2">
+    <path d="M320 0v210M800 0v170M1280 0v210"/>
+  </g>
+  <g fill="#d8b878" fill-opacity="0.75">
+    <ellipse cx="320" cy="222" rx="46" ry="16"/>
+    <ellipse cx="800" cy="182" rx="56" ry="18"/>
+    <ellipse cx="1280" cy="222" rx="46" ry="16"/>
+  </g>
+  <g opacity="0.9">
+    <ellipse cx="800" cy="720" rx="470" ry="70" fill="url(#tavolo)" opacity="0.35"/>
+    <ellipse cx="800" cy="700" rx="440" ry="58" fill="url(#tavolo)" opacity="0.55"/>
+  </g>
+  <g fill="#f7efe2" fill-opacity="0.55">
+    <circle cx="560" cy="690" r="34"/><circle cx="800" cy="678" r="38"/><circle cx="1040" cy="690" r="34"/>
+  </g>
+  <g stroke="#f7efe2" stroke-opacity="0.4" stroke-width="4" stroke-linecap="round">
+    <path d="M630 668v46M652 668v46M948 668v46M970 668v46"/>
+  </g>
+  <g fill="#a32a2a" fill-opacity="0.8">
+    <path d="M700 600c0 26 14 44 22 52 8-8 22-26 22-52 0-24-14-40-22-48-8 8-22 24-22 48z"/>
+    <path d="M880 612c0 22 12 38 19 45 7-7 19-23 19-45 0-21-12-35-19-42-7 7-19 21-19 42z"/>
+  </g>
+  <rect width="1600" height="900" fill="#2a0a10" opacity="0.15"/>
+</svg>
