@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tre Mari Travel</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%88%EF%B8%8F%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">TM</span>
+        <div>
+          <h1>Tre Mari Travel</h1>
+          <p class="brand-sub" data-i18n="app.tagline"></p>
+        </div>
+      </div>
+
+      <label class="lang">
+        <span class="sr-only" data-i18n="app.language"></span>
+        <select id="lang-select">
+          <option value="it">🇮🇹 Italiano</option>
+          <option value="pl">🇵🇱 Polski</option>
+          <option value="en">🇬🇧 English</option>
+        </select>
+      </label>
+    </header>
+
+    <nav class="tabs" id="tabs">
+      <button
+        class="tab is-active"
+        data-view="catalog"
+        data-i18n="nav.catalog"
+      ></button>
+      <button
+        class="tab"
+        data-view="bookings"
+        data-i18n="nav.bookings"
+      ></button>
+      <button
+        class="tab"
+        data-view="dashboard"
+        data-i18n="nav.dashboard"
+      ></button>
+    </nav>
+
+    <main>
+      <!-- ============ CATALOGO ============ -->
+      <section id="view-catalog" class="view">
+        <form class="filters" id="filters" autocomplete="off">
+          <div class="field grow">
+            <label for="f-search" data-i18n="filters.search"></label>
+            <input
+              type="search"
+              id="f-search"
+              data-i18n-attr="placeholder:filters.searchPlaceholder"
+            />
+          </div>
+          <div class="field">
+            <label for="f-country" data-i18n="filters.country"></label>
+            <select id="f-country"></select>
+          </div>
+          <div class="field">
+            <label for="f-category" data-i18n="filters.category"></label>
+            <select id="f-category"></select>
+          </div>
+          <div class="field">
+            <label for="f-price"
+              ><span data-i18n="filters.maxPrice"></span>
+              <output id="f-price-out"></output
+            ></label>
+            <input
+              type="range"
+              id="f-price"
+              min="300"
+              max="4000"
+              step="50"
+              value="4000"
+            />
+          </div>
+          <div class="field">
+            <label for="f-sort" data-i18n="filters.sort"></label>
+            <select id="f-sort">
+              <option value="popular" data-i18n="filters.sortPopular"></option>
+              <option
+                value="priceAsc"
+                data-i18n="filters.sortPriceAsc"
+              ></option>
+              <option
+                value="priceDesc"
+                data-i18n="filters.sortPriceDesc"
+              ></option>
+              <option
+                value="duration"
+                data-i18n="filters.sortDuration"
+              ></option>
+            </select>
+          </div>
+          <button
+            type="reset"
+            class="btn ghost"
+            data-i18n="filters.reset"
+          ></button>
+        </form>
+
+        <p class="results-count" id="results-count"></p>
+        <div class="grid" id="catalog-grid"></div>
+        <p
+          class="empty"
+          id="catalog-empty"
+          hidden
+          data-i18n="catalog.empty"
+        ></p>
+      </section>
+
+      <!-- ============ PRENOTAZIONI ============ -->
+      <section id="view-bookings" class="view" hidden>
+        <div class="toolbar">
+          <div class="field">
+            <label for="b-status" data-i18n="bookings.filterStatus"></label>
+            <select id="b-status">
+              <option value="all" data-i18n="bookings.statusAll"></option>
+              <option value="pending" data-i18n="status.pending"></option>
+              <option value="confirmed" data-i18n="status.confirmed"></option>
+              <option value="cancelled" data-i18n="status.cancelled"></option>
+            </select>
+          </div>
+          <div class="spacer"></div>
+          <button
+            class="btn ghost"
+            id="btn-export"
+            data-i18n="bookings.export"
+          ></button>
+          <button
+            class="btn danger ghost"
+            id="btn-clear"
+            data-i18n="bookings.clearAll"
+          ></button>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table" id="bookings-table">
+            <thead>
+              <tr>
+                <th data-i18n="bookings.ref"></th>
+                <th data-i18n="bookings.client"></th>
+                <th data-i18n="bookings.trip"></th>
+                <th data-i18n="bookings.departure"></th>
+                <th class="num" data-i18n="bookings.travelers"></th>
+                <th class="num" data-i18n="bookings.total"></th>
+                <th data-i18n="bookings.status"></th>
+                <th data-i18n="bookings.actions"></th>
+              </tr>
+            </thead>
+            <tbody id="bookings-body"></tbody>
+          </table>
+        </div>
+        <p
+          class="empty"
+          id="bookings-empty"
+          hidden
+          data-i18n="bookings.empty"
+        ></p>
+      </section>
+
+      <!-- ============ RIEPILOGO ============ -->
+      <section id="view-dashboard" class="view" hidden>
+        <div class="stats" id="stats"></div>
+        <h2 data-i18n="dashboard.byDestination"></h2>
+        <div class="bars" id="bars"></div>
+        <p
+          class="empty"
+          id="dashboard-empty"
+          hidden
+          data-i18n="dashboard.empty"
+        ></p>
+      </section>
+    </main>
+
+    <!-- ============ MODALE PRENOTAZIONE ============ -->
+    <dialog id="booking-dialog">
+      <form method="dialog" id="booking-form" class="booking-form">
+        <header class="dialog-head">
+          <h2 id="dlg-title"></h2>
+          <button type="button" class="icon-btn" id="dlg-close" aria-label="×">
+            ×
+          </button>
+        </header>
+
+        <p class="dialog-sub" id="dlg-sub"></p>
+
+        <div class="row">
+          <div class="field grow">
+            <label for="c-name" data-i18n="form.name"></label>
+            <input id="c-name" required minlength="2" />
+          </div>
+          <div class="field grow">
+            <label for="c-email" data-i18n="form.email"></label>
+            <input id="c-email" type="email" required />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field grow">
+            <label for="c-phone" data-i18n="form.phone"></label>
+            <input id="c-phone" type="tel" />
+          </div>
+          <div class="field">
+            <label for="c-departure" data-i18n="form.departure"></label>
+            <select id="c-departure" required></select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="c-adults" data-i18n="form.adults"></label>
+            <input
+              id="c-adults"
+              type="number"
+              min="1"
+              max="12"
+              value="2"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="c-children" data-i18n="form.children"></label>
+            <input id="c-children" type="number" min="0" max="10" value="0" />
+          </div>
+          <div class="field grow">
+            <label for="c-notes" data-i18n="form.notes"></label>
+            <input id="c-notes" />
+          </div>
+        </div>
+
+        <div class="price-box">
+          <div id="price-detail"></div>
+          <strong id="price-total"></strong>
+        </div>
+
+        <p class="form-error" id="form-error" hidden></p>
+
+        <footer class="dialog-foot">
+          <button
+            type="button"
+            class="btn ghost"
+            id="dlg-cancel"
+            data-i18n="form.cancel"
+          ></button>
+          <button
+            type="submit"
+            class="btn primary"
+            data-i18n="form.submit"
+          ></button>
+        </footer>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" hidden></div>
+
+    <footer class="site-foot">
+      <span data-i18n="app.footer"></span>
+    </footer>
+
+    <script src="js/i18n.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
