@@ -77,7 +77,11 @@ I dati di contatto sono segnaposto realistici: vanno sostituiti con quelli veri.
    `sitemap.xml` e `robots.txt`.
 4. Partita IVA nel piè di pagina.
 5. Dati dei codici QR e coordinate della mappa (vedi le due sezioni qui sopra).
-6. **Immagini**: le illustrazioni in `images/` sono vettoriali provvisorie. Sostituirle
+6. **La foto dell'aperitivo**: la sezione «L'ora dell'aperitivo» della home usa
+   `images/aperitivo.svg`, un'illustrazione provvisoria. Con una fotografia basta
+   salvarla come `images/aperitivo.jpg` e cambiare `src`, `width` e `height`
+   dell'immagine in `index.html` (taglio consigliato 3:2, 1600 px di lato lungo).
+7. **Immagini**: le illustrazioni in `images/` sono vettoriali provvisorie. Sostituirle
    con fotografie reali (stesso nome file, oppure aggiornando `src` e
    `background-image` in `css/style.css` per `sala.svg`). Formato consigliato: JPEG o
    WebP, 1600 px di lato lungo per la galleria, 2000 px per la copertina.
