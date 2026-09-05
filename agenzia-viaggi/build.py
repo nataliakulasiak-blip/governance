@@ -55,11 +55,11 @@ def patch_save_file(source: str) -> str:
 def main() -> None:
     html = (BASE / "index.html").read_text(encoding="utf-8")
     css = (BASE / "css/styles.css").read_text(encoding="utf-8")
+    names = re.findall(r'<script src="js/(\w+)\.js"></script>', html)
+    scripts = [(BASE / f"js/{name}.js").read_text(encoding="utf-8") for name in names]
     scripts = [
-        (BASE / f"js/{name}.js").read_text(encoding="utf-8")
-        for name in ("i18n", "data", "app")
+        patch_save_file(s) if "function saveFile" in s else s for s in scripts
     ]
-    scripts[-1] = patch_save_file(scripts[-1])
 
     body = html.split("<body>", 1)[1].rsplit("</body>", 1)[0]
     body = re.sub(r'\s*<script src="js/\w+\.js"></script>', "", body)

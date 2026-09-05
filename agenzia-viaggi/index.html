@@ -38,8 +38,23 @@
       ></button>
       <button
         class="tab"
+        data-view="packages"
+        data-i18n="nav.packages"
+      ></button>
+      <button
+        class="tab"
+        data-view="departures"
+        data-i18n="nav.departures"
+      ></button>
+      <button
+        class="tab"
         data-view="bookings"
         data-i18n="nav.bookings"
+      ></button>
+      <button
+        class="tab"
+        data-view="accounting"
+        data-i18n="nav.accounting"
       ></button>
       <button
         class="tab"
@@ -49,7 +64,7 @@
     </nav>
 
     <main>
-      <!-- ============ CATALOGO ============ -->
+      <!-- ====================== CATALOGO ====================== -->
       <section id="view-catalog" class="view">
         <form class="filters" id="filters" autocomplete="off">
           <div class="field grow">
@@ -69,10 +84,10 @@
             <select id="f-category"></select>
           </div>
           <div class="field">
-            <label for="f-price"
-              ><span data-i18n="filters.maxPrice"></span>
-              <output id="f-price-out"></output
-            ></label>
+            <label for="f-price">
+              <span data-i18n="filters.maxPrice"></span>
+              <output id="f-price-out"></output>
+            </label>
             <input
               type="range"
               id="f-price"
@@ -117,13 +132,64 @@
         ></p>
       </section>
 
-      <!-- ============ PRENOTAZIONI ============ -->
+      <!-- ====================== PACCHETTI ====================== -->
+      <section id="view-packages" class="view" hidden>
+        <div class="toolbar">
+          <button
+            class="btn primary"
+            id="btn-new-package"
+            data-i18n="pkg.new"
+          ></button>
+          <p class="hint" data-i18n="pkg.costsHint"></p>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table" id="packages-table">
+            <thead>
+              <tr>
+                <th data-i18n="pkg.name"></th>
+                <th class="num" data-i18n="pkg.colPrice"></th>
+                <th class="num" data-i18n="pkg.colCost"></th>
+                <th class="num" data-i18n="pkg.colMargin"></th>
+                <th class="num" data-i18n="pkg.breakEven"></th>
+                <th class="num" data-i18n="pkg.colDepartures"></th>
+                <th data-i18n="acc.status"></th>
+                <th data-i18n="bookings.actions"></th>
+              </tr>
+            </thead>
+            <tbody id="packages-body"></tbody>
+          </table>
+        </div>
+        <p class="empty" id="packages-empty" hidden data-i18n="pkg.empty"></p>
+      </section>
+
+      <!-- ====================== PARTENZE ====================== -->
+      <section id="view-departures" class="view" hidden>
+        <div class="toolbar">
+          <div class="field">
+            <label for="d-period" data-i18n="dep.filterPeriod"></label>
+            <select id="d-period">
+              <option value="60" data-i18n="dep.next60"></option>
+              <option value="all" data-i18n="dep.upcoming"></option>
+            </select>
+          </div>
+          <label class="check">
+            <input type="checkbox" id="d-free" />
+            <span data-i18n="dep.onlyFree"></span>
+          </label>
+        </div>
+
+        <div class="departures" id="departures-list"></div>
+        <p class="empty" id="departures-empty" hidden data-i18n="dep.empty"></p>
+      </section>
+
+      <!-- ====================== PRENOTAZIONI ====================== -->
       <section id="view-bookings" class="view" hidden>
         <div class="toolbar">
           <div class="field">
             <label for="b-status" data-i18n="bookings.filterStatus"></label>
             <select id="b-status">
-              <option value="all" data-i18n="bookings.statusAll"></option>
+              <option value="all" data-i18n="common.all"></option>
               <option value="pending" data-i18n="status.pending"></option>
               <option value="confirmed" data-i18n="status.confirmed"></option>
               <option value="cancelled" data-i18n="status.cancelled"></option>
@@ -133,7 +199,7 @@
           <button
             class="btn ghost"
             id="btn-export"
-            data-i18n="bookings.export"
+            data-i18n="common.export"
           ></button>
           <button
             class="btn danger ghost"
@@ -149,10 +215,10 @@
                 <th data-i18n="bookings.ref"></th>
                 <th data-i18n="bookings.client"></th>
                 <th data-i18n="bookings.trip"></th>
-                <th data-i18n="bookings.departure"></th>
+                <th data-i18n="form.departure"></th>
                 <th class="num" data-i18n="bookings.travelers"></th>
-                <th class="num" data-i18n="bookings.total"></th>
-                <th data-i18n="bookings.status"></th>
+                <th class="num" data-i18n="common.total"></th>
+                <th data-i18n="acc.status"></th>
                 <th data-i18n="bookings.actions"></th>
               </tr>
             </thead>
@@ -167,23 +233,88 @@
         ></p>
       </section>
 
-      <!-- ============ RIEPILOGO ============ -->
+      <!-- ====================== CONTABILITÀ ====================== -->
+      <section id="view-accounting" class="view" hidden>
+        <div class="stats" id="acc-stats"></div>
+
+        <div class="toolbar">
+          <div class="field">
+            <label for="a-period" data-i18n="acc.period"></label>
+            <select id="a-period">
+              <option value="open" data-i18n="acc.periodOpen"></option>
+              <option value="month" data-i18n="acc.periodMonth"></option>
+              <option value="overdue" data-i18n="acc.periodOverdue"></option>
+              <option value="all" data-i18n="acc.periodAll"></option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="a-kind" data-i18n="acc.kind"></label>
+            <select id="a-kind">
+              <option value="all" data-i18n="common.all"></option>
+              <option value="in" data-i18n="acc.in"></option>
+              <option value="out" data-i18n="acc.out"></option>
+            </select>
+          </div>
+          <div class="spacer"></div>
+          <button
+            class="btn ghost"
+            id="btn-manual"
+            data-i18n="acc.addManual"
+          ></button>
+          <button
+            class="btn ghost"
+            id="btn-acc-export"
+            data-i18n="common.export"
+          ></button>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table" id="acc-table">
+            <thead>
+              <tr>
+                <th data-i18n="acc.due"></th>
+                <th data-i18n="acc.description"></th>
+                <th data-i18n="acc.reference"></th>
+                <th data-i18n="pkg.costKind"></th>
+                <th class="num" data-i18n="acc.amount"></th>
+                <th data-i18n="acc.status"></th>
+                <th data-i18n="bookings.actions"></th>
+              </tr>
+            </thead>
+            <tbody id="acc-body"></tbody>
+          </table>
+        </div>
+        <p class="empty" id="acc-empty" hidden data-i18n="acc.empty"></p>
+      </section>
+
+      <!-- ====================== RIEPILOGO ====================== -->
       <section id="view-dashboard" class="view" hidden>
         <div class="stats" id="stats"></div>
-        <h2 data-i18n="dashboard.byDestination"></h2>
+        <h2 data-i18n="dash.byDestination"></h2>
         <div class="bars" id="bars"></div>
-        <p
-          class="empty"
-          id="dashboard-empty"
-          hidden
-          data-i18n="dashboard.empty"
-        ></p>
+        <h2 data-i18n="dash.nextDepartures"></h2>
+        <div class="table-wrap">
+          <table class="table" id="dash-table">
+            <thead>
+              <tr>
+                <th data-i18n="bookings.trip"></th>
+                <th data-i18n="form.departure"></th>
+                <th class="num" data-i18n="dep.sold"></th>
+                <th class="num" data-i18n="dep.revenue"></th>
+                <th class="num" data-i18n="dep.margin"></th>
+                <th data-i18n="pkg.breakEven"></th>
+              </tr>
+            </thead>
+            <tbody id="dash-body"></tbody>
+          </table>
+        </div>
+        <p class="empty" id="dashboard-empty" hidden data-i18n="dash.empty"></p>
       </section>
     </main>
 
-    <!-- ============ MODALE PRENOTAZIONE ============ -->
+    <!-- ====================== MODALE PRENOTAZIONE ====================== -->
     <dialog id="booking-dialog">
-      <form method="dialog" id="booking-form" class="booking-form">
+      <form method="dialog" id="booking-form" class="dialog-form">
         <header class="dialog-head">
           <h2 id="dlg-title"></h2>
           <button type="button" class="icon-btn" id="dlg-close" aria-label="×">
@@ -209,7 +340,7 @@
             <label for="c-phone" data-i18n="form.phone"></label>
             <input id="c-phone" type="tel" />
           </div>
-          <div class="field">
+          <div class="field grow">
             <label for="c-departure" data-i18n="form.departure"></label>
             <select id="c-departure" required></select>
           </div>
@@ -222,14 +353,14 @@
               id="c-adults"
               type="number"
               min="1"
-              max="12"
+              max="25"
               value="2"
               required
             />
           </div>
           <div class="field">
             <label for="c-children" data-i18n="form.children"></label>
-            <input id="c-children" type="number" min="0" max="10" value="0" />
+            <input id="c-children" type="number" min="0" max="24" value="0" />
           </div>
           <div class="field grow">
             <label for="c-notes" data-i18n="form.notes"></label>
@@ -249,12 +380,211 @@
             type="button"
             class="btn ghost"
             id="dlg-cancel"
-            data-i18n="form.cancel"
+            data-i18n="common.cancel"
           ></button>
           <button
             type="submit"
             class="btn primary"
             data-i18n="form.submit"
+          ></button>
+        </footer>
+      </form>
+    </dialog>
+
+    <!-- ====================== MODALE PACCHETTO ====================== -->
+    <dialog id="package-dialog" class="wide">
+      <form method="dialog" id="package-form" class="dialog-form">
+        <header class="dialog-head">
+          <h2 data-i18n="pkg.editTitle"></h2>
+          <button type="button" class="icon-btn" id="pkg-close" aria-label="×">
+            ×
+          </button>
+        </header>
+
+        <div class="row">
+          <div class="field grow">
+            <label for="p-name" data-i18n="pkg.name"></label>
+            <input id="p-name" required />
+          </div>
+          <div class="field">
+            <label for="p-country" data-i18n="filters.country"></label>
+            <select id="p-country"></select>
+          </div>
+          <div class="field">
+            <label for="p-category" data-i18n="filters.category"></label>
+            <select id="p-category"></select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="p-desc" data-i18n="pkg.description"></label>
+          <input id="p-desc" />
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="p-nights" data-i18n="pkg.nights"></label>
+            <input id="p-nights" type="number" min="1" max="30" value="7" />
+          </div>
+          <div class="field">
+            <label for="p-group" data-i18n="pkg.groupSize"></label>
+            <input id="p-group" type="number" min="1" max="60" value="25" />
+          </div>
+          <div class="field grow hint-field">
+            <span class="hint" data-i18n="pkg.groupHint"></span>
+          </div>
+        </div>
+
+        <details class="block">
+          <summary data-i18n="pkg.otherLangs"></summary>
+          <div id="p-langs" class="lang-grid"></div>
+        </details>
+
+        <section class="block">
+          <div class="block-head">
+            <h3 data-i18n="pkg.costs"></h3>
+            <button
+              type="button"
+              class="btn ghost small"
+              id="p-add-cost"
+              data-i18n="pkg.addCost"
+            ></button>
+          </div>
+          <div class="rows" id="p-costs"></div>
+          <p class="hint" id="p-costs-empty" data-i18n="pkg.noCosts"></p>
+        </section>
+
+        <section class="block">
+          <div class="block-head">
+            <h3 data-i18n="pkg.departures"></h3>
+            <button
+              type="button"
+              class="btn ghost small"
+              id="p-add-departure"
+              data-i18n="pkg.addDeparture"
+            ></button>
+          </div>
+          <div class="rows" id="p-departures"></div>
+          <p
+            class="hint"
+            id="p-departures-empty"
+            data-i18n="pkg.noDepartures"
+          ></p>
+        </section>
+
+        <section class="block pricing">
+          <div class="block-head"><h3 data-i18n="pkg.pricing"></h3></div>
+          <div class="row">
+            <div class="field">
+              <label for="p-refpax" data-i18n="pkg.refPax"></label>
+              <input id="p-refpax" type="number" min="1" max="60" value="20" />
+            </div>
+            <div class="field">
+              <label for="p-markup">
+                <span data-i18n="pkg.markup"></span>
+                <output id="p-markup-out"></output>
+              </label>
+              <input
+                id="p-markup"
+                type="range"
+                min="0"
+                max="80"
+                step="5"
+                value="25"
+              />
+            </div>
+            <div class="field">
+              <label for="p-price" data-i18n="pkg.listPrice"></label>
+              <input id="p-price" type="number" min="0" step="10" />
+            </div>
+            <div class="field hint-field">
+              <button
+                type="button"
+                class="btn ghost small"
+                id="p-use-suggested"
+                data-i18n="pkg.useSuggested"
+              ></button>
+            </div>
+          </div>
+          <div class="figures" id="p-figures"></div>
+        </section>
+
+        <label class="check">
+          <input type="checkbox" id="p-published" />
+          <span data-i18n="pkg.publish"></span>
+        </label>
+
+        <p class="form-error" id="p-error" hidden></p>
+
+        <footer class="dialog-foot">
+          <button
+            type="button"
+            class="btn ghost"
+            id="pkg-cancel"
+            data-i18n="common.cancel"
+          ></button>
+          <button
+            type="submit"
+            class="btn primary"
+            data-i18n="common.save"
+          ></button>
+        </footer>
+      </form>
+    </dialog>
+
+    <!-- ====================== MODALE MOVIMENTO ====================== -->
+    <dialog id="manual-dialog">
+      <form method="dialog" id="manual-form" class="dialog-form">
+        <header class="dialog-head">
+          <h2 data-i18n="acc.newEntry"></h2>
+          <button type="button" class="icon-btn" id="man-close" aria-label="×">
+            ×
+          </button>
+        </header>
+        <p class="dialog-sub" data-i18n="acc.manualHint"></p>
+
+        <div class="row">
+          <div class="field">
+            <label for="m-kind" data-i18n="acc.kind"></label>
+            <select id="m-kind">
+              <option value="out" data-i18n="acc.out"></option>
+              <option value="in" data-i18n="acc.in"></option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="m-due" data-i18n="acc.due"></label>
+            <input id="m-due" type="date" required />
+          </div>
+          <div class="field">
+            <label for="m-category" data-i18n="pkg.costKind"></label>
+            <select id="m-category"></select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field grow">
+            <label for="m-label" data-i18n="acc.description"></label>
+            <input id="m-label" required />
+          </div>
+          <div class="field">
+            <label for="m-amount" data-i18n="acc.amount"></label>
+            <input id="m-amount" type="number" min="0" step="1" required />
+          </div>
+        </div>
+
+        <p class="form-error" id="m-error" hidden></p>
+
+        <footer class="dialog-foot">
+          <button
+            type="button"
+            class="btn ghost"
+            id="man-cancel"
+            data-i18n="common.cancel"
+          ></button>
+          <button
+            type="submit"
+            class="btn primary"
+            data-i18n="common.save"
           ></button>
         </footer>
       </form>
@@ -268,6 +598,10 @@
 
     <script src="js/i18n.js"></script>
     <script src="js/data.js"></script>
+    <script src="js/model.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/views.js"></script>
+    <script src="js/editors.js"></script>
     <script src="js/app.js"></script>
   </body>
 </html>

@@ -1,7 +1,8 @@
 /**
- * Catalogo viaggi. Ogni pacchetto contiene titolo e descrizione nelle tre
- * lingue; le partenze sono generate a partire da oggi (offset in giorni)
- * così il catalogo resta sempre valido.
+ * Catalogo di partenza. Ogni pacchetto porta titolo e descrizione nelle tre
+ * lingue; le partenze sono generate a partire da oggi (offset in giorni) così
+ * il catalogo resta sempre valido, e le voci di costo sono ricavate dal
+ * listino per avere una scheda di costo credibile fin dal primo avvio.
  */
 const RAW_PACKAGES = [
   {
@@ -321,15 +322,103 @@ const CATEGORIES = [
   "cruise",
   "wellness",
 ];
+const COST_KINDS = [
+  "hotel",
+  "transport",
+  "guide",
+  "tickets",
+  "meals",
+  "insurance",
+  "other",
+];
+const COST_UNITS = ["person", "personNight", "group", "night"];
+const MOVEMENT_KINDS = [
+  "hotel",
+  "transport",
+  "guide",
+  "tickets",
+  "meals",
+  "insurance",
+  "general",
+  "marketing",
+  "staff",
+  "other",
+];
 
-/** Converte gli offset in date ISO reali, calcolate rispetto a oggi. */
-function buildPackages(today = new Date()) {
-  return RAW_PACKAGES.map((pkg) => ({
-    ...pkg,
-    departures: pkg.departures.map((dep) => {
-      const date = new Date(today);
-      date.setDate(date.getDate() + dep.in);
-      return { date: date.toISOString().slice(0, 10), seats: dep.seats };
-    }),
-  }));
+const GROUP_SIZE = 25; // posti per partenza di gruppo
+const DEFAULT_MARKUP = 0.25;
+
+/** Fornitori dimostrativi: nomi propri, uguali in tutte le lingue. */
+const SEED_SUPPLIERS = {
+  hotel: "Mediterraneo Hotels",
+  transport: "EuroWings Charter",
+  guide: "LocalGuides",
+  insurance: "SafeTravel",
+};
+
+/**
+ * Scheda di costo dimostrativa ricavata dal listino: hotel 32%, trasporto 28%,
+ * assicurazione 5% e un costo fisso di gruppo pari a 2,2 volte il listino.
+ * Il margine risultante è di circa il 25% con venti partecipanti.
+ */
+function seedCosts(pkg) {
+  return [
+    {
+      id: `${pkg.id}-c1`,
+      kind: "hotel",
+      label: "",
+      supplier: SEED_SUPPLIERS.hotel,
+      amount: Math.round((pkg.price * 0.32) / pkg.nights),
+      unit: "personNight",
+    },
+    {
+      id: `${pkg.id}-c2`,
+      kind: "transport",
+      label: "",
+      supplier: SEED_SUPPLIERS.transport,
+      amount: Math.round(pkg.price * 0.28),
+      unit: "person",
+    },
+    {
+      id: `${pkg.id}-c3`,
+      kind: "guide",
+      label: "",
+      supplier: SEED_SUPPLIERS.guide,
+      amount: Math.round(pkg.price * 2.2),
+      unit: "group",
+    },
+    {
+      id: `${pkg.id}-c4`,
+      kind: "insurance",
+      label: "",
+      supplier: SEED_SUPPLIERS.insurance,
+      amount: Math.round(pkg.price * 0.05),
+      unit: "person",
+    },
+  ];
+}
+
+/** Converte gli offset in date reali e completa i pacchetti di partenza. */
+function seedPackages(today = new Date()) {
+  return RAW_PACKAGES.map((pkg) => {
+    const full = {
+      ...pkg,
+      groupSize: GROUP_SIZE,
+      markup: DEFAULT_MARKUP,
+      published: true,
+      departures: pkg.departures.map((dep) => {
+        const date = new Date(today);
+        date.setDate(date.getDate() + dep.in);
+        const iso = date.toISOString().slice(0, 10);
+        return {
+          id: `${pkg.id}-${iso}`,
+          date: iso,
+          seats: Math.min(dep.seats, GROUP_SIZE),
+          lastMinute: { active: false, price: null },
+        };
+      }),
+    };
+    full.costs = seedCosts(full);
+    return full;
+  });
 }

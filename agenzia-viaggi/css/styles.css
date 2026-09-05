@@ -468,6 +468,10 @@ button:focus-visible {
   gap: 8px;
 }
 
+.actions .link {
+  white-space: nowrap;
+}
+
 .pill {
   display: inline-block;
   padding: 3px 10px;
@@ -498,7 +502,7 @@ button:focus-visible {
 
 .stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
   gap: 14px;
   margin-bottom: 28px;
 }
@@ -669,4 +673,289 @@ dialog::backdrop {
 
 [hidden] {
   display: none !important;
+}
+
+/* ============================================================ moduli */
+
+.hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.hint-field {
+  justify-content: flex-end;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.check input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+}
+
+.btn.small {
+  padding: 6px 11px;
+  font-size: 13px;
+}
+
+.good {
+  color: var(--ok);
+}
+
+.bad {
+  color: var(--danger);
+}
+
+.price s {
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.badge.flash {
+  left: auto;
+  right: 10px;
+  background: var(--warn);
+  color: #fff;
+}
+
+.pill.flash {
+  background: color-mix(in srgb, var(--warn) 18%, transparent);
+  color: var(--warn);
+}
+
+.tag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------- partenze */
+
+.departures {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 16px;
+}
+
+.dep-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.dep-card.is-flash {
+  border-color: var(--warn);
+}
+
+.dep-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.dep-head h3 {
+  font-size: 16px;
+}
+
+.dep-head p {
+  margin: 2px 0 0;
+  font-size: 13px;
+}
+
+.dep-figures {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  font-size: 14px;
+}
+
+.dep-figures span {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.meter {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.meter span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #1aa6a6);
+}
+
+.dep-even {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.dep-lm {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--accent-soft);
+}
+
+.dep-lm-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.lm-input {
+  width: 110px;
+}
+
+/* --------------------------------------------- schede in dialogo */
+
+dialog.wide {
+  width: min(880px, 96vw);
+}
+
+.dialog-form {
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+  max-height: 86vh;
+  overflow-y: auto;
+}
+
+.block {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.block-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.block-head h3 {
+  font-size: 15px;
+}
+
+.block > summary {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.rows {
+  display: grid;
+  gap: 8px;
+}
+
+.cost-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1.4fr 1.4fr 0.9fr 1.1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.cost-row.narrow {
+  grid-template-columns: 1.2fr 0.6fr auto 1fr;
+}
+
+.figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.figure {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  font-size: 14px;
+}
+
+.figure span {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.lang-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.lang-col {
+  display: grid;
+  gap: 6px;
+}
+
+.lang-name {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.pricing .row {
+  align-items: flex-end;
+}
+
+@media (max-width: 720px) {
+  .cost-row,
+  .cost-row.narrow {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dep-figures {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Le celle di una griglia non si restringono sotto la larghezza naturale
+   dei campi: senza questo le colonne a destra finiscono fuori dal dialogo. */
+.dialog-form .row > .field,
+.cost-row > *,
+.figures > *,
+.lang-col > * {
+  min-width: 0;
+}
+
+.dialog-form input,
+.dialog-form select {
+  width: 100%;
+}
+
+.dialog-form .field {
+  min-width: 110px;
 }
