@@ -328,13 +328,19 @@
     });
 
     // BOM: Excel apre così il CSV in UTF-8 senza rovinare gli accenti.
-    const blob = new Blob([`﻿${lines.join("\r\n")}`], {
-      type: "text/csv;charset=utf-8",
-    });
+    const csv = `﻿${lines.join("\r\n")}`;
+    const name = `prenotazioni-${new Date().toISOString().slice(0, 10)}.csv`;
+    saveFile(name, csv);
+  }
+
+  /* Scarica il file generato. Sostituito dal build a file singolo quando
+     la pagina gira in un visualizzatore che intercetta i download. */
+  function saveFile(filename, text) {
+    const blob = new Blob([text], { type: "text/csv;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `prenotazioni-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.download = filename;
     a.click();
     URL.revokeObjectURL(url);
     toast(t("toast.exported"));

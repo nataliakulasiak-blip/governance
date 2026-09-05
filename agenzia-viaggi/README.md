@@ -13,6 +13,12 @@ cd agenzia-viaggi
 python3 -m http.server 8000   # poi http://localhost:8000
 ```
 
+Per ottenere un unico file HTML da inviare o pubblicare online:
+
+```bash
+python3 build.py   # crea dist/tre-mari-travel.html
+```
+
 ## Funzionalità
 
 - **Catalogo** — 12 pacchetti con filtri per testo, paese, tipo di viaggio e prezzo

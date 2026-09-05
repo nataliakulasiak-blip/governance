@@ -24,3 +24,6 @@ dist/
 .env
 .env.*
 !.env.example
+
+# Build a file singolo
+dist/
