@@ -68,9 +68,12 @@ apertura, cerca ogni nome e usa la fotografia se la trova (prova `.jpg`, `.jpeg`
 `.webp`, `.png`, in quest'ordine). Se il file non c'è, resta il disegno: nessuna
 immagine rotta.
 
-Nel markup ogni illustrazione dichiara il proprio posto con `data-foto="nome"`; la
-copertina usa la variabile CSS `--copertina-foto` e, quando la foto c'è, passa a colori
-pieni con una velatura piu' decisa perché il testo resti leggibile.
+Nel markup ogni illustrazione dichiara il proprio posto con `data-foto="nome"`. La
+copertina è un caso a parte: cerca `copertina.jpg`, `copertina-2.jpg` … fino a
+`copertina-6.jpg` e, se ne trova più di una, le fa **girare** in dissolvenza (sette
+secondi ciascuna, con un lento avvicinamento dell'inquadratura che si ferma se il
+sistema chiede meno animazioni). Con le foto la copertina passa a colori pieni e a una
+velatura più decisa, perché il testo resti leggibile.
 
 ## Prenotazioni
 

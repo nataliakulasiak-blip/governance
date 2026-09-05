@@ -138,11 +138,14 @@
   (function () {
     var ESTENSIONI = [".jpg", ".jpeg", ".webp", ".png"];
 
-    function cerca(nome, quandoTrovata) {
+    function cerca(nome, quandoTrovata, quandoAssente) {
       var indice = 0;
 
       function prova() {
-        if (indice >= ESTENSIONI.length) return;
+        if (indice >= ESTENSIONI.length) {
+          if (quandoAssente) quandoAssente();
+          return;
+        }
         var immagine = new Image();
         var percorso = "images/foto/" + nome + ESTENSIONI[indice];
         indice += 1;
@@ -164,14 +167,60 @@
       });
     });
 
+    /* La copertina gira: copertina.jpg, copertina-2.jpg, copertina-3.jpg… */
     var copertina = document.querySelector(".copertina");
     if (copertina) {
-      cerca("copertina", function (percorso) {
-        copertina.style.setProperty(
-          "--copertina-foto",
-          'url("' + percorso + '")',
-        );
+      var NOMI = [
+        "copertina",
+        "copertina-2",
+        "copertina-3",
+        "copertina-4",
+        "copertina-5",
+        "copertina-6",
+      ];
+      var trovate = [];
+      var mancanti = NOMI.length;
+
+      var quandoFinito = function () {
+        mancanti -= 1;
+        if (mancanti > 0 || !trovate.length) return;
+
+        /* rispetta l'ordine dei nomi, non quello di arrivo */
+        trovate.sort(function (a, b) {
+          return NOMI.indexOf(a.nome) - NOMI.indexOf(b.nome);
+        });
+
         copertina.classList.add("copertina--foto");
+
+        var lastre = trovate.map(function (foto, indice) {
+          var lastra = document.createElement("div");
+          lastra.className = "copertina__lastra";
+          lastra.style.backgroundImage = 'url("' + foto.percorso + '")';
+          lastra.style.animationDelay = indice * -6 + "s";
+          copertina.insertBefore(lastra, copertina.firstChild);
+          return lastra;
+        });
+
+        lastre[0].classList.add("is-in-scena");
+        if (lastre.length < 2) return;
+
+        var corrente = 0;
+        setInterval(function () {
+          lastre[corrente].classList.remove("is-in-scena");
+          corrente = (corrente + 1) % lastre.length;
+          lastre[corrente].classList.add("is-in-scena");
+        }, 7000);
+      };
+
+      NOMI.forEach(function (nome) {
+        cerca(
+          nome,
+          function (percorso) {
+            trovate.push({ nome: nome, percorso: percorso });
+            quandoFinito();
+          },
+          quandoFinito,
+        );
       });
     }
   })();

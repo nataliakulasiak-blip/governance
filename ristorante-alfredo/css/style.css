@@ -358,7 +358,7 @@ h4 {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: var(--copertina-foto, url("../images/sala.svg"));
+  background-image: url("../images/sala.svg");
   background-size: cover;
   background-position: center;
   opacity: 0.55;
@@ -385,11 +385,42 @@ h4 {
     );
 }
 
-/* Con una fotografia al posto del disegno: colori pieni e velo piu' deciso,
+/* Con le fotografie al posto del disegno: colori pieni e velo piu' deciso,
    perche' il testo resti leggibile anche su un'immagine chiara. */
 .copertina--foto::before {
+  display: none;
+}
+
+/* Ogni fotografia della copertina è una lastra che entra in dissolvenza */
+.copertina__lastra {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.8s ease;
+  transform: scale(1.04);
+  animation: respiro 18s ease-in-out infinite alternate;
+}
+
+.copertina__lastra.is-in-scena {
   opacity: 1;
-  mix-blend-mode: normal;
+}
+
+@keyframes respiro {
+  from {
+    transform: scale(1.04);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .copertina__lastra {
+    animation: none;
+    transform: none;
+  }
 }
 
 .copertina--foto::after {
