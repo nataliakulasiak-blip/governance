@@ -133,23 +133,37 @@
 
   /* ---- Il cassetto delle foto ----
      Ogni disegno dichiara un nome con data-foto. Se in images/foto/ esiste
-     un file con quel nome (.jpg o .webp), prende il posto dell'illustrazione:
-     basta caricare la fotografia, senza toccare il codice. */
+     un file con quel nome, prende il posto dell'illustrazione: basta caricare
+     la fotografia, senza toccare il codice. La copertina cerca anche
+     copertina-2, copertina-3… e le fa girare in dissolvenza. */
   (function () {
     var ESTENSIONI = [".jpg", ".jpeg", ".webp", ".png"];
+    var COPERTINE = 6;
+    var ATTESA = 7000;
+    var memoria = {};
 
+    /* Cerca una foto una volta sola per nome e ricorda l'esito. */
     function cerca(nome, quandoTrovata, quandoAssente) {
+      if (nome in memoria) {
+        if (memoria[nome]) quandoTrovata(memoria[nome]);
+        else if (quandoAssente) quandoAssente();
+        return;
+      }
+
       var indice = 0;
 
       function prova() {
         if (indice >= ESTENSIONI.length) {
+          memoria[nome] = null;
           if (quandoAssente) quandoAssente();
           return;
         }
-        var immagine = new Image();
+
         var percorso = "images/foto/" + nome + ESTENSIONI[indice];
+        var immagine = new Image();
         indice += 1;
         immagine.onload = function () {
+          memoria[nome] = percorso;
           quandoTrovata(percorso);
         };
         immagine.onerror = prova;
@@ -159,6 +173,7 @@
       prova();
     }
 
+    /* I disegni delle sezioni */
     document.querySelectorAll("img[data-foto]").forEach(function (disegno) {
       cerca(disegno.dataset.foto, function (percorso) {
         disegno.removeAttribute("width");
@@ -167,62 +182,51 @@
       });
     });
 
-    /* La copertina gira: copertina.jpg, copertina-2.jpg, copertina-3.jpg… */
+    /* La copertina: si cercano in fila, ci si ferma al primo numero mancante */
     var copertina = document.querySelector(".copertina");
-    if (copertina) {
-      var NOMI = [
-        "copertina",
-        "copertina-2",
-        "copertina-3",
-        "copertina-4",
-        "copertina-5",
-        "copertina-6",
-      ];
-      var trovate = [];
-      var mancanti = NOMI.length;
+    if (!copertina) return;
 
-      var quandoFinito = function () {
-        mancanti -= 1;
-        if (mancanti > 0 || !trovate.length) return;
+    var trovate = [];
 
-        /* rispetta l'ordine dei nomi, non quello di arrivo */
-        trovate.sort(function (a, b) {
-          return NOMI.indexOf(a.nome) - NOMI.indexOf(b.nome);
-        });
+    function inScena() {
+      if (!trovate.length) return;
 
-        copertina.classList.add("copertina--foto");
+      copertina.classList.add("copertina--foto");
 
-        var lastre = trovate.map(function (foto, indice) {
-          var lastra = document.createElement("div");
-          lastra.className = "copertina__lastra";
-          lastra.style.backgroundImage = 'url("' + foto.percorso + '")';
-          lastra.style.animationDelay = indice * -6 + "s";
-          copertina.insertBefore(lastra, copertina.firstChild);
-          return lastra;
-        });
-
-        lastre[0].classList.add("is-in-scena");
-        if (lastre.length < 2) return;
-
-        var corrente = 0;
-        setInterval(function () {
-          lastre[corrente].classList.remove("is-in-scena");
-          corrente = (corrente + 1) % lastre.length;
-          lastre[corrente].classList.add("is-in-scena");
-        }, 7000);
-      };
-
-      NOMI.forEach(function (nome) {
-        cerca(
-          nome,
-          function (percorso) {
-            trovate.push({ nome: nome, percorso: percorso });
-            quandoFinito();
-          },
-          quandoFinito,
-        );
+      var lastre = trovate.map(function (percorso, indice) {
+        var lastra = document.createElement("div");
+        lastra.className = "copertina__lastra";
+        lastra.style.backgroundImage = 'url("' + percorso + '")';
+        lastra.style.animationDelay = indice * -6 + "s";
+        copertina.insertBefore(lastra, copertina.firstChild);
+        return lastra;
       });
+
+      lastre[0].classList.add("is-in-scena");
+      if (lastre.length < 2) return;
+
+      var corrente = 0;
+      setInterval(function () {
+        lastre[corrente].classList.remove("is-in-scena");
+        corrente = (corrente + 1) % lastre.length;
+        lastre[corrente].classList.add("is-in-scena");
+      }, ATTESA);
     }
+
+    function prossima(numero) {
+      if (numero > COPERTINE) return inScena();
+      var nome = numero === 1 ? "copertina" : "copertina-" + numero;
+      cerca(
+        nome,
+        function (percorso) {
+          trovate.push(percorso);
+          prossima(numero + 1);
+        },
+        inScena,
+      );
+    }
+
+    prossima(1);
   })();
 
   /* ---- Mappa: la carichiamo solo se OpenStreetMap è raggiungibile ----
