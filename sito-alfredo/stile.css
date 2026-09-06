@@ -1,0 +1,708 @@
+:root {
+  color-scheme: light;
+  --ground: #edf0e9;
+  --surface: #f8f9f4;
+  --surface-2: #e3e8de;
+  --ink: #14201a;
+  --ink-soft: #4c5b51;
+  --line: #cdd5c6;
+  --green: #1c3b2e;
+  --green-soft: #2f5a46;
+  --brass: #9a7326;
+  --brass-bright: #b08833;
+  --shadow: 0 1px 2px rgba(20, 32, 26, 0.06), 0 12px 28px rgba(20, 32, 26, 0.08);
+  --step--1: clamp(0.78rem, 0.76rem + 0.1vw, 0.84rem);
+  --step-0: clamp(1rem, 0.97rem + 0.16vw, 1.1rem);
+  --step-1: clamp(1.2rem, 1.12rem + 0.4vw, 1.45rem);
+  --step-2: clamp(1.6rem, 1.42rem + 0.9vw, 2.2rem);
+  --step-3: clamp(2.2rem, 1.8rem + 2vw, 3.6rem);
+  --step-4: clamp(3rem, 2.1rem + 4.4vw, 6rem);
+  --measure: 62ch;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --ground: #0f1814;
+    --surface: #16241d;
+    --surface-2: #1d2f26;
+    --ink: #e9ece3;
+    --ink-soft: #a6b3a8;
+    --line: #2c4034;
+    --green: #cfe0d3;
+    --green-soft: #9dbaa7;
+    --brass: #d2a64a;
+    --brass-bright: #e2b95f;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 14px 32px rgba(0, 0, 0, 0.36);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ground: #0f1814;
+  --surface: #16241d;
+  --surface-2: #1d2f26;
+  --ink: #e9ece3;
+  --ink-soft: #a6b3a8;
+  --line: #2c4034;
+  --green: #cfe0d3;
+  --green-soft: #9dbaa7;
+  --brass: #d2a64a;
+  --brass-bright: #e2b95f;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 14px 32px rgba(0, 0, 0, 0.36);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brass-bright);
+  outline-offset: 3px;
+}
+
+.wrap {
+  width: min(100% - 2.5rem, 1120px);
+  margin-inline: auto;
+}
+
+.eyebrow {
+  font-size: var(--step--1);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Bodoni Moda", "Didot", Georgia, serif;
+  font-weight: 400;
+  text-wrap: balance;
+  margin: 0;
+}
+
+/* ---------- intestazione ---------- */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.wordmark {
+  font-family: "Bodoni Moda", Georgia, serif;
+  font-size: var(--step-1);
+  letter-spacing: 0.06em;
+  text-decoration: none;
+}
+
+.wordmark span {
+  color: var(--brass);
+}
+
+.nav {
+  display: flex;
+  gap: 1.6rem;
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.nav a {
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+}
+
+.nav a:hover {
+  border-bottom-color: var(--brass);
+}
+
+@media (max-width: 720px) {
+  .nav {
+    display: none;
+  }
+}
+
+/* ---------- apertura ---------- */
+
+.hero {
+  padding: clamp(1.2rem, 3vw, 2rem) 0 0;
+  width: min(100% - 2.5rem, 1120px);
+  margin-inline: auto;
+}
+
+.hero .slot--hero {
+  display: grid;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: linear-gradient(
+    to top,
+    rgba(9, 16, 12, 0.92) 0%,
+    rgba(9, 16, 12, 0.72) 34%,
+    rgba(9, 16, 12, 0.18) 68%,
+    rgba(9, 16, 12, 0.05) 100%
+  );
+}
+
+.hero-head {
+  position: relative;
+  z-index: 4;
+  align-self: end;
+  display: grid;
+  gap: 0.9rem;
+  justify-items: start;
+  max-width: 40ch;
+  padding: clamp(1.4rem, 4vw, 3rem);
+  color: #f3f1e8;
+}
+
+.hero-head .eyebrow {
+  color: #d8dfd2;
+}
+
+.hero h1 {
+  font-size: var(--step-4);
+  line-height: 0.94;
+  letter-spacing: -0.01em;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--brass-bright);
+}
+
+.hero .claim {
+  margin: 0;
+  font-size: var(--step-0);
+  color: #dfe3d8;
+  max-width: 38ch;
+}
+
+@media (max-width: 640px) {
+  .hero .claim {
+    display: none;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 0.3rem;
+}
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  font-size: var(--step--1);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0.85rem 1.5rem;
+  border: 1px solid var(--green);
+  background: var(--green);
+  color: var(--surface);
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:hover {
+  background: transparent;
+  color: var(--green);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.btn--ghost:hover {
+  border-color: var(--brass);
+  color: var(--ink);
+}
+
+.hero .btn {
+  background: var(--brass-bright);
+  border-color: var(--brass-bright);
+  color: #14201a;
+}
+
+.hero .btn:hover {
+  background: transparent;
+  color: #f3f1e8;
+}
+
+.btn--su-foto {
+  background: transparent;
+  color: #f3f1e8;
+  border-color: rgba(243, 241, 232, 0.55);
+}
+
+.hero .btn--su-foto:hover {
+  background: rgba(243, 241, 232, 0.12);
+  color: #f3f1e8;
+  border-color: #f3f1e8;
+}
+
+/* ---------- spazi foto ---------- */
+
+.slot {
+  position: relative;
+  display: block;
+  margin: 0;
+  background: var(--surface-2);
+  border: 1px dashed var(--brass);
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+}
+
+.slot img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+}
+
+.ph {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 0.35rem;
+  padding: 1rem;
+  text-align: center;
+  z-index: 1;
+}
+
+.ph b {
+  font-size: var(--step--1);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brass);
+  font-weight: 600;
+}
+
+.ph code {
+  font-family: ui-monospace, "SFMono-Regular", "Menlo", monospace;
+  font-size: 0.78rem;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 0.15rem 0.45rem;
+  word-break: break-all;
+}
+
+.ph small {
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.04em;
+}
+
+.slot--hero {
+  aspect-ratio: 16 / 9;
+  border-style: solid;
+  border-color: var(--line);
+}
+
+@media (min-width: 1000px) {
+  .slot--hero {
+    aspect-ratio: 2.2 / 1;
+  }
+}
+
+.slot--tall {
+  aspect-ratio: 4 / 5;
+}
+
+.slot--arch {
+  border-radius: 50% 50% 4px 4px / 26% 26% 4px 4px;
+}
+
+.slot--square {
+  aspect-ratio: 1 / 1;
+}
+
+@media (max-width: 640px) {
+  .slot--hero {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ---------- sezioni ---------- */
+
+section {
+  padding: clamp(3.5rem, 8vw, 6rem) 0;
+}
+
+.section-head {
+  display: grid;
+  gap: 0.6rem;
+  margin-bottom: clamp(1.8rem, 4vw, 2.6rem);
+  max-width: var(--measure);
+}
+
+.section-head h2 {
+  font-size: var(--step-3);
+  line-height: 1.05;
+}
+
+.section-head p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.rule {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 0;
+}
+
+/* ---------- la carta ---------- */
+
+.dishes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(1.2rem, 3vw, 2rem);
+}
+
+.dish {
+  display: grid;
+  gap: 0.9rem;
+  align-content: start;
+}
+
+.dish h3 {
+  font-size: var(--step-1);
+  line-height: 1.2;
+}
+
+.dish p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.dish .origine {
+  font-size: var(--step--1);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass);
+  font-weight: 600;
+}
+
+/* ---------- la sala ---------- */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(0.8rem, 2vw, 1.4rem);
+}
+
+.gallery > *:nth-child(1) {
+  grid-column: span 2;
+}
+
+.gallery > *:nth-child(2),
+.gallery > *:nth-child(3) {
+  grid-column: span 1;
+}
+
+.gallery > *:nth-child(4) {
+  grid-column: span 2;
+}
+
+.gallery > *:nth-child(5) {
+  grid-column: span 2;
+}
+
+@media (max-width: 780px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery > * {
+    grid-column: span 2 !important;
+  }
+
+  .gallery > *:nth-child(2),
+  .gallery > *:nth-child(3) {
+    grid-column: span 1 !important;
+  }
+}
+
+/* ---------- ritratto ---------- */
+
+.portrait {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) minmax(0, 1.4fr);
+  gap: clamp(1.5rem, 5vw, 3.5rem);
+  align-items: center;
+}
+
+@media (max-width: 720px) {
+  .portrait {
+    grid-template-columns: 1fr;
+  }
+}
+
+.portrait blockquote {
+  margin: 0;
+  font-family: "Bodoni Moda", Georgia, serif;
+  font-size: var(--step-2);
+  line-height: 1.25;
+  font-style: italic;
+}
+
+.portrait cite {
+  display: block;
+  margin-top: 1rem;
+  font-family: "Archivo", sans-serif;
+  font-style: normal;
+  font-size: var(--step--1);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* ---------- informazioni ---------- */
+
+.info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(1.2rem, 3vw, 2.5rem);
+}
+
+.info h3 {
+  font-family: "Archivo", sans-serif;
+  font-size: var(--step--1);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-bottom: 0.7rem;
+}
+
+.orari {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.orari li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px dotted var(--line);
+  padding-bottom: 0.35rem;
+}
+
+.orari .chiuso {
+  color: var(--brass);
+}
+
+.da-compilare {
+  color: var(--ink-soft);
+  border-bottom: 1px dashed var(--brass);
+  padding-bottom: 1px;
+}
+
+/* ---------- nota tecnica ---------- */
+
+.nota {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--brass);
+  padding: clamp(1.3rem, 3vw, 2rem);
+  margin-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+
+.nota h2 {
+  font-family: "Archivo", sans-serif;
+  font-size: var(--step-1);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.nota p {
+  margin: 0 0 1rem;
+  color: var(--ink-soft);
+  max-width: var(--measure);
+}
+
+.tabella {
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.5rem 0.9rem 0.5rem 0;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+th {
+  font-size: var(--step--1);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+td code {
+  font-family: ui-monospace, "SFMono-Regular", "Menlo", monospace;
+  font-size: 0.82rem;
+}
+
+td:last-child {
+  color: var(--ink-soft);
+  white-space: normal;
+}
+
+/* ---------- piede ---------- */
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 2.5rem 0 3.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  justify-content: space-between;
+  align-items: baseline;
+  color: var(--ink-soft);
+  font-size: var(--step--1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ---------- carta dei vini ---------- */
+
+.vini {
+  display: grid;
+  gap: clamp(2.2rem, 5vw, 3.5rem);
+}
+
+.famiglia h3 {
+  font-family: "Archivo", sans-serif;
+  font-size: var(--step--1);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--brass);
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 1.1rem;
+}
+
+.famiglia ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.vino {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.15rem 1.5rem;
+  align-items: baseline;
+}
+
+.vino .nome {
+  font-family: "Bodoni Moda", Georgia, serif;
+  font-size: var(--step-1);
+  line-height: 1.2;
+}
+
+.vino .prezzo {
+  font-variant-numeric: tabular-nums;
+  font-size: var(--step-0);
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.vino .terra {
+  grid-column: 1 / -1;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  max-width: 58ch;
+}
+
+.vino .terra .zona {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.calice {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--brass);
+  border: 1px solid var(--brass);
+  padding: 0.05rem 0.45rem;
+  margin-left: 0.5rem;
+  vertical-align: 0.15em;
+}
+
+.due-colonne {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: start;
+}
+
+.hero--vino .hero-head {
+  max-width: 34ch;
+}
