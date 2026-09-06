@@ -339,9 +339,28 @@ h3 {
   border-color: var(--line);
 }
 
+.slot--hero img {
+  object-position: center 40%;
+}
+
 @media (min-width: 1000px) {
   .slot--hero {
-    aspect-ratio: 2.2 / 1;
+    aspect-ratio: 2.4 / 1;
+  }
+}
+
+/* la foto dei vini è quasi quadrata: qui il riquadro resta più alto */
+.hero--vino .slot--hero {
+  aspect-ratio: 4 / 3;
+}
+
+.hero--vino .slot--hero img {
+  object-position: center 45%;
+}
+
+@media (min-width: 1000px) {
+  .hero--vino .slot--hero {
+    aspect-ratio: 3 / 2;
   }
 }
 

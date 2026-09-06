@@ -4,7 +4,7 @@ Salvare qui le immagini con questi nomi esatti. Il formato indicato è quello co
 
 ## Home (`index.html`)
 
-- `hero.jpg` — 2000 × 900, orizzontale. La foto grande di apertura, con il titolo sopra: meglio se il soggetto sta al centro o a destra, perché la scritta occupa il basso a sinistra.
+- `hero.jpg` — orizzontale, già presente (1408 × 477). La foto grande di apertura, con il titolo sopra. Se la sostituisci, tieni il soggetto al centro o a destra: la scritta occupa il basso a sinistra.
 - `piatto-cacio-e-pepe.jpg` — 1200 × 1200, quadrata.
 - `piatto-saltimbocca.jpg` — 1200 × 1200, quadrata.
 - `piatto-carciofo.jpg` — 1200 × 1200, quadrata.
@@ -17,7 +17,7 @@ Salvare qui le immagini con questi nomi esatti. Il formato indicato è quello co
 
 ## Vini (`vino.html`)
 
-- `vino.jpg` — 1800 × 1500, orizzontale. Apertura della pagina, con il titolo sopra.
+- `vino.jpg` — orizzontale, già presente (1861 × 1536). Apertura della pagina, con il titolo sopra.
 - `cantina.jpg` — 1600 × 1070, orizzontale.
 
 ## Consigli
