@@ -1802,3 +1802,19 @@ h4 {
     border-color: #999;
   }
 }
+
+/* Con sette voci il menu si stringe un po' sugli schermi stretti */
+@media (min-width: 901px) and (max-width: 1180px) {
+  .navigazione ul {
+    gap: 1.35rem;
+  }
+
+  .navigazione a {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+  }
+
+  .navigazione .navigazione__cta {
+    padding: 0.6rem 1.1rem;
+  }
+}
