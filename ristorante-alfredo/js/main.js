@@ -183,8 +183,9 @@
     });
 
     /* La copertina: si cercano in fila, ci si ferma al primo numero mancante */
+    /* Se la copertina ha un filmato, comanda quello: niente rotazione di foto */
     var copertina = document.querySelector(".copertina");
-    if (!copertina) return;
+    if (!copertina || copertina.querySelector(".copertina__filmato")) return;
 
     var trovate = [];
 

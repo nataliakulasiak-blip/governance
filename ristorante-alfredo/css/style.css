@@ -439,6 +439,48 @@ h4 {
     );
 }
 
+/* Il filmato dei piatti, dietro al testo della copertina */
+.copertina__filmato {
+  position: absolute;
+  filter: saturate(0.92) brightness(0.86);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Sotto il filmato resta il fotogramma di posa: si vede finche' il video
+   non parte, e resta l'unica immagine se il browser blocca la riproduzione. */
+.copertina--filmato::before {
+  background-image: url("../images/copertina-filmato.jpg");
+  opacity: 1;
+  mix-blend-mode: normal;
+}
+
+.copertina--filmato::after {
+  background:
+    radial-gradient(
+      130% 95% at 50% 40%,
+      rgba(42, 10, 16, 0.32) 0%,
+      rgba(42, 10, 16, 0.55) 60%,
+      rgba(42, 10, 16, 0.82) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(42, 10, 16, 0.62) 0%,
+      rgba(42, 10, 16, 0.42) 42%,
+      rgba(42, 10, 16, 0.85) 100%
+    );
+}
+
+/* Chi chiede meno animazioni vede il fotogramma fermo */
+@media (prefers-reduced-motion: reduce) {
+  .copertina__filmato {
+    display: none;
+  }
+}
+
 .copertina__contenuto {
   position: relative;
   z-index: 2;
@@ -1156,6 +1198,48 @@ h4 {
         rgba(42, 10, 16, 0.18) 40%,
         rgba(42, 10, 16, 0.66) 100%
       );
+  }
+
+  /* Il filmato dei piatti, dietro al testo della copertina */
+  .copertina__filmato {
+    position: absolute;
+    filter: saturate(0.92) brightness(0.86);
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+  }
+
+  /* Sotto il filmato resta il fotogramma di posa: si vede finche' il video
+   non parte, e resta l'unica immagine se il browser blocca la riproduzione. */
+  .copertina--filmato::before {
+    background-image: url("../images/copertina-filmato.jpg");
+    opacity: 1;
+    mix-blend-mode: normal;
+  }
+
+  .copertina--filmato::after {
+    background:
+      radial-gradient(
+        130% 95% at 50% 40%,
+        rgba(42, 10, 16, 0.32) 0%,
+        rgba(42, 10, 16, 0.55) 60%,
+        rgba(42, 10, 16, 0.82) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(42, 10, 16, 0.62) 0%,
+        rgba(42, 10, 16, 0.42) 42%,
+        rgba(42, 10, 16, 0.85) 100%
+      );
+  }
+
+  /* Chi chiede meno animazioni vede il fotogramma fermo */
+  @media (prefers-reduced-motion: reduce) {
+    .copertina__filmato {
+      display: none;
+    }
   }
 
   .copertina__contenuto {

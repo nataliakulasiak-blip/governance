@@ -59,6 +59,23 @@ resta visibile se la mappa non può caricarsi. **Le coordinate `41.8955, 12.5040
 approssimative**: vanno verificate sul posto e aggiornate in tre punti — l'`src`
 dell'iframe e i due collegamenti in `index.html`, e il campo `geo` dei dati strutturati.
 
+## Il filmato della copertina
+
+La copertina mostra un filmato muto in anello: `images/copertina-filmato.webm` (per
+Chrome e Firefox) e `images/copertina-filmato.mp4` (per Safari), con
+`images/copertina-filmato.jpg` come fotogramma di posa — si vede finché il video non
+parte e resta l'unica immagine se il browser blocca la riproduzione automatica o se
+l'utente ha chiesto meno animazioni.
+
+Il montaggio parte dal video originale dei due piatti e tiene solo gli spezzoni senza
+persone (10,2–14,8 s e 18–20 s), uniti in dissolvenza e poi ripetuti al contrario, così
+il giro non ha stacchi. Peso: 1 MB il WebM, 1 MB l'MP4, per dodici secondi a 720p.
+
+Per sostituirlo bastano tre file con gli stessi nomi. Per toglierlo: eliminare il
+blocco `<video class="copertina__filmato">` da `index.html` e la classe
+`copertina--filmato` dalla sezione — la copertina torna all'illustrazione (o alle
+fotografie, se ci sono).
+
 ## Le fotografie
 
 Le immagini in `images/` sono illustrazioni vettoriali provvisorie. Per sostituirle con

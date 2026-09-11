@@ -157,7 +157,22 @@
 
     <main>
       <!-- Copertina -->
-      <section class="copertina" id="copertina">
+      <section class="copertina copertina--filmato" id="copertina">
+        <video
+          class="copertina__filmato"
+          poster="images/copertina-filmato.jpg"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          disablepictureinpicture
+          tabindex="-1"
+          aria-hidden="true"
+        >
+          <source src="images/copertina-filmato.webm" type="video/webm" />
+          <source src="images/copertina-filmato.mp4" type="video/mp4" />
+        </video>
         <div class="copertina__contenuto">
           <p class="copertina__eyebrow">Via Principe Amedeo 126 · Roma</p>
           <h1 class="copertina__titolo">Alfredo</h1>
