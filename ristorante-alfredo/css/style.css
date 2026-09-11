@@ -1980,3 +1980,68 @@ h4 {
   color: var(--rosso);
   text-shadow: none;
 }
+
+/* Le due bottiglie della casa, bianco e rosso */
+.vini-casa {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(2rem, 5vw, 3.5rem);
+  margin-top: 1rem;
+}
+
+.vino-scheda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.4rem;
+}
+
+.vino-scheda__bottiglia {
+  width: min(260px, 72%);
+  height: auto;
+  margin-bottom: 1.4rem;
+  border: 1px solid rgba(184, 145, 79, 0.45);
+}
+
+.vino-scheda h3 {
+  font-size: 1.7rem;
+  color: var(--sabbia-chiara);
+}
+
+.vino-scheda__motto {
+  font-family: var(--corsivo);
+  font-size: 1.9rem;
+  line-height: 1.2;
+  color: var(--oro-chiaro);
+  margin: 0.2rem 0 0.6rem;
+}
+
+.vino-scheda p {
+  margin: 0;
+  font-size: 0.95rem;
+  opacity: 0.85;
+  max-width: 34ch;
+}
+
+.vino-scheda .orari {
+  width: 100%;
+  max-width: 340px;
+  margin-top: 1.4rem;
+}
+
+@media (max-width: 760px) {
+  .vini-casa {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* La giostra della copertina: il filmato dei piatti e le due bottiglie */
+.copertina--giostra .copertina__filmato {
+  opacity: 0;
+  transition: opacity 1.8s ease;
+}
+
+.copertina--giostra .copertina__filmato.is-in-scena {
+  opacity: 1;
+}

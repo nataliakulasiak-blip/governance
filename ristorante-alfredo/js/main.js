@@ -183,39 +183,102 @@
     });
 
     /* La copertina: si cercano in fila, ci si ferma al primo numero mancante */
-    /* Se la copertina ha un filmato, comanda quello: niente rotazione di foto */
     var copertina = document.querySelector(".copertina");
-    if (!copertina || copertina.querySelector(".copertina__filmato")) return;
+    if (!copertina) return;
 
+    var filmato = copertina.querySelector(".copertina__filmato");
+    var ATTESA = 7000;
+
+    function lastraDa(percorso, indice) {
+      var lastra = document.createElement("div");
+      lastra.className = "copertina__lastra";
+      lastra.style.backgroundImage = 'url("' + percorso + '")';
+      lastra.style.animationDelay = indice * -6 + "s";
+      copertina.insertBefore(lastra, copertina.firstChild);
+      return lastra;
+    }
+
+    /* Fa girare quello che c'e': il filmato e le scene che lo accompagnano */
+    function avvia(scene) {
+      if (!scene.length) return;
+
+      scene[0].classList.add("is-in-scena");
+      if (filmato && scene[0] !== filmato && filmato.pause) filmato.pause();
+      if (scene.length < 2) return;
+
+      var corrente = 0;
+      setInterval(function () {
+        scene[corrente].classList.remove("is-in-scena");
+        if (scene[corrente] === filmato && filmato.pause) filmato.pause();
+
+        corrente = (corrente + 1) % scene.length;
+        scene[corrente].classList.add("is-in-scena");
+
+        if (scene[corrente] === filmato && filmato.play) {
+          filmato.currentTime = 0;
+          var avvio = filmato.play();
+          if (avvio && avvio.catch) avvio.catch(function () {});
+        }
+      }, ATTESA);
+    }
+
+    /* Con il filmato: piatti, vino bianco, vino rosso, uno dopo l'altro */
+    if (filmato) {
+      copertina.classList.add("copertina--giostra");
+
+      var NOMI_VINO = ["copertina-vino-bianco", "copertina-vino-rosso"];
+      var bottiglie = [];
+      var attese = NOMI_VINO.length;
+
+      /* si aspettano tutte e due prima di far partire il giro */
+      var raccolta = function (indice, percorso) {
+        bottiglie.push({ indice: indice, percorso: percorso });
+        attese -= 1;
+        if (attese > 0) return;
+
+        bottiglie.sort(function (a, b) {
+          return a.indice - b.indice;
+        });
+
+        avvia(
+          [filmato].concat(
+            bottiglie.map(function (voce, k) {
+              return lastraDa(voce.percorso, k + 1);
+            }),
+          ),
+        );
+      };
+
+      NOMI_VINO.forEach(function (nome, i) {
+        cerca(
+          nome,
+          function (percorso) {
+            raccolta(i, percorso);
+          },
+          function () {
+            /* senza fotografia resta l'illustrazione della bottiglia */
+            raccolta(i, "images/" + nome + ".svg");
+          },
+        );
+      });
+      return;
+    }
+
+    /* Senza filmato: le fotografie della copertina, in fila */
     var trovate = [];
 
     function inScena() {
       if (!trovate.length) return;
-
       copertina.classList.add("copertina--foto");
-
-      var lastre = trovate.map(function (percorso, indice) {
-        var lastra = document.createElement("div");
-        lastra.className = "copertina__lastra";
-        lastra.style.backgroundImage = 'url("' + percorso + '")';
-        lastra.style.animationDelay = indice * -6 + "s";
-        copertina.insertBefore(lastra, copertina.firstChild);
-        return lastra;
-      });
-
-      lastre[0].classList.add("is-in-scena");
-      if (lastre.length < 2) return;
-
-      var corrente = 0;
-      setInterval(function () {
-        lastre[corrente].classList.remove("is-in-scena");
-        corrente = (corrente + 1) % lastre.length;
-        lastre[corrente].classList.add("is-in-scena");
-      }, ATTESA);
+      avvia(
+        trovate.map(function (percorso, indice) {
+          return lastraDa(percorso, indice);
+        }),
+      );
     }
 
     function prossima(numero) {
-      if (numero > COPERTINE) return inScena();
+      if (numero > 6) return inScena();
       var nome = numero === 1 ? "copertina" : "copertina-" + numero;
       cerca(
         nome,
