@@ -2143,3 +2143,89 @@ h4 {
   aspect-ratio: 4 / 5;
   margin: 0 auto 1.4rem;
 }
+
+/* --------------------------------------------------------------------------
+   Testata con il filmato: la pagina dei vini si apre come la copertina
+   -------------------------------------------------------------------------- */
+
+.testata--filmato {
+  position: relative;
+  overflow: hidden;
+  padding: 13rem 0 6rem;
+  background: var(--bordeaux-scuro);
+}
+
+.testata__filmato,
+.testata__lastra {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+  filter: saturate(0.95) brightness(0.9);
+}
+
+/* La fotografia del poster, se c'e', copre il filmato */
+.testata__lastra {
+  display: none;
+  filter: none;
+}
+
+.testata__lastra.is-piena {
+  display: block;
+}
+
+.testata--filmato::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      130% 95% at 50% 42%,
+      rgba(42, 10, 16, 0.44) 0%,
+      rgba(42, 10, 16, 0.62) 60%,
+      rgba(42, 10, 16, 0.85) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(42, 10, 16, 0.72) 0%,
+      rgba(42, 10, 16, 0.48) 45%,
+      rgba(42, 10, 16, 0.86) 100%
+    );
+}
+
+.testata--filmato .contenitore {
+  position: relative;
+  z-index: 2;
+}
+
+.testata--filmato h1,
+.testata--filmato p {
+  text-shadow:
+    0 1px 3px rgba(26, 6, 10, 0.6),
+    0 2px 22px rgba(26, 6, 10, 0.5);
+}
+
+.testata__motto {
+  margin-top: 1.6rem !important;
+  font-family: var(--serif) !important;
+  font-size: clamp(0.88rem, 2.1vw, 1.25rem) !important;
+  letter-spacing: 0.2em;
+  text-indent: 0.2em;
+  text-transform: uppercase;
+  color: var(--sabbia-chiara) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testata__filmato {
+    display: none;
+  }
+}
+
+/* Sul filmato il corsivo dorato si perde: qui va chiaro */
+.testata--filmato p {
+  color: var(--sabbia-chiara);
+}
