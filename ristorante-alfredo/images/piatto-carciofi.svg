@@ -1,24 +1,64 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Carciofi alla giudia">
   <defs>
-    <radialGradient id="f-c" cx="50%" cy="45%" r="65%">
-      <stop offset="0%" stop-color="#4a1119"/>
-      <stop offset="100%" stop-color="#8a6a2f"/>
+    <radialGradient id="luce" cx="34%" cy="24%" r="78%">
+      <stop offset="0%" stop-color="#fffaf2" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#fffaf2" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ombra" cx="50%" cy="50%" r="50%">
+      <stop offset="60%" stop-color="#6b4526" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#6b4526" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <rect width="800" height="800" fill="url(#f-c)"/>
-  <g opacity="0.16" fill="none" stroke="#f7efe2" stroke-width="2">
-    <circle cx="400" cy="400" r="330"/><circle cx="400" cy="400" r="270"/>
+  <rect width="800" height="800" fill="#efe3cd"/>
+  <rect width="800" height="800" fill="url(#luce)"/>
+  <ellipse cx="400" cy="456" rx="330" ry="255" fill="url(#ombra)"/>
+  <ellipse cx="400" cy="430" rx="320" ry="248" fill="#fffdf8"/>
+  <ellipse cx="400" cy="430" rx="320" ry="248" fill="none" stroke="#e0d6c4" stroke-width="3"/>
+  <ellipse cx="400" cy="434" rx="243" ry="186" fill="#f7f2e8"/>
+  <ellipse cx="400" cy="434" rx="243" ry="186" fill="none" stroke="#e6dccb" stroke-width="2"/>
+  <g transform="translate(300 392) scale(1.0)">
+    <g fill="#8a7a2e">
+      <path d="M0-96c46 18 76 58 76 104S46 96 0 96-76 54-76 8 -46-78 0-96Z" opacity="0.35"/>
+    </g>
+    <g fill="#b99a3c" stroke="#8a6f26" stroke-width="3">
+      <path d="M0-84c26 16 42 44 42 74S26 62 0 62-42 20-42-10 -26-68 0-84Z"/>
+    </g>
+    <g fill="#d9b859">
+      <path d="M0-64c16 12 28 32 28 54S16 40 0 40-28 12-28-10 -16-52 0-64Z"/>
+    </g>
+    <g stroke="#8a6f26" stroke-width="3" fill="none">
+      <path d="M0-64V40M-22-24q22 12 44 0M-26 6q26 14 52 0"/>
+    </g>
+    <path d="M0 62v34" stroke="#7d6a22" stroke-width="10" stroke-linecap="round"/>
   </g>
-  <circle cx="400" cy="400" r="230" fill="#f7efe2" opacity="0.92"/>
-  <circle cx="400" cy="400" r="196" fill="#fffaf2"/>
-  <circle cx="400" cy="400" r="150" fill="#8a6a2f" opacity="0.2"/>
-  <g fill="#8a6a2f" opacity="0.85">
-    <circle cx="352" cy="372" r="26"/><circle cx="436" cy="356" r="20"/>
-    <circle cx="410" cy="440" r="30"/><circle cx="336" cy="446" r="18"/>
+  <g transform="translate(470 360) scale(0.85)">
+    <g fill="#8a7a2e">
+      <path d="M0-96c46 18 76 58 76 104S46 96 0 96-76 54-76 8 -46-78 0-96Z" opacity="0.35"/>
+    </g>
+    <g fill="#b99a3c" stroke="#8a6f26" stroke-width="3">
+      <path d="M0-84c26 16 42 44 42 74S26 62 0 62-42 20-42-10 -26-68 0-84Z"/>
+    </g>
+    <g fill="#d9b859">
+      <path d="M0-64c16 12 28 32 28 54S16 40 0 40-28 12-28-10 -16-52 0-64Z"/>
+    </g>
+    <g stroke="#8a6f26" stroke-width="3" fill="none">
+      <path d="M0-64V40M-22-24q22 12 44 0M-26 6q26 14 52 0"/>
+    </g>
+    <path d="M0 62v34" stroke="#7d6a22" stroke-width="10" stroke-linecap="round"/>
   </g>
-  <g stroke="#b8914f" stroke-width="6" stroke-linecap="round" opacity="0.75">
-    <path d="M320 420c40-34 90-40 150-16"/>
-    <path d="M338 356c46-30 104-24 144 10"/>
+  <g transform="translate(400 476) scale(0.7)">
+    <g fill="#8a7a2e">
+      <path d="M0-96c46 18 76 58 76 104S46 96 0 96-76 54-76 8 -46-78 0-96Z" opacity="0.35"/>
+    </g>
+    <g fill="#b99a3c" stroke="#8a6f26" stroke-width="3">
+      <path d="M0-84c26 16 42 44 42 74S26 62 0 62-42 20-42-10 -26-68 0-84Z"/>
+    </g>
+    <g fill="#d9b859">
+      <path d="M0-64c16 12 28 32 28 54S16 40 0 40-28 12-28-10 -16-52 0-64Z"/>
+    </g>
+    <g stroke="#8a6f26" stroke-width="3" fill="none">
+      <path d="M0-64V40M-22-24q22 12 44 0M-26 6q26 14 52 0"/>
+    </g>
+    <path d="M0 62v34" stroke="#7d6a22" stroke-width="10" stroke-linecap="round"/>
   </g>
-  <circle cx="400" cy="400" r="230" fill="none" stroke="#b8914f" stroke-width="3" opacity="0.6"/>
 </svg>
