@@ -16,6 +16,15 @@ usa la fotografia se la trova; altrimenti resta il disegno.
 | `dolce.jpg`        | galleria                                            | quadrato           |
 | `cantina.jpg`      | galleria                                            | quadrato           |
 
+## I piatti e gli articoli
+
+Nelle schede dei piatti, nella galleria e nel diario **non c'è nessun disegno di
+ripiego**: il posto della fotografia resta invisibile finché il file non c'è, e
+compare da solo appena lo carichi. Oltre ai nomi qui sopra valgono anche:
+`carbonara.jpg`, `crostini.jpg`, `scoglio.jpg`, `grigliata.jpg`, `ragu.jpg`,
+`gnocchi.jpg`, `mozzarella.jpg`, `tiramisu.jpg`, `fettuccine-alfredo.jpg`,
+`cacio-e-pepe.jpg`, `carciofi.jpg`, `esquilino.jpg`.
+
 ## La copertina gira
 
 Se oltre a `copertina.jpg` ci sono anche `copertina-2.jpg`, `copertina-3.jpg` e così

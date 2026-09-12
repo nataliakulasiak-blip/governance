@@ -173,12 +173,18 @@
       prova();
     }
 
-    /* I disegni delle sezioni */
-    document.querySelectorAll("img[data-foto]").forEach(function (disegno) {
-      cerca(disegno.dataset.foto, function (percorso) {
-        disegno.removeAttribute("width");
-        disegno.removeAttribute("height");
-        disegno.src = percorso;
+    /* Le sezioni: dove c'e' un'immagine la sostituisce, dove c'e' un posto
+       vuoto lo riempie e lo fa comparire. */
+    document.querySelectorAll("[data-foto]").forEach(function (posto) {
+      cerca(posto.dataset.foto, function (percorso) {
+        if (posto.tagName === "IMG") {
+          posto.removeAttribute("width");
+          posto.removeAttribute("height");
+          posto.src = percorso;
+          return;
+        }
+        posto.style.backgroundImage = 'url("' + percorso + '")';
+        posto.classList.add("is-piena");
       });
     });
 

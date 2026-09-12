@@ -78,8 +78,10 @@ fotografie, se ci sono).
 
 ## Le fotografie
 
-Le immagini in `images/` sono illustrazioni vettoriali provvisorie. Per sostituirle con
-fotografie **non serve modificare il codice**: si caricano i file in `images/foto/` con
+Le sezioni dei piatti (specialità, galleria, diario) **non hanno disegni di ripiego**:
+il posto della fotografia resta invisibile finché il file non c'è. Restano illustrate
+solo le scene — la sala, la cantina, l'aperitivo, le bottiglie — che si sostituiscono
+allo stesso modo. Per mettere le fotografie **non serve modificare il codice**: si caricano i file in `images/foto/` con
 i nomi indicati in [`images/foto/LEGGIMI.md`](images/foto/LEGGIMI.md) e il sito, in
 apertura, cerca ogni nome e usa la fotografia se la trova (prova `.jpg`, `.jpeg`,
 `.webp`, `.png`, in quest'ordine). Se il file non c'è, resta il disegno: nessuna

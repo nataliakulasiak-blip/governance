@@ -332,14 +332,12 @@
 
           <div class="specialita rivela">
             <article class="specialita__voce">
-              <img
-                src="images/piatto-alfredo.svg"
+              <div
+                class="posto-foto"
                 data-foto="fettuccine-alfredo"
-                alt="Le fettuccine di Alfredo, burro e parmigiano"
-                width="800"
-                height="800"
-                loading="lazy"
-              />
+                role="img"
+                aria-label="Le fettuccine di Alfredo, burro e parmigiano"
+              ></div>
               <h3>Le fettuccine di Alfredo</h3>
               <p>
                 Burro di panna e parmigiano di trenta mesi, mantecate al tavolo
@@ -349,14 +347,12 @@
             </article>
 
             <article class="specialita__voce">
-              <img
-                src="images/piatto-cacio.svg"
+              <div
+                class="posto-foto"
                 data-foto="cacio-e-pepe"
-                alt="Tonnarelli cacio e pepe"
-                width="800"
-                height="800"
-                loading="lazy"
-              />
+                role="img"
+                aria-label="Tonnarelli cacio e pepe"
+              ></div>
               <h3>Tonnarelli cacio e pepe</h3>
               <p>
                 Pasta tirata al mattino, pecorino romano di Amatrice stagionato
@@ -366,14 +362,12 @@
             </article>
 
             <article class="specialita__voce">
-              <img
-                src="images/piatto-carbonara.svg"
+              <div
+                class="posto-foto"
                 data-foto="carbonara"
-                alt="Rigatoni alla carbonara"
-                width="800"
-                height="800"
-                loading="lazy"
-              />
+                role="img"
+                aria-label="Rigatoni alla carbonara"
+              ></div>
               <h3>Rigatoni alla carbonara</h3>
               <p>
                 Guanciale di Amatrice croccante, tuorli di gallina livornese,
@@ -383,14 +377,12 @@
             </article>
 
             <article class="specialita__voce">
-              <img
-                src="images/piatto-carciofi.svg"
+              <div
+                class="posto-foto"
                 data-foto="carciofi"
-                alt="Carciofi alla giudia"
-                width="800"
-                height="800"
-                loading="lazy"
-              />
+                role="img"
+                aria-label="Carciofi alla giudia"
+              ></div>
               <h3>Carciofi alla giudia</h3>
               <p>
                 Cimaroli romaneschi aperti a fiore e fritti due volte, come si
@@ -474,10 +466,9 @@
           </div>
 
           <div class="galleria rivela">
-            <figure class="galleria__voce galleria__voce--larga">
+            <figure class="galleria__voce">
               <img
                 src="images/sala.svg"
-                data-foto="copertina"
                 alt="La sala principale del ristorante"
                 width="1600"
                 height="900"
@@ -487,19 +478,7 @@
             </figure>
             <figure class="galleria__voce">
               <img
-                src="images/piatto-cacio.svg"
-                data-foto="cacio-e-pepe"
-                alt="Tonnarelli cacio e pepe"
-                width="800"
-                height="800"
-                loading="lazy"
-              />
-              <figcaption>Cacio e pepe</figcaption>
-            </figure>
-            <figure class="galleria__voce">
-              <img
                 src="images/cantina.svg"
-                data-foto="cantina"
                 alt="La cantina del ristorante"
                 width="800"
                 height="800"
@@ -509,113 +488,45 @@
             </figure>
             <figure class="galleria__voce">
               <img
-                src="images/piatto-carciofi.svg"
-                data-foto="carciofi"
-                alt="Carciofi alla giudia"
-                width="800"
-                height="800"
+                src="images/aperitivo.svg"
+                alt="Due calici di spritz al bancone"
+                width="1600"
+                height="1000"
                 loading="lazy"
               />
+              <figcaption>L'aperitivo</figcaption>
+            </figure>
+
+            <!-- I piatti compaiono qui appena le fotografie sono in images/foto -->
+            <figure class="galleria__voce" data-foto="cacio-e-pepe">
+              <figcaption>Cacio e pepe</figcaption>
+            </figure>
+            <figure class="galleria__voce" data-foto="carbonara">
+              <figcaption>La carbonara</figcaption>
+            </figure>
+            <figure class="galleria__voce" data-foto="carciofi">
               <figcaption>I carciofi</figcaption>
             </figure>
-            <figure class="galleria__voce">
-              <img
-                src="images/piatto-dolce.svg"
-                data-foto="dolce"
-                alt="Dolce della casa"
-                width="800"
-                height="800"
-                loading="lazy"
-              />
-              <figcaption>I dolci</figcaption>
-            </figure>
-            <figure class="galleria__voce">
-              <img
-                src="images/piatto-dolce.svg"
-                data-foto="tiramisu"
-                alt="Tiramisù al caffè"
-                width="800"
-                height="800"
-                loading="lazy"
-              />
-              <figcaption>Il tiramisù</figcaption>
-            </figure>
-            <figure class="galleria__voce">
-              <img
-                src="images/piatto-grigliata.svg"
-                data-foto="fritto"
-                alt="Fritto di calamari e gamberi"
-                width="800"
-                height="800"
-                loading="lazy"
-              />
-              <figcaption>Il fritto</figcaption>
-            </figure>
-            <figure class="galleria__voce">
-              <img
-                src="images/piatto-gnocchi.svg"
-                data-foto="gnocchi"
-                alt="Gnocchi al pomodoro e basilico"
-                width="800"
-                height="800"
-                loading="lazy"
-              />
-              <figcaption>Gli gnocchi del giovedì</figcaption>
-            </figure>
-            <figure class="galleria__voce">
-              <img
-                src="images/piatto-mozzarella.svg"
-                data-foto="mozzarella"
-                alt="Mozzarella di bufala con pomodori e basilico"
-                width="800"
-                height="800"
-                loading="lazy"
-              />
-              <figcaption>La bufala</figcaption>
-            </figure>
-            <figure class="galleria__voce">
-              <img
-                src="images/piatto-ragu.svg"
-                data-foto="ragu"
-                alt="Fettuccine al ragù"
-                width="800"
-                height="800"
-                loading="lazy"
-              />
+            <figure class="galleria__voce" data-foto="ragu">
               <figcaption>Le fettuccine al ragù</figcaption>
             </figure>
-            <figure class="galleria__voce">
-              <img
-                src="images/piatto-crostini.svg"
-                data-foto="crostini"
-                alt="Crostini con mortadella e stracciatella"
-                width="800"
-                height="800"
-                loading="lazy"
-              />
+            <figure class="galleria__voce" data-foto="crostini">
               <figcaption>I crostini</figcaption>
             </figure>
-            <figure class="galleria__voce">
-              <img
-                src="images/piatto-grigliata.svg"
-                data-foto="grigliata"
-                alt="Grigliata di calamari e gamberoni"
-                width="800"
-                height="800"
-                loading="lazy"
-              />
+            <figure class="galleria__voce" data-foto="scoglio">
+              <figcaption>Lo scoglio</figcaption>
+            </figure>
+            <figure class="galleria__voce" data-foto="grigliata">
               <figcaption>La grigliata</figcaption>
             </figure>
-            <figure class="galleria__voce">
-              <img
-                src="images/piatto-scoglio.svg"
-                data-foto="scoglio"
-                alt="Spaghetti allo scoglio"
-                width="800"
-                height="800"
-                loading="lazy"
-              />
-              <figcaption>Lo scoglio</figcaption>
+            <figure class="galleria__voce" data-foto="gnocchi">
+              <figcaption>Gli gnocchi del giovedì</figcaption>
+            </figure>
+            <figure class="galleria__voce" data-foto="mozzarella">
+              <figcaption>La bufala</figcaption>
+            </figure>
+            <figure class="galleria__voce" data-foto="tiramisu">
+              <figcaption>Il tiramisù</figcaption>
             </figure>
           </div>
         </div>
@@ -1053,14 +964,12 @@
                 href="diario-cacio-e-pepe.html"
                 class="articolo-scheda__immagine"
               >
-                <img
-                  src="images/piatto-cacio.svg"
+                <div
+                  class="posto-foto"
                   data-foto="cacio-e-pepe"
-                  alt="Tonnarelli cacio e pepe"
-                  width="800"
-                  height="800"
-                  loading="lazy"
-                />
+                  role="img"
+                  aria-label="Tonnarelli cacio e pepe"
+                ></div>
               </a>
               <div class="articolo-scheda__corpo">
                 <span class="articolo-scheda__data">12 marzo 2026</span>
@@ -1079,14 +988,12 @@
 
             <article class="articolo-scheda">
               <a href="diario-carciofi.html" class="articolo-scheda__immagine">
-                <img
-                  src="images/piatto-carciofi.svg"
+                <div
+                  class="posto-foto"
                   data-foto="carciofi"
-                  alt="Carciofi romaneschi"
-                  width="800"
-                  height="800"
-                  loading="lazy"
-                />
+                  role="img"
+                  aria-label="Carciofi romaneschi"
+                ></div>
               </a>
               <div class="articolo-scheda__corpo">
                 <span class="articolo-scheda__data">4 febbraio 2026</span>
@@ -1105,14 +1012,12 @@
 
             <article class="articolo-scheda">
               <a href="diario-esquilino.html" class="articolo-scheda__immagine">
-                <img
-                  src="images/sala.svg"
-                  data-foto="copertina"
-                  alt="Il rione Esquilino"
-                  width="1600"
-                  height="900"
-                  loading="lazy"
-                />
+                <div
+                  class="posto-foto"
+                  data-foto="esquilino"
+                  role="img"
+                  aria-label="Il rione Esquilino"
+                ></div>
               </a>
               <div class="articolo-scheda__corpo">
                 <span class="articolo-scheda__data">18 gennaio 2026</span>
