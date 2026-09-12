@@ -2229,3 +2229,113 @@ h4 {
 .testata--filmato p {
   color: var(--sabbia-chiara);
 }
+
+/* --------------------------------------------------------------------------
+   L'etichetta del vino della casa
+   Non il disegno di una bottiglia: l'etichetta, che di per se' e' tipografia.
+   Quando arriva la fotografia prende il suo posto.
+   -------------------------------------------------------------------------- */
+
+.vetrina {
+  width: min(280px, 80%);
+  aspect-ratio: 4 / 5;
+  margin: 0 auto 1.6rem;
+  background-size: cover;
+  background-position: center;
+}
+
+.vetrina.is-piena .etichetta {
+  display: none;
+}
+
+.etichetta {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: #fdf8ee;
+  border: 1px solid #d9c9a8;
+  box-shadow: 0 18px 40px -26px rgba(26, 6, 10, 0.8);
+  color: #6b4c22;
+  text-align: center;
+}
+
+.etichetta__testa {
+  padding: 1.1rem 1rem 1.3rem;
+  color: #fffaf2;
+  background: linear-gradient(160deg, #e8ab5c 0%, #d0803a 45%, #b2612a 100%);
+}
+
+.etichetta--rosso .etichetta__testa {
+  background: linear-gradient(160deg, #c4623a 0%, #9e3427 48%, #6f1b18 100%);
+}
+
+.etichetta__sopra {
+  display: block;
+  font-family: var(--serif);
+  font-size: 0.78rem;
+  letter-spacing: 0.34em;
+  text-indent: 0.34em;
+  text-transform: uppercase;
+}
+
+.etichetta__nome {
+  display: block;
+  font-family: var(--corsivo);
+  font-size: 2.4rem;
+  line-height: 1.1;
+  margin-top: 0.1rem;
+  text-shadow: 0 2px 10px rgba(90, 22, 34, 0.35);
+}
+
+.etichetta__corpo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  flex: 1;
+  padding: 1.2rem 1rem 1rem;
+}
+
+.etichetta__vino {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
+.etichetta__denominazione {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  line-height: 1.1;
+  color: var(--rosso);
+}
+
+.etichetta__doc {
+  font-family: var(--serif);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+}
+
+.etichetta__filetto {
+  width: 64%;
+  height: 1px;
+  margin: 0.7rem 0 0.5rem;
+  background: linear-gradient(90deg, transparent, #cdb78d, transparent);
+}
+
+.etichetta__nota {
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+  max-width: 24ch;
+}
+
+.etichetta__piede {
+  font-family: var(--serif);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  opacity: 0.8;
+  margin-top: 0.3rem;
+}
