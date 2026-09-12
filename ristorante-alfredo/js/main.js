@@ -138,6 +138,10 @@
      copertina-2, copertina-3… e le fa girare in dissolvenza. */
   (function () {
     var ESTENSIONI = [".jpg", ".jpeg", ".webp", ".png"];
+    /* nelle versioni tradotte le pagine stanno in una cartella: si risale */
+    var RADICE = /\/(en|fr|es|ru|pl)\/[^/]*$/.test(location.pathname)
+      ? "../"
+      : "";
     var COPERTINE = 6;
     var ATTESA = 7000;
     var memoria = {};
@@ -159,7 +163,7 @@
           return;
         }
 
-        var percorso = "images/foto/" + nome + ESTENSIONI[indice];
+        var percorso = RADICE + "images/foto/" + nome + ESTENSIONI[indice];
         var immagine = new Image();
         indice += 1;
         immagine.onload = function () {

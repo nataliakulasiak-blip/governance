@@ -29,6 +29,42 @@ Caratteri: _Cormorant Garamond_ (titoli), _Jost_ (testo), _Pinyon Script_ (corsi
 | `diario.html`               | indice del blog (dati strutturati `Blog`)                             |
 | `diario-*.html`             | tre articoli (dati strutturati `BlogPosting`)                         |
 | `robots.txt`, `sitemap.xml` | indicizzazione                                                        |
+| `en/ fr/ es/ ru/ pl/`       | le stesse pagine tradotte (generate, non si modificano a mano)        |
+
+## Le lingue
+
+Il sito è in italiano, inglese, francese, spagnolo, russo e polacco. L'italiano è
+la sorgente: si modifica solo quello, poi si rigenera il resto.
+
+```sh
+python3 strumenti/traduci.py
+npx prettier@3 --write "en/*.html" "fr/*.html" "es/*.html" "ru/*.html" "pl/*.html"
+```
+
+Il comando legge le cinque pagine italiane (`index`, `menu`, `vini`, `faq`,
+`diario`), sostituisce le frasi con quelle dei dizionari e riscrive le cartelle
+`en/ fr/ es/ ru/ pl/`. È ripetibile: rilanciarlo due volte dà lo stesso risultato.
+
+I dizionari stanno in `strumenti/lingue/`:
+
+- `frasi.json` — l'elenco delle frasi italiane, nell'ordine in cui compaiono.
+  Lo riscrive il generatore quando cambia il testo italiano.
+- `en.json`, `fr.json`, `es.json`, `ru.json`, `pl.json` — la traduzione, con per
+  chiave la posizione della frase in `frasi.json`.
+
+Una frase senza traduzione resta in italiano, ed è voluto: **i nomi dei piatti e
+dei vini non si traducono**. «Cacio e pepe» e «Carciofi alla giudia» restano
+com'è giusto che siano, la descrizione sotto è nella lingua del lettore.
+
+Se una traduzione deve attaccarsi alla parola accanto (per esempio in
+`L'ora dell'<em>aperitivo</em>`), si lascia lo spazio dentro il valore del
+dizionario: il generatore lo riporta tale e quale.
+
+Gli articoli del diario restano solo in italiano; nelle pagine tradotte i loro
+collegamenti portano `hreflang="it"`, così il lettore lo sa prima di cliccare.
+
+Ogni pagina porta i `<link rel="alternate" hreflang>` per tutte e sei le lingue
+più `x-default` sull'italiano, e le stesse alternative sono nel `sitemap.xml`.
 
 ## Codici QR
 
@@ -116,7 +152,10 @@ I dati di contatto sono segnaposto realistici: vanno sostituiti con quelli veri.
    `images/aperitivo.svg`, un'illustrazione provvisoria. Con una fotografia basta
    salvarla come `images/aperitivo.jpg` e cambiare `src`, `width` e `height`
    dell'immagine in `index.html` (taglio consigliato 3:2, 1600 px di lato lungo).
-7. **Immagini**: le illustrazioni in `images/` sono vettoriali provvisorie. Sostituirle
+7. **Le traduzioni**: sono di lavoro, rilette ma non da un madrelingua. Prima di
+   pubblicare conviene farle guardare a chi la lingua ce l'ha in casa —
+   soprattutto russo e polacco, dove il tono conta più della parola.
+8. **Immagini**: le illustrazioni in `images/` sono vettoriali provvisorie. Sostituirle
    con fotografie reali (stesso nome file, oppure aggiornando `src` e
    `background-image` in `css/style.css` per `sala.svg`). Formato consigliato: JPEG o
    WebP, 1600 px di lato lungo per la galleria, 2000 px per la copertina.
