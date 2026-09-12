@@ -192,81 +192,46 @@
     var copertina = document.querySelector(".copertina");
     if (!copertina) return;
 
-    var filmato = copertina.querySelector(".copertina__filmato");
     var ATTESA = 7000;
 
-    function lastraDa(percorso, indice) {
+    function lastraDa(percorso) {
       var lastra = document.createElement("div");
       lastra.className = "copertina__lastra";
       lastra.style.backgroundImage = 'url("' + percorso + '")';
-      lastra.style.animationDelay = indice * -6 + "s";
       copertina.insertBefore(lastra, copertina.firstChild);
       return lastra;
     }
 
-    /* Fa girare quello che c'e': il filmato e le scene che lo accompagnano */
-    function avvia(scene) {
-      if (!scene.length) return;
-
-      scene[0].classList.add("is-in-scena");
-      if (filmato && scene[0] !== filmato && filmato.pause) filmato.pause();
-      if (scene.length < 2) return;
+    /* Con il filmato: restano le scritte a girare, il filmato non si ferma.
+       Se per una scena c'e' una fotografia, prende il posto del filmato
+       mentre quella scritta e' in scena. */
+    var parole = [].slice.call(document.querySelectorAll(".copertina__parola"));
+    if (parole.length > 1) {
+      var sfondi = parole.map(function (parola) {
+        var scena = parola.dataset.scena;
+        if (!scena) return null;
+        var lastra = null;
+        cerca(scena, function (percorso) {
+          lastra = lastraDa(percorso);
+          parola.lastra = lastra;
+        });
+        return null;
+      });
 
       var corrente = 0;
       setInterval(function () {
-        scene[corrente].classList.remove("is-in-scena");
-        if (scene[corrente] === filmato && filmato.pause) filmato.pause();
+        parole[corrente].classList.remove("is-in-scena");
+        if (parole[corrente].lastra) {
+          parole[corrente].lastra.classList.remove("is-in-scena");
+        }
 
-        corrente = (corrente + 1) % scene.length;
-        scene[corrente].classList.add("is-in-scena");
+        corrente = (corrente + 1) % parole.length;
 
-        if (scene[corrente] === filmato && filmato.play) {
-          filmato.currentTime = 0;
-          var avvio = filmato.play();
-          if (avvio && avvio.catch) avvio.catch(function () {});
+        parole[corrente].classList.add("is-in-scena");
+        if (parole[corrente].lastra) {
+          parole[corrente].lastra.classList.add("is-in-scena");
         }
       }, ATTESA);
-    }
-
-    /* Con il filmato: piatti, vino bianco, vino rosso, uno dopo l'altro */
-    if (filmato) {
-      copertina.classList.add("copertina--giostra");
-
-      var NOMI_VINO = ["copertina-vino-bianco", "copertina-vino-rosso"];
-      var bottiglie = [];
-      var attese = NOMI_VINO.length;
-
-      /* si aspettano tutte e due prima di far partire il giro */
-      var raccolta = function (indice, percorso) {
-        bottiglie.push({ indice: indice, percorso: percorso });
-        attese -= 1;
-        if (attese > 0) return;
-
-        bottiglie.sort(function (a, b) {
-          return a.indice - b.indice;
-        });
-
-        avvia(
-          [filmato].concat(
-            bottiglie.map(function (voce, k) {
-              return lastraDa(voce.percorso, k + 1);
-            }),
-          ),
-        );
-      };
-
-      NOMI_VINO.forEach(function (nome, i) {
-        cerca(
-          nome,
-          function (percorso) {
-            raccolta(i, percorso);
-          },
-          function () {
-            /* senza fotografia resta l'illustrazione della bottiglia */
-            raccolta(i, "images/" + nome + ".svg");
-          },
-        );
-      });
       return;
     }
 
@@ -276,11 +241,17 @@
     function inScena() {
       if (!trovate.length) return;
       copertina.classList.add("copertina--foto");
-      avvia(
-        trovate.map(function (percorso, indice) {
-          return lastraDa(percorso, indice);
-        }),
-      );
+
+      var lastre = trovate.map(lastraDa);
+      lastre[0].classList.add("is-in-scena");
+      if (lastre.length < 2) return;
+
+      var quale = 0;
+      setInterval(function () {
+        lastre[quale].classList.remove("is-in-scena");
+        quale = (quale + 1) % lastre.length;
+        lastre[quale].classList.add("is-in-scena");
+      }, ATTESA);
     }
 
     function prossima(numero) {

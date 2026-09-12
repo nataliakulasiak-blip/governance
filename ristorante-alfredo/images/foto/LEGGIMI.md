@@ -25,6 +25,18 @@ compare da solo appena lo carichi. Oltre ai nomi qui sopra valgono anche:
 `gnocchi.jpg`, `mozzarella.jpg`, `tiramisu.jpg`, `fettuccine-alfredo.jpg`,
 `cacio-e-pepe.jpg`, `carciofi.jpg`, `esquilino.jpg`.
 
+## Il vino nella copertina
+
+Sopra il filmato dei piatti girano tre scritte: il nome della casa, «Un sogno di Roma
+nel tuo calice» per il bianco e «Il gusto autentico di Roma nei nostri rossi» per il
+rosso. Se in questa cartella compaiono `copertina-vino-bianco.jpg` e
+`copertina-vino-rosso.jpg` — per esempio i due poster delle bottiglie — prendono il
+posto del filmato mentre la loro scritta è in scena. Senza quei file resta il filmato,
+con le scritte che si alternano lo stesso.
+
+Per le bottiglie nella pagina dei vini valgono `vino-casa.jpg` e
+`vino-casa-rosso.jpg` (verticali, taglio 4:5).
+
 ## La copertina gira
 
 Se oltre a `copertina.jpg` ci sono anche `copertina-2.jpg`, `copertina-3.jpg` e così

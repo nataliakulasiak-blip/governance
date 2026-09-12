@@ -2049,16 +2049,6 @@ h4 {
   }
 }
 
-/* La giostra della copertina: il filmato dei piatti e le due bottiglie */
-.copertina--giostra .copertina__filmato {
-  opacity: 0;
-  transition: opacity 1.8s ease;
-}
-
-.copertina--giostra .copertina__filmato.is-in-scena {
-  opacity: 1;
-}
-
 /* --------------------------------------------------------------------------
    I posti per le fotografie
    Restano invisibili finche' il file non c'e': niente disegni di ripiego.
@@ -2105,4 +2095,51 @@ h4 {
   height: 1px;
   margin: 0.9rem auto 0;
   background: linear-gradient(90deg, transparent, var(--oro), transparent);
+}
+
+/* --------------------------------------------------------------------------
+   La giostra delle scritte sulla copertina
+   Il filmato resta, sopra si alternano il nome della casa e i due vini.
+   -------------------------------------------------------------------------- */
+
+.copertina__giostra {
+  display: grid;
+}
+
+.copertina__parola {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+  pointer-events: none;
+}
+
+.copertina__parola.is-in-scena {
+  opacity: 1;
+}
+
+/* Il marchio dei vini, dentro la copertina, si accorda al resto */
+.copertina__parola .marchio-poster__sopra,
+.copertina__parola .marchio-poster__nome,
+.copertina__parola .marchio-poster__motto {
+  margin: 0;
+  color: var(--sabbia-chiara);
+}
+
+.copertina__parola .marchio-poster__nome {
+  color: var(--oro-chiaro);
+  margin: 0.2rem 0 0.6rem;
+}
+
+.copertina__parola .copertina__testo {
+  margin-top: 1.4rem;
+}
+
+/* La bottiglia, quando la fotografia c'e', sta in piedi */
+.posto-foto--bottiglia {
+  width: min(260px, 72%);
+  aspect-ratio: 4 / 5;
+  margin: 0 auto 1.4rem;
 }
