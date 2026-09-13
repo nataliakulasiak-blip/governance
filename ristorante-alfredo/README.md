@@ -85,6 +85,38 @@ collegamenti portano `hreflang="it"`, così il lettore lo sa prima di cliccare.
 Ogni pagina porta i `<link rel="alternate" hreflang>` per tutte e sei le lingue
 più `x-default` sull'italiano, e le stesse alternative sono nel `sitemap.xml`.
 
+## La carta in PDF
+
+Il PDF della carta **non è un file a parte**: è la stampa della pagina stessa, in
+qualsiasi lingua. Dal menu si clicca «Stampa la carta», oppure si stampa la pagina
+dal browser. Così quando cambiano i prezzi il PDF si rifà senza rifare il lavoro, e
+le sei lingue restano allineate da sole.
+
+Esce così: una copertina — nome, slogan «Poche cose, fatte bene», indirizzo — e poi
+le facciate della carta. Cinque facciate in tutte e sei le lingue. Il margine di
+stampa lo tiene `@page` (16 mm sopra, 18 ai lati, 14 sotto), la copertina fa storia a
+sé con `@page copertina { margin: 0 }`, e nessun piatto si spezza fra due facciate.
+
+Per rigenerare i sei file da riga di comando serve un browser senza finestra
+(Playwright): si apre ogni `menu.html`, si aspettano i caratteri e si chiede il PDF
+in formato A4 con `preferCSSPageSize`.
+
+## I caratteri
+
+Stanno **in casa**, in `css/caratteri/`, richiamati da `css/caratteri.css`. Prima si
+prendevano da Google a ogni apertura di pagina. Tenerli qui serve a tre cose: le
+pagine si aprono prima, la stampa e i PDF escono con i caratteri giusti anche senza
+rete, e non si manda l'indirizzo IP di chi legge a un server terzo — che in Europa,
+per un sito con un modulo di prenotazione, è una cosa che conta.
+
+```sh
+python3 strumenti/caratteri.py
+```
+
+Scarica solo i sottoinsiemi che servono alle sei lingue — latino, latino esteso per
+il polacco, cirillico per il russo — e riscrive `css/caratteri.css`. Ventisette file,
+640 kB in tutto. Da rilanciare solo se si cambia un carattere o serve un altro peso.
+
 ## Il menu del giorno
 
 `menu-del-giorno.html` è un foglio A4 da stampare e mettere sui tavoli. Non è

@@ -478,12 +478,7 @@
       }
     </script>
     <link rel="icon" href="../images/favicon.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Jost:wght@200;300;400&family=Pinyon+Script&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="../css/caratteri.css" />
     <link rel="stylesheet" href="../css/style.css" />
   </head>
 
@@ -492,7 +487,7 @@
       <div class="contenitore intestazione__interno">
         <a class="marchio" href="index.html">
           <span class="marchio__nome">Alfredo</span>
-          <span class="marchio__sotto">Rzym · Eskwilin · od 1962</span>
+          <span class="marchio__sotto">Rzym · Eskwilin · od 1962 roku</span>
         </a>
 
         <button
@@ -534,6 +529,18 @@
     </header>
 
     <main>
+      <!-- Solo in stampa: la copertina del PDF della carta -->
+      <div class="carta-copertina" aria-hidden="true">
+        <p class="carta-copertina__sopra">Ristorante</p>
+        <p class="carta-copertina__nome">Alfredo</p>
+        <div class="foglio__fregio"><span></span></div>
+        <p class="carta-copertina__slogan">Niewiele dań, zrobionych dobrze</p>
+        <p class="carta-copertina__citta">Rzym · Eskwilin · od 1962 roku</p>
+        <p class="carta-copertina__indirizzo">
+          Via Principe Amedeo 126 · ristorantealfredoroma.it
+        </p>
+      </div>
+
       <section class="testata">
         <div class="contenitore">
           <h1>Menu</h1>
@@ -541,7 +548,7 @@
         </div>
       </section>
 
-      <section class="sezione">
+      <section class="sezione carta__apertura">
         <div class="contenitore">
           <div
             class="centrato rivela"
@@ -975,7 +982,10 @@
           </div>
         </div>
 
-        <div class="contenitore centrato rivela" style="margin-top: 3.5rem">
+        <div
+          class="contenitore centrato rivela carta__coda"
+          style="margin-top: 3.5rem"
+        >
           <p class="mano" style="font-size: 2rem">
             Nakrycie 2,50 € · chleb domowy w cenie
           </p>
@@ -1000,6 +1010,11 @@
               style="margin-left: 0.6rem"
               >Piwnica</a
             >
+          </p>
+          <p class="carta__stampa">
+            <button class="bottone bottone--vuoto" type="button" data-stampa>
+              Wydrukuj kartę
+            </button>
           </p>
         </div>
       </section>

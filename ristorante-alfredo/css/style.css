@@ -2884,3 +2884,206 @@ h4 {
     break-inside: avoid;
   }
 }
+
+/* --------------------------------------------------------------------------
+   La carta in PDF: si stampa la pagina stessa, in qualsiasi lingua. Cosi'
+   quando cambiano i prezzi il PDF si rifa' senza rifare il lavoro.
+   -------------------------------------------------------------------------- */
+
+.carta-copertina {
+  display: none;
+}
+
+.carta__stampa {
+  margin-top: 1.2rem;
+}
+
+@media print {
+  /* Il margine lo tiene la pagina, non il contenuto: cosi' vale per tutte
+     le facciate, anche quelle che nascono da un'interruzione. La copertina
+     fa storia a se': li' il disegno arriva al bordo. */
+  @page {
+    size: A4;
+    margin: 16mm 18mm 14mm;
+  }
+
+  @page copertina {
+    margin: 0;
+  }
+
+  body {
+    background: #fff;
+    color: var(--inchiostro);
+  }
+
+  .intestazione,
+  .testata,
+  .whatsapp-flottante,
+  .pie,
+  .carta__stampa,
+  .carta__apertura,
+  .carta__coda .bottone,
+  .lingue {
+    display: none !important;
+  }
+
+  /* coperto e allergeni restano: su un menu stampato servono davvero, e
+     stanno in coda all'ultima facciata invece di aprirne una per loro */
+  .carta__coda {
+    break-inside: avoid;
+    margin-top: 5mm !important;
+    padding: 0;
+  }
+
+  .carta__coda p:last-child {
+    font-size: 0.72rem !important;
+    line-height: 1.45;
+  }
+
+  .carta__coda .mano {
+    font-size: 1.4rem !important;
+    color: var(--rosso);
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* la sezione di apertura resta, ma senza fondi ne' aria da schermo */
+  .sezione,
+  .sezione--sabbia {
+    background: none !important;
+    padding: 0 !important;
+  }
+
+  .contenitore {
+    max-width: none;
+    padding: 0;
+  }
+
+  /* Prima facciata: solo il nome, lo slogan e l'indirizzo */
+  .carta-copertina {
+    page: copertina;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 210mm;
+    height: 297mm;
+    padding: 30mm 24mm;
+    box-sizing: border-box;
+    break-after: page;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .carta-copertina__sopra {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.46em;
+    text-transform: uppercase;
+    color: var(--oro);
+  }
+
+  .carta-copertina__nome {
+    margin: 0.2rem 0 0;
+    font-family: var(--corsivo);
+    font-size: 5.4rem;
+    line-height: 1;
+    color: var(--bordeaux);
+  }
+
+  .carta-copertina__slogan {
+    margin: 0;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.7rem;
+    color: var(--rosso);
+  }
+
+  .carta-copertina__citta {
+    margin: 14mm 0 0;
+    font-family: var(--sans);
+    font-size: 0.74rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(43, 27, 22, 0.7);
+  }
+
+  .carta-copertina__indirizzo {
+    margin: 2mm 0 0;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    color: rgba(43, 27, 22, 0.5);
+  }
+
+  /* Le facciate della carta: composizione stretta, che una carta di quaranta
+     piatti su una pagina sola non ci sta, ma su sette e' un opuscolo */
+  .carta {
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .carta__gruppo {
+    margin-bottom: 6mm;
+  }
+
+  .carta__gruppo h3 span {
+    font-size: 0.72em;
+  }
+
+  .piatto__nome,
+  .piatto__prezzo {
+    font-size: 1.02rem;
+  }
+
+  .piatto__nota {
+    font-size: 0.76rem;
+    line-height: 1.4;
+  }
+
+  .carta__gruppo h3 {
+    color: var(--rosso);
+    border-bottom: 1px solid rgba(184, 145, 79, 0.6);
+    padding-bottom: 2mm;
+    margin-bottom: 4mm;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .piatto {
+    break-inside: avoid;
+    border: 0;
+    padding: 0;
+    margin-bottom: 2.6mm;
+  }
+
+  .piatto__nome,
+  .piatto__prezzo {
+    color: var(--bordeaux);
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .piatto__prezzo {
+    color: var(--rosso);
+  }
+
+  .piatto__nota {
+    color: rgba(43, 27, 22, 0.72);
+    max-width: 78%;
+  }
+
+  .piatto__etichetta {
+    border-color: rgba(163, 42, 42, 0.55);
+    color: var(--rosso);
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .rivela {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
