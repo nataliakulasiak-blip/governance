@@ -652,6 +652,50 @@ h4 {
   display: none;
 }
 
+/* Il filmato della sala, in mezzo al racconto: esce un poco dalla colonna
+   del testo, come una fotografia a piena pagina in un libro. */
+.filmato-sala {
+  /* il testo sta in una colonna stretta, il filmato no: si centra sulla
+     pagina e la scavalca, come una fotografia a piena pagina in un libro */
+  width: min(1040px, calc(100vw - 3rem));
+  margin: 2.8rem 0 2.8rem 50%;
+  transform: translateX(-50%);
+  position: relative;
+  padding: 0.9rem;
+}
+
+.filmato-sala::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--oro);
+  transform: translate(14px, 14px);
+  pointer-events: none;
+}
+
+.filmato-sala video {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--bordeaux-scuro);
+}
+
+/* Chi ha chiesto meno animazioni vede il fotogramma fermo */
+@media (prefers-reduced-motion: reduce) {
+  .filmato-sala video {
+    display: none;
+  }
+
+  .filmato-sala {
+    background-image: url("../images/sala-filmato.jpg");
+    background-size: cover;
+    background-position: center;
+    aspect-ratio: 16 / 9;
+  }
+}
+
 /* Senza l'immagine accanto il testo non resta in mezza pagina: prende una
    colonna sola, larga quanto si legge bene. */
 .presentazione:not(:has(img)):not(:has(.vetrina)):not(

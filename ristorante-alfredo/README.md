@@ -128,6 +128,16 @@ il giro non ha stacchi. Da lì si taglia la **metà sinistra** — il video sorg
 schermo diviso, pomodoro a sinistra e cacio e pepe a destra — fermandosi a 632 px per
 non prendere la riga chiara che divide i due piatti.
 
+**Il racconto in home** («Una trattoria diventata casa») si apre a metà su
+`images/sala-filmato.{webm,mp4,jpg}`: il piatto, poi il brindisi in sala. Il filmato
+esce dalla colonna del testo e si centra sulla pagina. La stellina che il generatore
+lascia in basso a destra è tolta con il filtro `delogo` di ffmpeg, che ricostruisce
+quel quadratino dai pixel intorno:
+
+```sh
+ffmpeg -i originale.mp4 -vf "delogo=x=1128:y=567:w=66:h=66" -an ... sala-filmato.mp4
+```
+
 **La pagina dei vini** ha il suo: `images/vino-filmato.{webm,mp4,jpg}`, il bianco e il
 rosso versati nei calici. Il sorgente porta stampate sopra le due scritte «Un sogno di
 Roma nel tuo calice» e «Il gusto autentico di Roma nei nostri rossi»: sono tagliate
