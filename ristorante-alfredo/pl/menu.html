@@ -3,12 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>
-      Menu | Ristorante Alfredo Rzym — kuchnia rzymska na Eskwilinie
-    </title>
+    <title>Karta | Ristorante Alfredo Rzym, kuchnia rzymska</title>
     <meta
       name="description"
-      content="Karta Ristorante Alfredo w Rzymie: rzymskie przystawki, cacio e pepe, carbonara, amatriciana, ogon wołowy, jagnięcina i domowe desery. Via Principe Amedeo 126, Eskwilin."
+      content="Karta Ristorante Alfredo w Rzymie: rzymskie przystawki, cacio e pepe, carbonara, amatriciana, ogon wołowy, jagnięcina i domowe desery."
     />
     <meta
       name="keywords"
@@ -39,17 +37,49 @@
       {
         "@context": "https://schema.org",
         "@type": "Menu",
-        "name": "La carta del Ristorante Alfredo",
+        "name": "Menu del Ristorante Alfredo",
         "inLanguage": "pl",
         "url": "https://www.ristorantealfredoroma.it/menu.html",
         "hasMenuSection": [
           {
             "@type": "MenuSection",
-            "name": "Antipasti",
+            "name": "Przystawki",
             "hasMenuItem": [
               {
                 "@type": "MenuItem",
-                "name": "Carciofi alla giudia",
+                "name": "Crostini con mortadella e stracciatella",
+                "description": "Opiekany chleb z Lariano, apulijska stracciatella, mortadela z Bolonii, posiekane pistacje z Bronte.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "12.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Bruschette con pomodoro e burrata",
+                "description": "Cztery kawałki: pomidory krojone nożem, burrata, pesto bazyliowe, młoda oliwa.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "10.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Mozzarella di bufala, pomodori e basilico wegetariańskie",
+                "description": "Bawola mozzarella z Kampanii przywieziona rano, pomidory piennolo, bazylia i oliwa z Canino.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "11.00",
+                  "priceCurrency": "EUR"
+                },
+                "suitableForDiet": ["https://schema.org/VegetarianDiet"]
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Carciofi alla giudia sezon",
+                "description": "Rzymskie cimaroli, podwójnie smażone, sól z Cervii. Od listopada do kwietnia.",
                 "offers": {
                   "@type": "Offer",
                   "price": "9.00",
@@ -58,10 +88,42 @@
               },
               {
                 "@type": "MenuItem",
-                "name": "Supplì al telefono",
+                "name": "Przezpplì al telefono",
+                "description": "Trzy sztuki, ryż w ragù wołowym, serce z mozzarelli z Amaseno.",
                 "offers": {
                   "@type": "Offer",
                   "price": "8.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Puntarelle alla romana wegańskie",
+                "description": "Sos z sardeli kantabryjskich, czosnek, ocet z białego wina.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "8.00",
+                  "priceCurrency": "EUR"
+                },
+                "suitableForDiet": ["https://schema.org/VeganDiet"]
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Fiori di zucca fritti",
+                "description": "Ciasto na piwie rzemieślniczym, sardela, mozzarella. Cztery sztuki.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "9.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Tagliere del Lacjum",
+                "description": "Guanciale z Amatrice, coppiette, pecorino z Picinisco, konfitura z winogron Cesanese.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "16.00",
                   "priceCurrency": "EUR"
                 }
               }
@@ -69,11 +131,104 @@
           },
           {
             "@type": "MenuSection",
-            "name": "Primi",
+            "name": "Dania z makaronu",
             "hasMenuItem": [
               {
                 "@type": "MenuItem",
+                "name": "Spaghetti allo scoglio",
+                "description": "Małże, sercówki i krewetki tyrreńskie, pomidorki, czosnek i pietruszka. W piątki i soboty.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "19.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Le fettuccine di Alfredo danie firmowe",
+                "description": "Tylko masło śmietankowe i parmezan trzydziestomiesięczny, mieszane przy stoliku na waszych oczach. Danie, od którego wszystko się zaczęło.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "16.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Risotto allo zafferano",
+                "description": "Ryż carnaroli, nitki szafranu, wykończony parmezanem. Minimum dwie osoby, dwadzieścia minut czekania.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "15.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Penne al pomodoro e basilico wegetariańskie",
+                "description": "Pomidory z Sermonety, bazylia, nitka surowej oliwy. Danie dzieci i tych, którzy się spieszą.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "12.00",
+                  "priceCurrency": "EUR"
+                },
+                "suitableForDiet": ["https://schema.org/VegetarianDiet"]
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Fettuccine al ragù",
+                "description": "Ciasto jajeczne wałkowane rano, ragù wołowo-wieprzowe duszone trzy godziny.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "14.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Rigatoni alla gricia",
+                "description": "Czwarty rzymski makaron, bez jajka i bez pomidora: guanciale, pecorino, pieprz.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "14.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Ravioli di ricotta e spinaci, burro e salvia wegetariańskie",
+                "description": "Rzymska ricotta owcza, masło orzechowe, szałwia, parmezan trzydziestomiesięczny.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "14.00",
+                  "priceCurrency": "EUR"
+                },
+                "suitableForDiet": ["https://schema.org/VegetarianDiet"]
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Gnocchi di patate al pomodoro e basilico czwartek",
+                "description": "W czwartek gnocchi, jak każe Rzym: ziemniaki z Avezzano, sos pomidorowy duszony dwie godziny, pecorino osobno.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "13.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Tortellini in brodo di cappone zima",
+                "description": "Danie niedzielne od listopada do lutego: tortellini lepione ręcznie, rosół z kapłona z dwóch gotowań.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "16.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
                 "name": "Tonnarelli cacio e pepe",
+                "description": "Pecorino romano dojrzewające osiem miesięcy, pieprz Sarawak prażony na miejscu.",
                 "offers": {
                   "@type": "Offer",
                   "price": "14.00",
@@ -83,6 +238,7 @@
               {
                 "@type": "MenuItem",
                 "name": "Rigatoni alla carbonara",
+                "description": "Chrupiące guanciale, żółtka, pecorino. Żadnej śmietany, nigdy.",
                 "offers": {
                   "@type": "Offer",
                   "price": "15.00",
@@ -92,9 +248,106 @@
               {
                 "@type": "MenuItem",
                 "name": "Bucatini all'amatriciana",
+                "description": "Pomidory z Sermonety, guanciale, pecorino, odrobina papryczki.",
                 "offers": {
                   "@type": "Offer",
                   "price": "14.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Fettuccine al ragù bianco d'agnello",
+                "description": "Jagnięcina z gór Simbruini duszona cztery godziny, tymianek, skórka cytrynowa.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "16.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Minestra di broccoli e arzilla",
+                "description": "Rzymska zupa piątkowa, na wywarze z płaszczki z brokułem romanesco.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "15.00",
+                  "priceCurrency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Dania główne",
+            "hasMenuItem": [
+              {
+                "@type": "MenuItem",
+                "name": "Grigliata di calamari e gamberoni",
+                "description": "Z płyty, pietruszka i cytryna, z frytkami i sałatką.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "24.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Fritto di calamari e gamberi",
+                "description": "Ryba tyrreńska, mąka semolinowa, cytryna. Chrupiąca, nigdy tłusta.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "19.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Coda alla vaccinara",
+                "description": "Sześć godzin duszenia, seler, gorzkie kakao i orzeszki piniowe. Danie samego Alfreda.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "22.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Saltimbocca alla romana",
+                "description": "Cielęcina, szynka z Bassiano, szałwia, białe wino z Castelli.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "21.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Abbacchio a scottadito",
+                "description": "Kotleciki z grilla, ziemniaki z rozmarynem. Na dwie osoby, jeśli chcecie.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "24.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Trippa alla romana",
+                "description": "Sos pomidorowy, rzymska mięta, pecorino. W soboty, jak każe tradycja.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "18.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Baccalà in guazzetto piątek",
+                "description": "Orzeszki piniowe, rodzynki, pomidorki piennolo, opiekany chleb.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "20.00",
                   "priceCurrency": "EUR"
                 }
               }
@@ -106,7 +359,8 @@
             "hasMenuItem": [
               {
                 "@type": "MenuItem",
-                "name": "Spritz della casa",
+                "name": "Spritz domowe",
+                "description": "Rzemieślniczy bitter z Rzymu, prosecco, woda gazowana, pomarańcza z Ribery.",
                 "offers": {
                   "@type": "Offer",
                   "price": "8.00",
@@ -115,7 +369,37 @@
               },
               {
                 "@type": "MenuItem",
-                "name": "Cicchetti del banco",
+                "name": "Vermouth di Torino",
+                "description": "Podawany z lodem i skórką, tak jak pijał go Alfredo o siódmej.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "7.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Negroni",
+                "description": "Gin, czerwony wermut, bitter. W niskiej szklance.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "9.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Kieliszek Cesanese del Piglio",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "5.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Przekąski przy barze",
+                "description": "Małe supplì, coppiette, pecorino, oliwki z Gaety. Na dwie osoby, do dwóch kieliszków.",
                 "offers": {
                   "@type": "Offer",
                   "price": "12.00",
@@ -126,23 +410,54 @@
           },
           {
             "@type": "MenuSection",
-            "name": "Secondi",
+            "name": "Desery i wina",
             "hasMenuItem": [
               {
                 "@type": "MenuItem",
-                "name": "Coda alla vaccinara",
+                "name": "Maritozzo con la panna",
+                "description": "Drożdżówka naszego wypieku, śmietana ubijana ręcznie na miejscu.",
                 "offers": {
                   "@type": "Offer",
-                  "price": "22.00",
+                  "price": "7.00",
                   "priceCurrency": "EUR"
                 }
               },
               {
                 "@type": "MenuItem",
-                "name": "Saltimbocca alla romana",
+                "name": "Crostata di visciole e ricotta",
+                "description": "Rzymska ricotta owcza, wiśnie z Vignoli w domowym syropie.",
                 "offers": {
                   "@type": "Offer",
-                  "price": "21.00",
+                  "price": "7.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Tiramisù na kawie z piazza Vittorio",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "7.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Wina na kieliszki",
+                "description": "Osiem etykiet w rotacji: Cesanese del Piglio, Frascati Superiore, Bellone di Cori.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "5.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Menu degustacyjne «Alfredo»",
+                "description": "Pięć dań wybranych przez kuchnię, dla całego stolika. Wina dobrane +25 €.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "48.00",
                   "priceCurrency": "EUR"
                 }
               }
@@ -676,14 +991,14 @@
 
         <div class="pie__colonne">
           <div>
-            <h4>Adres</h4>
+            <h2>Adres</h2>
             <p>
               Via Principe Amedeo 126<br />
               00185 Rzym — Eskwilin
             </p>
           </div>
           <div>
-            <h4>Kontakt</h4>
+            <h2>Kontakt</h2>
             <p>
               <a href="tel:+390644701234">+39 06 4470 1234</a><br />
               <a href="mailto:info@ristorantealfredoroma.it"
@@ -692,7 +1007,7 @@
             </p>
           </div>
           <div>
-            <h4>Strony</h4>
+            <h2>Strony</h2>
             <p>
               <a href="menu.html">Menu</a> · <a href="vini.html">Wina</a> ·
               <a href="diario.html">Dziennik</a><br />

@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Меню | Ristorante Alfredo Рим — римская кухня в Эсквилино</title>
+    <title>Меню | Ristorante Alfredo Рим, римская кухня</title>
     <meta
       name="description"
-      content="Меню Ristorante Alfredo в Риме: римские закуски, качо э пепе, карбонара, аматричана, бычий хвост, ягнёнок и домашние десерты. Via Principe Amedeo 126, Эсквилино."
+      content="Меню Ristorante Alfredo в Риме: римские закуски, качо э пепе, карбонара, аматричана, бычий хвост, ягнёнок и домашние десерты."
     />
     <meta
       name="keywords"
@@ -37,17 +37,49 @@
       {
         "@context": "https://schema.org",
         "@type": "Menu",
-        "name": "La carta del Ristorante Alfredo",
+        "name": "Меню del Ristorante Alfredo",
         "inLanguage": "ru",
         "url": "https://www.ristorantealfredoroma.it/menu.html",
         "hasMenuSection": [
           {
             "@type": "MenuSection",
-            "name": "Antipasti",
+            "name": "Закуски",
             "hasMenuItem": [
               {
                 "@type": "MenuItem",
-                "name": "Carciofi alla giudia",
+                "name": "Crostini con mortadella e stracciatella",
+                "description": "Поджаренный хлеб из Лариано, апулийская страчателла, болонская мортаделла, дроблёные фисташки Бронте.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "12.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Bruschette con pomodoro e burrata",
+                "description": "Четыре штуки: помидоры, нарезанные ножом, буррата, песто из базилика, молодое масло.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "10.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Mozzarella di bufala, pomodori e basilico вегетарианское",
+                "description": "Кампанская буффала, привезённая утром, помидоры пьенноло, базилик и масло из Канино.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "11.00",
+                  "priceCurrency": "EUR"
+                },
+                "suitableForDiet": ["https://schema.org/VegetarianDiet"]
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Carciofi alla giudia сезон",
+                "description": "Римские чимароли, двойная обжарка, соль из Червии. С ноября по апрель.",
                 "offers": {
                   "@type": "Offer",
                   "price": "9.00",
@@ -56,10 +88,42 @@
               },
               {
                 "@type": "MenuItem",
-                "name": "Supplì al telefono",
+                "name": "Вpplì al telefono",
+                "description": "Три штуки, рис в говяжьем рагу, сердцевина из моцареллы Амазено.",
                 "offers": {
                   "@type": "Offer",
                   "price": "8.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Puntarelle alla romana веганское",
+                "description": "Соус из кантабрийских анчоусов, чеснок, белый винный уксус.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "8.00",
+                  "priceCurrency": "EUR"
+                },
+                "suitableForDiet": ["https://schema.org/VeganDiet"]
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Fiori di zucca fritti",
+                "description": "Кляр на крафтовом пиве, анчоус, моцарелла. Четыре штуки.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "9.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Tagliere del Лацио",
+                "description": "Гуанчале из Аматриче, коппьетте, пекорино из Пичиниско, джем из винограда Чезанезе.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "16.00",
                   "priceCurrency": "EUR"
                 }
               }
@@ -67,11 +131,104 @@
           },
           {
             "@type": "MenuSection",
-            "name": "Primi",
+            "name": "Первые блюда",
             "hasMenuItem": [
               {
                 "@type": "MenuItem",
+                "name": "Spaghetti allo scoglio",
+                "description": "Мидии, вонголе и тирренские креветки, черри, чеснок и петрушка. По пятницам и субботам.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "19.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Le fettuccine di Alfredo фирменное",
+                "description": "Только сливочное масло и пармезан тридцати месяцев, вымешиваются у вашего стола. Блюдо, с которого всё началось.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "16.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Risotto allo zafferano",
+                "description": "Рис карнароли, шафрановые рыльца, довод на пармезане. Минимум на двоих, ожидание двадцать минут.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "15.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Penne al pomodoro e basilico вегетарианское",
+                "description": "Помидоры из Сермонеты, базилик, нить сырого масла. Блюдо для детей и для тех, кто спешит.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "12.00",
+                  "priceCurrency": "EUR"
+                },
+                "suitableForDiet": ["https://schema.org/VegetarianDiet"]
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Fettuccine al ragù",
+                "description": "Яичное тесто, раскатанное утром, рагу из говядины и свинины трёх часов.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "14.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Rigatoni alla gricia",
+                "description": "Четвёртая римская паста, без яйца и без помидора: гуанчале, пекорино, перец.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "14.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Ravioli di ricotta e spinaci, burro e salvia вегетарианское",
+                "description": "Римская овечья рикотта, ореховое масло, шалфей, пармезан тридцати месяцев.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "14.00",
+                  "priceCurrency": "EUR"
+                },
+                "suitableForDiet": ["https://schema.org/VegetarianDiet"]
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Gnocchi di patate al pomodoro e basilico четверг",
+                "description": "По четвергам ньокки, как велит Рим: картофель из Авеццано, томатный соус двух часов, пекорино отдельно.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "13.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Tortellini in brodo di cappone зима",
+                "description": "Воскресное блюдо с ноября по февраль: тортеллини ручной лепки, бульон из каплуна двух варок.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "16.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
                 "name": "Tonnarelli cacio e pepe",
+                "description": "Пекорино романо восьми месяцев, перец Саравак, обжаренный при подаче.",
                 "offers": {
                   "@type": "Offer",
                   "price": "14.00",
@@ -81,6 +238,7 @@
               {
                 "@type": "MenuItem",
                 "name": "Rigatoni alla carbonara",
+                "description": "Хрустящая гуанчале, желтки, пекорино. Никаких сливок, никогда.",
                 "offers": {
                   "@type": "Offer",
                   "price": "15.00",
@@ -90,9 +248,30 @@
               {
                 "@type": "MenuItem",
                 "name": "Bucatini all'amatriciana",
+                "description": "Помидоры из Сермонеты, гуанчале, пекорино, немного перчика.",
                 "offers": {
                   "@type": "Offer",
                   "price": "14.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Fettuccine al ragù bianco d'agnello",
+                "description": "Ягнёнок с гор Симбруини, четыре часа томления, тимьян, лимонная цедра.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "16.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Minestra di broccoli e arzilla",
+                "description": "Римский пятничный суп, на бульоне из ската с римской брокколи.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "15.00",
                   "priceCurrency": "EUR"
                 }
               }
@@ -100,11 +279,88 @@
           },
           {
             "@type": "MenuSection",
-            "name": "Aperitivo",
+            "name": "Вторые блюда",
             "hasMenuItem": [
               {
                 "@type": "MenuItem",
-                "name": "Spritz della casa",
+                "name": "Grigliata di calamari e gamberoni",
+                "description": "На гриле, петрушка и лимон, с картофелем фри и салатом.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "24.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Fritto di calamari e gamberi",
+                "description": "Тирренская рыба, мука семолы, лимон. Хрустящая, никогда не жирная.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "19.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Coda alla vaccinara",
+                "description": "Шесть часов томления, сельдерей, горький какао и кедровые орехи. Блюдо самого Альфредо.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "22.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Saltimbocca alla romana",
+                "description": "Телятина, ветчина из Бассиано, шалфей, белое вино Кастелли.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "21.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Abbacchio a scottadito",
+                "description": "Рёбрышки на углях, картофель с розмарином. На двоих, если захотите.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "24.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Trippa alla romana",
+                "description": "Томатный соус, римская мята, пекорино. По субботам, как велит традиция.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "18.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Baccalà in guazzetto пятница",
+                "description": "Кедровые орехи, изюм, помидоры пьенноло, поджаренный хлеб.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "20.00",
+                  "priceCurrency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Аперитив",
+            "hasMenuItem": [
+              {
+                "@type": "MenuItem",
+                "name": "Spritz вино",
+                "description": "Крафтовый биттер из Рима, просекко, сода, апельсин из Риберы.",
                 "offers": {
                   "@type": "Offer",
                   "price": "8.00",
@@ -113,7 +369,37 @@
               },
               {
                 "@type": "MenuItem",
-                "name": "Cicchetti del banco",
+                "name": "Vermouth di Torino",
+                "description": "Со льдом и цедрой, как пил его Альфредо в семь вечера.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "7.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Negroni",
+                "description": "Джин, красный вермут, биттер. В низком стакане.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "9.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Бокал Чезанезе дель Пильо",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "5.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Закуски у стойки",
+                "description": "Маленькие суппли, коппьетте, пекорино, оливки из Гаэты. На двоих, с двумя бокалами.",
                 "offers": {
                   "@type": "Offer",
                   "price": "12.00",
@@ -124,23 +410,54 @@
           },
           {
             "@type": "MenuSection",
-            "name": "Secondi",
+            "name": "Десерты и вина",
             "hasMenuItem": [
               {
                 "@type": "MenuItem",
-                "name": "Coda alla vaccinara",
+                "name": "Maritozzo con la panna",
+                "description": "Наша собственная сдоба, сливки взбиты вручную при подаче.",
                 "offers": {
                   "@type": "Offer",
-                  "price": "22.00",
+                  "price": "7.00",
                   "priceCurrency": "EUR"
                 }
               },
               {
                 "@type": "MenuItem",
-                "name": "Saltimbocca alla romana",
+                "name": "Crostata di visciole e ricotta",
+                "description": "Римская овечья рикотта, вишня из Виньолы в домашнем сиропе.",
                 "offers": {
                   "@type": "Offer",
-                  "price": "21.00",
+                  "price": "7.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Тирамису на кофе с пьяцца Витторио",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "7.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Вина по бокалам",
+                "description": "Восемь этикеток по очереди: Чезанезе дель Пильо, Фраскати Супериоре, Беллоне ди Кори.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "5.00",
+                  "priceCurrency": "EUR"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Дегустационное меню «Alfredo»",
+                "description": "Пять блюд на выбор кухни, на весь стол. Вина в сопровождении +25 €.",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "48.00",
                   "priceCurrency": "EUR"
                 }
               }
@@ -671,14 +988,14 @@
 
         <div class="pie__colonne">
           <div>
-            <h4>Адрес</h4>
+            <h2>Адрес</h2>
             <p>
               Via Principe Amedeo 126<br />
               00185 Рим — Эсквилино
             </p>
           </div>
           <div>
-            <h4>Контакты</h4>
+            <h2>Контакты</h2>
             <p>
               <a href="tel:+390644701234">+39 06 4470 1234</a><br />
               <a href="mailto:info@ristorantealfredoroma.it"
@@ -687,7 +1004,7 @@
             </p>
           </div>
           <div>
-            <h4>Страницы</h4>
+            <h2>Страницы</h2>
             <p>
               <a href="menu.html">Меню</a> · <a href="vini.html">Вина</a> ·
               <a href="diario.html">Дневник</a><br />

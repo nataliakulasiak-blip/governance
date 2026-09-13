@@ -7,10 +7,12 @@ Legge le pagine italiane, sostituisce le frasi con quelle dei dizionari in
 strumenti/lingue/*.json e scrive una cartella per lingua (en/, fr/, es/, ru/,
 pl/). Le pagine italiane restano la sorgente: si modifica solo quella.
 
-I dizionari sono elenchi indicizzati sulle frasi di strumenti/lingue/frasi.json:
-la chiave è la posizione della frase italiana, il valore la traduzione. Le frasi
+Nei dizionari la chiave è la frase italiana stessa, il valore la traduzione:
+così si può cambiare il testo italiano senza scombinare tutto il resto. Le frasi
 senza traduzione restano in italiano — ed è voluto per i nomi dei piatti, che in
 un ristorante romano non si traducono.
+
+strumenti/estrai.py rifà l'elenco delle frasi e dice quali sono senza traduzione.
 """
 
 import json
@@ -76,11 +78,12 @@ def alternative(pagina: str) -> str:
 
 def traduci(html: str, dizionario: dict, frasi: list, lingua: str, pagina: str) -> str:
     """Sostituisce le frasi, i percorsi e le intestazioni della pagina."""
-    coppie = []
-    for indice, frase in enumerate(frasi):
-        tradotta = dizionario.get(str(indice))
-        if tradotta and tradotta != frase:
-            coppie.append((frase, tradotta))
+    coppie = [
+        (frase, dizionario[frase])
+        for frase in frasi
+        if dizionario.get(frase) and dizionario[frase].strip() != frase
+    ]
+    # prima le frasi lunghe: una corta potrebbe stare dentro una lunga
     coppie.sort(key=lambda c: -len(c[0]))
 
     for frase, tradotta in coppie:
@@ -95,6 +98,34 @@ def traduci(html: str, dizionario: dict, frasi: list, lingua: str, pagina: str) 
             html = re.compile(attr + r'="\s*' + elastico + r'\s*"').sub(
                 lambda _m, a=attr, t=tradotta: f'{a}="{t}"', html
             )
+
+    # anche i dati strutturati parlano la lingua della pagina: sono quelli che
+    # Google legge per mostrare piatti, domande e articoli nei risultati
+    def traduci_dati(blocco):
+        dentro = blocco.group(1)
+        for chiave in ("name", "description", "headline", "text", "servesCuisine"):
+            def sostituisci(m, k=chiave):
+                valore = json.loads(f'"{m.group(1)}"')
+                tradotta = dizionario.get(valore)
+                if not tradotta:
+                    # una risposta lunga nasce da piu' pezzi di pagina: si
+                    # traduce pezzo per pezzo, dai piu' lunghi ai piu' corti
+                    tradotta = valore
+                    for frase, altra in coppie:
+                        if frase in tradotta:
+                            tradotta = tradotta.replace(frase, altra)
+                    if tradotta == valore:
+                        return m.group(0)
+                return f'"{k}": ' + json.dumps(tradotta, ensure_ascii=False)
+
+            dentro = re.sub(
+                r'"' + chiave + r'":\s*"((?:[^"\\]|\\.)*)"', sostituisci, dentro
+            )
+        return blocco.group(0).replace(blocco.group(1), dentro)
+
+    html = re.sub(
+        r'(?s)<script type="application/ld\+json">(.*?)</script>', traduci_dati, html
+    )
 
     # le pagine tradotte stanno in una cartella: fogli, immagini e script salgono
     html = re.sub(r'(href|src|poster)="(css|js|images)/', r'\1="../\2/', html)
@@ -136,8 +167,11 @@ def principale() -> None:
             html = (RADICE / pagina).read_text()
             (cartella / pagina).write_text(traduci(html, dizionario, frasi, lingua, pagina))
 
-        tradotte = sum(1 for v in dizionario.values() if v)
-        print(f"{lingua}: {len(PAGINE)} pagine, {tradotte} frasi tradotte")
+        tradotte = sum(1 for f in frasi if dizionario.get(f))
+        print(
+            f"{lingua}: {len(PAGINE)} pagine, {tradotte} frasi tradotte"
+            f" su {len(frasi)}"
+        )
 
     # anche le pagine italiane portano gli hreflang e il selettore aggiornato
     for pagina in PAGINE:

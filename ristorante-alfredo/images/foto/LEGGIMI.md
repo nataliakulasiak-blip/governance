@@ -1,56 +1,73 @@
 # Il cassetto delle foto
 
-Le immagini che si vedono ora sul sito sono **illustrazioni vettoriali provvisorie**.
-Per sostituirle con fotografie vere non serve toccare il codice: basta caricare qui
-dentro i file con i nomi esatti dell'elenco. Il sito, all'apertura, cerca ogni nome e
-usa la fotografia se la trova; altrimenti resta il disegno.
+Qui dentro vanno le fotografie. **Una per piatto, file separati** — non una tavola
+unica con tanti piatti insieme: il sito le monta lui, ognuna al suo posto, e così
+ognuna può essere ritagliata, ingrandita e cambiata da sola.
 
-| Nome del file      | Dove appare                                         | Taglio consigliato |
-| ------------------ | --------------------------------------------------- | ------------------ |
-| `copertina.jpg`    | sfondo della copertina e foto grande della galleria | 16:9, 2000 px      |
-| `sala.jpg`         | sezione «Una trattoria diventata casa» e galleria   | verticale 3:4      |
-| `aperitivo.jpg`    | sezione «L'ora dell'aperitivo»                      | 3:2, 1600 px       |
-| `cacio-e-pepe.jpg` | specialità e galleria                               | quadrato           |
-| `carbonara.jpg`    | specialità                                          | quadrato           |
-| `carciofi.jpg`     | specialità e galleria                               | quadrato           |
-| `dolce.jpg`        | galleria                                            | quadrato           |
-| `cantina.jpg`      | galleria                                            | quadrato           |
+Non serve toccare il codice: basta il nome giusto. All'apertura la pagina cerca ogni
+nome e, se lo trova, mette la fotografia; se non lo trova, il posto resta invisibile
+e non lascia buchi.
 
-## I piatti e gli articoli
+## I nomi
 
-Nelle schede dei piatti, nella galleria e nel diario **non c'è nessun disegno di
-ripiego**: il posto della fotografia resta invisibile finché il file non c'è, e
-compare da solo appena lo carichi. Oltre ai nomi qui sopra valgono anche:
-`carbonara.jpg`, `crostini.jpg`, `scoglio.jpg`, `grigliata.jpg`, `ragu.jpg`,
-`gnocchi.jpg`, `mozzarella.jpg`, `tiramisu.jpg`, `fettuccine-alfredo.jpg`,
-`cacio-e-pepe.jpg`, `carciofi.jpg`, `esquilino.jpg`.
+| Nome del file            | Dove appare                               | Taglio        |
+| ------------------------ | ----------------------------------------- | ------------- |
+| `sala.jpg`               | «Una trattoria diventata casa» e galleria | verticale 3:4 |
+| `aperitivo.jpg`          | «L'ora dell'aperitivo»                    | 3:2           |
+| `cantina.jpg`            | pagina dei vini                           | quadrato      |
+| `esquilino.jpg`          | diario e galleria                         | quadrato      |
+| `fettuccine-alfredo.jpg` | specialità della home                     | quadrato      |
+| `cacio-e-pepe.jpg`       | specialità, galleria, diario              | quadrato      |
+| `carbonara.jpg`          | specialità e galleria                     | quadrato      |
+| `carciofi.jpg`           | specialità, galleria, diario              | quadrato      |
+| `crostini.jpg`           | galleria                                  | quadrato      |
+| `mozzarella.jpg`         | galleria                                  | quadrato      |
+| `scoglio.jpg`            | galleria                                  | quadrato      |
+| `ragu.jpg`               | galleria                                  | quadrato      |
+| `gnocchi.jpg`            | galleria                                  | quadrato      |
+| `grigliata.jpg`          | galleria                                  | quadrato      |
+| `tiramisu.jpg`           | galleria                                  | quadrato      |
 
-## Il vino nella copertina
+## I due poster del vino
 
-Sopra il filmato dei piatti girano tre scritte: il nome della casa, «Un sogno di Roma
-nel tuo calice» per il bianco e «Il gusto autentico di Roma nei nostri rossi» per il
-rosso. Se in questa cartella compaiono `copertina-vino-bianco.jpg` e
-`copertina-vino-rosso.jpg` — per esempio i due poster delle bottiglie — prendono il
-posto del filmato mentre la loro scritta è in scena. Senza quei file resta il filmato,
-con le scritte che si alternano lo stesso.
+| Nome del file               | Dove appare                                     |
+| --------------------------- | ----------------------------------------------- |
+| `copertina-vino-bianco.jpg` | copertina, e bottiglia bianca nella pagina vini |
+| `copertina-vino-rosso.jpg`  | copertina, e bottiglia rossa nella pagina vini  |
 
-Per le bottiglie nella pagina dei vini valgono `vino-casa.jpg` e
-`vino-casa-rosso.jpg` (verticali, taglio 4:5).
+Sono i due poster con «Un sogno di Roma nel tuo calice» e «Il gusto autentico di Roma
+nei nostri rossi». **Un file solo serve per tutti e due i posti.** Verticali va bene:
+nella copertina il sito centra e ritaglia da solo.
 
-## La copertina gira
+Se si vuole un taglio diverso per la pagina dei vini si aggiungono `vino-casa.jpg` e
+`vino-casa-rosso.jpg` (verticali, 4:5), che hanno la precedenza.
 
-Se oltre a `copertina.jpg` ci sono anche `copertina-2.jpg`, `copertina-3.jpg` e così
-via (fino a `copertina-6.jpg`), la copertina le fa scorrere una dopo l'altra: ognuna
-resta sette secondi e passa alla successiva in dissolvenza, con un lentissimo
-avvicinamento dell'inquadratura. Con una sola foto resta ferma. Chi ha attivato la
-riduzione delle animazioni vede l'immagine ferma, senza movimento.
+## La copertina
 
-Scegliere fotografie che reggano il testo bianco sopra: meglio scure o con lo spazio
-libero al centro. Il sito ci mette comunque una velatura bordeaux.
+Sopra il filmato girano tre scritte. Se ci sono `copertina-vino-bianco.jpg` e
+`copertina-vino-rosso.jpg`, ognuna prende il posto del filmato mentre la sua scritta è
+in scena. Senza quei file resta il filmato, e le scritte si alternano lo stesso.
 
-Vanno bene anche `.jpeg`, `.webp` e `.png`: il sito prova le estensioni in
-quest'ordine. Tenere i file sotto i 400 kB l'uno (per la copertina fino a 800 kB),
-altrimenti la pagina si apre lenta sul telefono.
+Con `copertina.jpg` (e volendo `copertina-2.jpg` fino a `copertina-6.jpg`) la
+copertina diventa una sequenza di fotografie: sette secondi l'una, in dissolvenza, con
+un lentissimo avvicinamento. Chi ha attivato la riduzione delle animazioni la vede
+ferma.
 
-Come caricarle da GitHub: aprire questa cartella, **Add file → Upload files**,
-trascinare le fotografie con i nomi giusti e confermare con **Commit changes**.
+Meglio fotografie che reggano il testo bianco sopra: scure, o con lo spazio libero al
+centro. Il sito ci mette comunque una velatura bordeaux.
+
+## Come devono essere
+
+- Una fotografia **per file**, non tavole con più piatti insieme.
+- Vanno bene `.jpg`, `.jpeg`, `.webp`, `.png`: il sito prova in quest'ordine.
+- Sotto i 400 kB l'una (la copertina fino a 800 kB), altrimenti sul telefono la
+  pagina si apre lenta.
+- Lato lungo 1600 px basta e avanza; 2000 px per la copertina.
+- **Niente scritte dentro la fotografia**: i nomi dei piatti li scrive già il sito, in
+  ogni lingua. Una scritta nell'immagine resta in una lingua sola e non si può
+  correggere.
+
+## Come caricarle da GitHub
+
+Aprire questa cartella, **Add file → Upload files**, trascinare le fotografie con i
+nomi giusti e confermare con **Commit changes**.

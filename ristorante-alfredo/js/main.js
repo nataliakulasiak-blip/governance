@@ -177,10 +177,28 @@
       prova();
     }
 
+    /* Un posto puo' accettare piu' nomi, separati da virgola: si prende il
+       primo che esiste. Cosi lo stesso poster serve in due punti del sito
+       senza doverlo caricare due volte. */
+    function cercaFraNomi(nomi, quandoTrovata) {
+      var elenco = nomi.split(",").map(function (n) {
+        return n.trim();
+      });
+
+      function passo(i) {
+        if (i >= elenco.length) return;
+        cerca(elenco[i], quandoTrovata, function () {
+          passo(i + 1);
+        });
+      }
+
+      passo(0);
+    }
+
     /* Le sezioni: dove c'e' un'immagine la sostituisce, dove c'e' un posto
        vuoto lo riempie e lo fa comparire. */
     document.querySelectorAll("[data-foto]").forEach(function (posto) {
-      cerca(posto.dataset.foto, function (percorso) {
+      cercaFraNomi(posto.dataset.foto, function (percorso) {
         if (posto.tagName === "IMG") {
           posto.removeAttribute("width");
           posto.removeAttribute("height");
@@ -215,7 +233,7 @@
         var scena = parola.dataset.scena;
         if (!scena) return null;
         var lastra = null;
-        cerca(scena, function (percorso) {
+        cercaFraNomi(scena, function (percorso) {
           lastra = lastraDa(percorso);
           parola.lastra = lastra;
         });

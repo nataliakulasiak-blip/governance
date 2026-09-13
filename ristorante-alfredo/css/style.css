@@ -1073,7 +1073,7 @@ h4 {
   font-size: 0.95rem;
 }
 
-.pie__colonne h4 {
+.pie__colonne h2 {
   font-size: 0.68rem;
   font-family: var(--sans);
   letter-spacing: 0.3em;
@@ -1564,6 +1564,12 @@ h4 {
 .articolo-scheda__immagine:has(img),
 .articolo-scheda__immagine:has(.posto-foto.is-piena) {
   aspect-ratio: 16 / 10;
+}
+
+/* senza fotografia il collegamento sparisce del tutto: altrimenti resta un
+   link senza nome, che la lettura vocale annuncia e la tastiera attraversa */
+.articolo-scheda__immagine:not(:has(img)):not(:has(.posto-foto.is-piena)) {
+  display: none;
 }
 
 .articolo-scheda__immagine .posto-foto {

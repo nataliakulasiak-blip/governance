@@ -31,13 +31,29 @@ Caratteri: _Cormorant Garamond_ (titoli), _Jost_ (testo), _Pinyon Script_ (corsi
 | `robots.txt`, `sitemap.xml` | indicizzazione                                                        |
 | `en/ fr/ es/ ru/ pl/`       | le stesse pagine tradotte (generate, non si modificano a mano)        |
 
+## I dati strutturati
+
+Prezzi, piatti e domande si scrivono **una volta sola**, nella pagina. I blocchi
+JSON-LD che Google legge si rigenerano da lì:
+
+```sh
+python3 strumenti/dati.py
+```
+
+Rilegge `menu.html` e `faq.html` e riscrive i blocchi `Menu` e `FAQPage`. Non è solo
+ordine: Google chiede che domanda e risposta dei dati strutturati siano _le stesse_
+che il lettore vede in pagina, altrimenti la scheda non compare. Da rilanciare dopo
+ogni cambio di prezzi, piatti o domande — e poi `strumenti/traduci.py`, perché anche
+i dati strutturati delle pagine tradotte seguono la lingua.
+
 ## Le lingue
 
 Il sito è in italiano, inglese, francese, spagnolo, russo e polacco. L'italiano è
 la sorgente: si modifica solo quello, poi si rigenera il resto.
 
 ```sh
-python3 strumenti/traduci.py
+python3 strumenti/estrai.py    # rifà l'elenco delle frasi e dice cosa manca
+python3 strumenti/traduci.py   # riscrive en/ fr/ es/ ru/ pl/
 npx prettier@3 --write "en/*.html" "fr/*.html" "es/*.html" "ru/*.html" "pl/*.html"
 ```
 
@@ -47,10 +63,13 @@ Il comando legge le cinque pagine italiane (`index`, `menu`, `vini`, `faq`,
 
 I dizionari stanno in `strumenti/lingue/`:
 
-- `frasi.json` — l'elenco delle frasi italiane, nell'ordine in cui compaiono.
-  Lo riscrive il generatore quando cambia il testo italiano.
+- `frasi.json` — l'elenco delle frasi italiane. Lo riscrive `estrai.py`.
 - `en.json`, `fr.json`, `es.json`, `ru.json`, `pl.json` — la traduzione, con per
-  chiave la posizione della frase in `frasi.json`.
+  chiave **la frase italiana stessa**.
+
+La chiave è il testo, non la posizione: cambiare una frase italiana non scombina il
+resto, rende solo orfana quella voce. `estrai.py` le elenca — le frasi senza
+traduzione da aggiungere e le traduzioni orfane da rifare.
 
 Una frase senza traduzione resta in italiano, ed è voluto: **i nomi dei piatti e
 dei vini non si traducono**. «Cacio e pepe» e «Carciofi alla giudia» restano
