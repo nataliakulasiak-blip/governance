@@ -332,6 +332,23 @@
     sonda.src = "https://tile.openstreetmap.org/16/35044/24353.png";
   }
 
+  /* ---- Il menu del giorno: la data la mette il foglio, non chi stampa ---- */
+  document.querySelectorAll("[data-oggi]").forEach(function (elemento) {
+    elemento.textContent = new Date().toLocaleDateString("it-IT", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  });
+
+  var stampa = document.querySelector("[data-stampa]");
+  if (stampa) {
+    stampa.addEventListener("click", function () {
+      window.print();
+    });
+  }
+
   /* ---- Anno corrente nel piè di pagina ---- */
   document.querySelectorAll("[data-anno]").forEach(function (elemento) {
     elemento.textContent = String(new Date().getFullYear());

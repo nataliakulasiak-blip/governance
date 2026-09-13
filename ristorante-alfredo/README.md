@@ -85,6 +85,22 @@ collegamenti portano `hreflang="it"`, così il lettore lo sa prima di cliccare.
 Ogni pagina porta i `<link rel="alternate" hreflang>` per tutte e sei le lingue
 più `x-default` sull'italiano, e le stesse alternative sono nel `sitemap.xml`.
 
+## Il menu del giorno
+
+`menu-del-giorno.html` è un foglio A4 da stampare e mettere sui tavoli. Non è
+indicizzato (`noindex`), come la pagina dei QR, e si raggiunge dal piè di pagina.
+
+Si cambiano i piatti direttamente nel file: ogni voce è un blocco `.foglio__piatto`
+con nome, prezzo e una riga di ingredienti. **La data non si tocca**: la scrive il
+foglio da solo, in italiano, ogni volta che si apre.
+
+Il bottone «Stampa» apre la finestra di stampa del browser. Il foglio è tarato su una
+pagina sola: se si aggiungono piatti bisogna toglierne altrettanti, altrimenti va a
+capo su una seconda facciata.
+
+Niente fondi pieni di colore: il bordeaux e l'oro stanno nella scritta e nei filetti.
+Su carta buona si legge meglio e non si svuota una cartuccia per ogni servizio.
+
 ## Codici QR
 
 Generati in locale con [segno](https://pypi.org/project/segno/), nessun servizio

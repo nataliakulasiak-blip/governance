@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Menu del giorno | Ristorante Alfredo Roma</title>
+    <meta
+      name="description"
+      content="Il menu del giorno del Ristorante Alfredo, pronto da stampare in A4 per i tavoli."
+    />
+    <meta name="robots" content="noindex, follow" />
+    <meta name="theme-color" content="#5a1622" />
+    <link
+      rel="canonical"
+      href="https://www.ristorantealfredoroma.it/menu-del-giorno.html"
+    />
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Jost:wght@200;300;400&family=Pinyon+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body class="pagina-stampa">
+    <div class="stampa-barra">
+      <div class="contenitore stampa-barra__interno">
+        <a class="stampa-barra__indietro" href="index.html">← Torna al sito</a>
+        <p class="stampa-barra__nota">
+          Un foglio A4. Si cambiano i piatti qui dentro, poi si stampa.
+        </p>
+        <button class="bottone" type="button" data-stampa>Stampa</button>
+      </div>
+    </div>
+
+    <main>
+      <article class="foglio">
+        <header class="foglio__testa">
+          <p class="foglio__sopra">Ristorante</p>
+          <p class="foglio__nome">Alfredo</p>
+          <div class="foglio__fregio"><span></span></div>
+          <h1 class="foglio__titolo">Menu del giorno</h1>
+          <p class="foglio__data" data-oggi>&nbsp;</p>
+        </header>
+
+        <section class="foglio__gruppo">
+          <h2>Antipasto</h2>
+          <div class="foglio__piatto">
+            <p class="foglio__riga">
+              <span class="foglio__piatto-nome"
+                >Crostini con mortadella e stracciatella</span
+              >
+              <span class="foglio__punti"></span>
+              <span class="foglio__prezzo">12 €</span>
+            </p>
+            <p class="foglio__nota">
+              Pane di Lariano tostato, stracciatella pugliese, mortadella di
+              Bologna, granella di pistacchi.
+            </p>
+          </div>
+        </section>
+
+        <section class="foglio__gruppo">
+          <h2>Primi</h2>
+          <div class="foglio__piatto">
+            <p class="foglio__riga">
+              <span class="foglio__piatto-nome">Tonnarelli cacio e pepe</span>
+              <span class="foglio__punti"></span>
+              <span class="foglio__prezzo">14 €</span>
+            </p>
+            <p class="foglio__nota">
+              Pecorino romano stagionato otto mesi, pepe tostato al momento.
+            </p>
+          </div>
+          <div class="foglio__piatto">
+            <p class="foglio__riga">
+              <span class="foglio__piatto-nome"
+                >Gnocchi con gamberi, pesto e pistacchio</span
+              >
+              <span class="foglio__punti"></span>
+              <span class="foglio__prezzo">15 €</span>
+            </p>
+            <p class="foglio__nota">
+              Gnocchi di patate, gamberi, pesto di basilico, granella di
+              pistacchio.
+            </p>
+          </div>
+        </section>
+
+        <section class="foglio__gruppo">
+          <h2>Secondi</h2>
+          <div class="foglio__piatto">
+            <p class="foglio__riga">
+              <span class="foglio__piatto-nome">Saltimbocca alla romana</span>
+              <span class="foglio__punti"></span>
+              <span class="foglio__prezzo">18 €</span>
+            </p>
+            <p class="foglio__nota">
+              Vitello, prosciutto crudo, salvia, sfumati al vino bianco.
+            </p>
+          </div>
+          <div class="foglio__piatto">
+            <p class="foglio__riga">
+              <span class="foglio__piatto-nome"
+                >Grigliata di calamari e gamberoni</span
+              >
+              <span class="foglio__punti"></span>
+              <span class="foglio__prezzo">22 €</span>
+            </p>
+            <p class="foglio__nota">
+              Alla brace, olio, limone e prezzemolo. Con verdure di stagione.
+            </p>
+          </div>
+        </section>
+
+        <section class="foglio__gruppo">
+          <h2>Dolce</h2>
+          <div class="foglio__piatto">
+            <p class="foglio__riga">
+              <span class="foglio__piatto-nome">Maritozzo con la panna</span>
+              <span class="foglio__punti"></span>
+              <span class="foglio__prezzo">6 €</span>
+            </p>
+            <p class="foglio__nota">
+              Lievitato la sera prima, panna montata al momento.
+            </p>
+          </div>
+        </section>
+
+        <aside class="foglio__cornice">
+          <p class="foglio__cornice-titolo">Pranzo di lavoro</p>
+          <p class="foglio__cornice-testo">
+            Un primo, un secondo con contorno, acqua e caffè
+          </p>
+          <p class="foglio__cornice-prezzo">18 €</p>
+          <p class="foglio__cornice-nota">Da martedì a venerdì, a pranzo</p>
+        </aside>
+
+        <footer class="foglio__piede">
+          <div class="foglio__fregio"><span></span></div>
+          <p class="foglio__indirizzo">
+            Via Principe Amedeo 126 · Roma, Esquilino
+          </p>
+          <p class="foglio__contatti">
+            06 4470 1234 · ristorantealfredoroma.it
+          </p>
+        </footer>
+      </article>
+    </main>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

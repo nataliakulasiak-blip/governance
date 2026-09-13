@@ -134,7 +134,10 @@ def traduci(html: str, dizionario: dict, frasi: list, lingua: str, pagina: str) 
     html = re.sub(
         r'href="(diario-[a-z-]+\.html)"', r'href="../\1" hreflang="it"', html
     )
-    html = re.sub(r'href="qr\.html"', r'href="../qr.html"', html)
+    # le pagine di servizio (QR, menu del giorno) stanno solo alla radice
+    html = re.sub(
+        r'href="(qr|menu-del-giorno)\.html"', r'href="../\1.html"', html
+    )
 
     html = html.replace('<html lang="it">', f'<html lang="{lingua}">')
     html = html.replace(

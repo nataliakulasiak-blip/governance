@@ -2588,3 +2588,299 @@ h4 {
     gap: 0.4rem;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Il menu del giorno: un foglio A4 da stampare e mettere sui tavoli.
+   Niente fondi pieni: su carta buona l'inchiostro pesa, e un menu si legge
+   meglio scuro su chiaro. Il colore lo danno la scritta e i filetti d'oro.
+   -------------------------------------------------------------------------- */
+
+.pagina-stampa {
+  background: var(--sabbia);
+  padding-bottom: 4rem;
+}
+
+.stampa-barra {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bordeaux-scuro);
+  padding: 0.9rem 0;
+}
+
+.stampa-barra__interno {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.stampa-barra__indietro {
+  color: var(--sabbia-chiara);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.stampa-barra__nota {
+  margin: 0;
+  color: rgba(247, 239, 226, 0.7);
+  font-size: 0.82rem;
+}
+
+/* Il foglio vero e proprio: proporzione A4, misure in millimetri */
+.foglio {
+  width: 210mm;
+  height: 297mm;
+  max-width: calc(100vw - 2rem);
+  margin: 2.5rem auto;
+  padding: 14mm 16mm 10mm;
+  box-sizing: border-box;
+  background: var(--crema);
+  color: var(--inchiostro);
+  border: 1px solid var(--oro);
+  box-shadow: 0 24px 60px rgba(42, 10, 16, 0.22);
+  display: flex;
+  flex-direction: column;
+}
+
+.foglio__testa {
+  text-align: center;
+}
+
+.foglio__sopra {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 0.66rem;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--oro);
+}
+
+.foglio__nome {
+  margin: 0.1rem 0 0;
+  font-family: var(--corsivo);
+  font-size: 3.4rem;
+  line-height: 1;
+  color: var(--bordeaux);
+}
+
+/* Il filetto con il rombo: lo stesso fregio delle sezioni del sito */
+.foglio__fregio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 0.7rem 0;
+  color: var(--oro);
+}
+
+.foglio__fregio::before,
+.foglio__fregio::after {
+  content: "";
+  height: 1px;
+  width: 22mm;
+  background: currentColor;
+  opacity: 0.65;
+}
+
+.foglio__fregio span {
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+
+.foglio__titolo {
+  /* e' l'h1 della pagina: la misura la decide il foglio, non il livello */
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--bordeaux);
+}
+
+.foglio__data {
+  margin: 0.35rem 0 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.98rem;
+  color: rgba(43, 27, 22, 0.65);
+}
+
+.foglio__gruppo {
+  margin-top: 6mm;
+}
+
+.foglio__gruppo:last-of-type {
+  margin-bottom: 7mm;
+}
+
+.foglio__gruppo h2 {
+  margin: 0 0 3mm;
+  padding-bottom: 1.5mm;
+  border-bottom: 1px solid rgba(184, 145, 79, 0.5);
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--rosso);
+}
+
+.foglio__piatto + .foglio__piatto {
+  margin-top: 3.5mm;
+}
+
+/* Nome a sinistra, prezzo a destra, i puntini a riempire il vuoto */
+.foglio__riga {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.14rem;
+  color: var(--bordeaux);
+}
+
+.foglio__punti {
+  flex: 1 1 auto;
+  height: 0;
+  border-bottom: 1px dotted rgba(184, 145, 79, 0.75);
+  transform: translateY(-0.32em);
+}
+
+.foglio__prezzo {
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+  color: var(--rosso);
+}
+
+.foglio__nota {
+  margin: 0.8mm 0 0;
+  max-width: 66%;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: rgba(43, 27, 22, 0.72);
+}
+
+/* Il riquadro del pranzo di lavoro chiude il foglio */
+.foglio__cornice {
+  /* sta in fondo, ma mai attaccato all'ultima riga */
+  margin-top: auto;
+  padding: 5mm 8mm;
+  text-align: center;
+  border: 1px solid var(--oro);
+  outline: 1px solid var(--oro);
+  outline-offset: 3px;
+}
+
+.foglio__cornice-titolo {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--rosso);
+}
+
+.foglio__cornice-testo {
+  margin: 2mm 0 0;
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--bordeaux);
+}
+
+.foglio__cornice-prezzo {
+  margin: 1mm 0 0;
+  font-family: var(--corsivo);
+  font-size: 2rem;
+  line-height: 1.1;
+  color: var(--bordeaux);
+}
+
+.foglio__cornice-nota {
+  margin: 1mm 0 0;
+  font-size: 0.78rem;
+  color: rgba(43, 27, 22, 0.6);
+}
+
+.foglio__piede {
+  text-align: center;
+}
+
+.foglio__piede .foglio__fregio {
+  margin: 5mm 0 3mm;
+}
+
+.foglio__indirizzo,
+.foglio__contatti {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  color: rgba(43, 27, 22, 0.7);
+}
+
+.foglio__contatti {
+  margin-top: 1.5mm;
+  color: rgba(43, 27, 22, 0.5);
+}
+
+@media (max-width: 760px) {
+  .foglio {
+    padding: 12mm 9mm;
+  }
+
+  .foglio__nome {
+    font-size: 3.2rem;
+  }
+
+  .foglio__riga {
+    font-size: 1.08rem;
+  }
+
+  .foglio__nota {
+    max-width: none;
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  .pagina-stampa {
+    background: #fff;
+    padding: 0;
+  }
+
+  .stampa-barra {
+    display: none !important;
+  }
+
+  .foglio {
+    /* in stampa il foglio e' la pagina: misure esatte, cosi' il riquadro in
+       fondo resta in fondo e non si va a capo su una seconda facciata */
+    width: 210mm;
+    height: 297mm;
+    max-width: none;
+    margin: 0;
+    /* il margine di stampa lo fa il foglio: 18 mm ai lati, che quasi tutte
+       le stampanti riescono a tenere */
+    padding: 18mm 20mm 14mm;
+    border: 0;
+    box-shadow: none;
+    /* i filetti d'oro e il bordeaux devono uscire davvero dalla stampante */
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .foglio__gruppo {
+    break-inside: avoid;
+  }
+}
