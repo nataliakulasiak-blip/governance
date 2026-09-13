@@ -114,7 +114,7 @@ resta visibile se la mappa non può caricarsi. **Le coordinate `41.8955, 12.5040
 approssimative**: vanno verificate sul posto e aggiornate in tre punti — l'`src`
 dell'iframe e i due collegamenti in `index.html`, e il campo `geo` dei dati strutturati.
 
-## Il filmato della copertina
+## I due filmati
 
 La copertina mostra un filmato muto in anello: `images/copertina-filmato.webm` (per
 Chrome e Firefox) e `images/copertina-filmato.mp4` (per Safari), con
@@ -124,7 +124,15 @@ l'utente ha chiesto meno animazioni.
 
 Il montaggio parte dal video originale dei due piatti e tiene solo gli spezzoni senza
 persone (10,2–14,8 s e 18–20 s), uniti in dissolvenza e poi ripetuti al contrario, così
-il giro non ha stacchi. Peso: 1 MB il WebM, 1 MB l'MP4, per dodici secondi a 720p.
+il giro non ha stacchi. Da lì si taglia la **metà sinistra** — il video sorgente è uno
+schermo diviso, pomodoro a sinistra e cacio e pepe a destra — fermandosi a 632 px per
+non prendere la riga chiara che divide i due piatti.
+
+**La pagina dei vini** ha il suo: `images/vino-filmato.{webm,mp4,jpg}`, il bianco e il
+rosso versati nei calici. Il sorgente porta stampate sopra le due scritte «Un sogno di
+Roma nel tuo calice» e «Il gusto autentico di Roma nei nostri rossi»: sono tagliate
+via (si parte da 150 px dall'alto) perché quelle frasi le scrive già la pagina, in
+tutte e sei le lingue, mentre una scritta dentro al video resterebbe in italiano.
 
 Per sostituirlo bastano tre file con gli stessi nomi. Per toglierlo: eliminare il
 blocco `<video class="copertina__filmato">` da `index.html` e la classe
