@@ -216,6 +216,34 @@
           <source src="images/copertina-filmato.webm" type="video/webm" />
           <source src="images/copertina-filmato.mp4" type="video/mp4" />
         </video>
+        <video
+          class="copertina__filmato copertina__filmato--bianco"
+          poster="images/vino-bianco-filmato.jpg"
+          muted
+          loop
+          playsinline
+          preload="none"
+          disablepictureinpicture
+          tabindex="-1"
+          aria-hidden="true"
+        >
+          <source src="images/vino-bianco-filmato.webm" type="video/webm" />
+          <source src="images/vino-bianco-filmato.mp4" type="video/mp4" />
+        </video>
+        <video
+          class="copertina__filmato copertina__filmato--rosso"
+          poster="images/vino-rosso-filmato.jpg"
+          muted
+          loop
+          playsinline
+          preload="none"
+          disablepictureinpicture
+          tabindex="-1"
+          aria-hidden="true"
+        >
+          <source src="images/vino-rosso-filmato.webm" type="video/webm" />
+          <source src="images/vino-rosso-filmato.mp4" type="video/mp4" />
+        </video>
         <div class="copertina__contenuto">
           <p class="copertina__eyebrow">Via Principe Amedeo 126 · Roma</p>
 
@@ -230,34 +258,9 @@
               </p>
             </div>
 
-            <div class="copertina__parola copertina__parola--vino">
-              <div class="vetrina vetrina--poster" aria-hidden="true">
-                <img
-                  src="images/foto/copertina-fettuccine.jpg"
-                  alt=""
-                  width="888"
-                  height="1138"
-                  loading="lazy"
-                />
-              </div>
-              <div class="copertina__testi">
-                <p class="marchio-poster__sopra">La firma della casa</p>
-                <p class="marchio-poster__nome marchio-poster__nome--lungo">
-                  Le fettuccine
-                </p>
-                <p class="marchio-poster__motto">
-                  Il piatto da cui è cominciato tutto
-                </p>
-                <p class="copertina__testo">
-                  Burro di panna e parmigiano di trenta mesi, mantecate al
-                  tavolo davanti a lei. Come nel 1962.
-                </p>
-              </div>
-            </div>
-
             <div
               class="copertina__parola copertina__parola--vino"
-              data-scena="copertina-vino-bianco"
+              data-filmato="bianco"
             >
               <div class="vetrina" data-foto="vino-casa" aria-hidden="true">
                 <div class="etichetta etichetta--bianco">
@@ -292,7 +295,7 @@
 
             <div
               class="copertina__parola copertina__parola--vino"
-              data-scena="copertina-vino-rosso"
+              data-filmato="rosso"
             >
               <div
                 class="vetrina"

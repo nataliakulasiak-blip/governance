@@ -226,35 +226,49 @@
       return lastra;
     }
 
-    /* Con il filmato: restano le scritte a girare, il filmato non si ferma.
-       Se per una scena c'e' una fotografia, prende il posto del filmato
-       mentre quella scritta e' in scena. */
+    /* Con il filmato: le scritte girano e lo sfondo con loro. Una scena puo'
+       chiedere un secondo filmato (data-filmato) o una fotografia
+       (data-scena); senza nessuno dei due resta il filmato di fondo. */
     var parole = [].slice.call(document.querySelectorAll(".copertina__parola"));
     if (parole.length > 1) {
-      var sfondi = parole.map(function (parola) {
+      parole.forEach(function (parola) {
         var scena = parola.dataset.scena;
-        if (!scena) return null;
-        var lastra = null;
-        cercaFraNomi(scena, function (percorso) {
-          lastra = lastraDa(percorso, scena.split(",")[0].trim());
-          parola.lastra = lastra;
-        });
-        return null;
+        if (scena) {
+          cercaFraNomi(scena, function (percorso) {
+            parola.lastra = lastraDa(percorso, scena.split(",")[0].trim());
+          });
+          return;
+        }
+        var quale = parola.dataset.filmato;
+        if (quale) {
+          parola.lastra = copertina.querySelector(
+            ".copertina__filmato--" + quale,
+          );
+        }
       });
+
+      function accendi(parola, acceso) {
+        parola.classList.toggle("is-in-scena", acceso);
+        var lastra = parola.lastra;
+        if (!lastra) return;
+        lastra.classList.toggle("is-in-scena", acceso);
+        /* un filmato di scena parte quando tocca a lui e si rimette da capo:
+           dieci secondi di vino sotto sette di scritta, sempre dall'inizio */
+        if (lastra.tagName !== "VIDEO") return;
+        if (acceso) {
+          lastra.currentTime = 0;
+          var prova = lastra.play();
+          if (prova && prova.catch) prova.catch(function () {});
+        } else {
+          lastra.pause();
+        }
+      }
 
       var corrente = 0;
       setInterval(function () {
-        parole[corrente].classList.remove("is-in-scena");
-        if (parole[corrente].lastra) {
-          parole[corrente].lastra.classList.remove("is-in-scena");
-        }
-
+        accendi(parole[corrente], false);
         corrente = (corrente + 1) % parole.length;
-
-        parole[corrente].classList.add("is-in-scena");
-        if (parole[corrente].lastra) {
-          parole[corrente].lastra.classList.add("is-in-scena");
-        }
+        accendi(parole[corrente], true);
       }, ATTESA);
       return;
     }

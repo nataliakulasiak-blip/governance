@@ -128,6 +128,13 @@ il giro non ha stacchi. Da lì si taglia la **metà sinistra** — il video sorg
 schermo diviso, pomodoro a sinistra e cacio e pepe a destra — fermandosi a 632 px per
 non prendere la riga chiara che divide i due piatti.
 
+**Le due scene del vino nella copertina** hanno i loro:
+`images/vino-bianco-filmato.*` e `images/vino-rosso-filmato.*`, le due metà del
+filmato del vino tagliate a 632 px per non prendere la riga che le divide. Partono
+solo quando tocca alla loro scritta (`preload="none"`), si rimettono da capo ogni
+volta e si fermano quando escono di scena: la copertina alterna il piatto, il bianco
+e il rosso, sette secondi l'uno.
+
 **Il racconto in home** («Una trattoria diventata casa») si apre a metà su
 `images/sala-filmato.{webm,mp4,jpg}`: il piatto, poi il brindisi in sala. Il filmato
 esce dalla colonna del testo e si centra sulla pagina. La stellina che il generatore

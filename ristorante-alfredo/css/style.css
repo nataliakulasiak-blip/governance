@@ -443,6 +443,20 @@ h4 {
     );
 }
 
+/* I filmati del vino — bianco e rosso — entrano in dissolvenza solo quando
+   tocca alla loro scritta, come faceva prima la fotografia. */
+.copertina__filmato--bianco,
+.copertina__filmato--rosso {
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 1.8s ease;
+}
+
+.copertina__filmato--bianco.is-in-scena,
+.copertina__filmato--rosso.is-in-scena {
+  opacity: 1;
+}
+
 /* Il filmato dei piatti, dietro al testo della copertina */
 .copertina__filmato {
   position: absolute;
