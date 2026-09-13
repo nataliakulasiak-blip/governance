@@ -156,6 +156,22 @@ capo su una seconda facciata.
 Niente fondi pieni di colore: il bordeaux e l'oro stanno nella scritta e nei filetti.
 Su carta buona si legge meglio e non si svuota una cartuccia per ogni servizio.
 
+## La divisa di sala
+
+`divisa.html` è la scheda da dare al fornitore: un foglio A4 con i tre capi
+disegnati, le tinte con i codici e le note di confezione. Anche questa `noindex`.
+
+I disegni sono **piatti tecnici** vettoriali — `images/divisa-*.svg` — non fotografie
+né illustrazioni d'atmosfera: è quello che un confezionista si aspetta di ricevere.
+Si ingrandiscono quanto serve senza perdere un filo.
+
+Nella pagina stanno **in linea**, non dentro un `<img>`: un SVG dentro `<img>` è un
+documento a parte e non vede i caratteri della pagina, quindi il marchio ricamato
+usciva con un corsivo qualunque.
+
+Il nastro cosmatesco del grembiule è lo stesso ornamento del sito: il legame fra il
+sito e la sala passa da lì.
+
 ## Codici QR
 
 Generati in locale con [segno](https://pypi.org/project/segno/), nessun servizio

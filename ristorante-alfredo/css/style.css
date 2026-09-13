@@ -3201,3 +3201,138 @@ h4 {
     -webkit-print-color-adjust: exact;
   }
 }
+
+/* --------------------------------------------------------------------------
+   La scheda della divisa: disegni piatti, colori e note. Un foglio solo, da
+   dare al fornitore.
+   -------------------------------------------------------------------------- */
+
+.foglio--divisa .foglio__nome {
+  font-size: 2.8rem;
+}
+
+.divisa__capi {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6mm;
+  margin-top: 7mm;
+}
+
+/* il disegno sta in una finestra alta uguale per tutti e tre, appoggiato in
+   basso: cosi' le didascalie partono dalla stessa riga */
+.divisa__capo svg {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  margin-inline: auto;
+}
+
+.divisa__capo figcaption {
+  margin-top: 3mm;
+}
+
+.divisa__capo {
+  margin: 0;
+  text-align: center;
+}
+
+.divisa__vetrina {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 52mm;
+}
+
+.divisa__nome {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--bordeaux);
+}
+
+.divisa__nota {
+  display: block;
+  margin-top: 1.2mm;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: rgba(43, 27, 22, 0.7);
+}
+
+.divisa__colori {
+  margin-top: 7mm;
+}
+
+.divisa__colori h2 {
+  margin: 0 0 3mm;
+  padding-bottom: 1.5mm;
+  border-bottom: 1px solid rgba(184, 145, 79, 0.5);
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--rosso);
+}
+
+.divisa__colori ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4mm;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.divisa__colori li {
+  display: flex;
+  flex-direction: column;
+  gap: 1mm;
+}
+
+.divisa__tinta {
+  height: 11mm;
+  border: 1px solid rgba(184, 145, 79, 0.6);
+}
+
+.divisa__tinta-nome {
+  font-family: var(--serif);
+  font-size: 0.92rem;
+  color: var(--bordeaux);
+}
+
+.divisa__tinta-codice {
+  font-family: var(--sans);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  color: rgba(43, 27, 22, 0.55);
+}
+
+.divisa__nastro {
+  height: 9mm;
+  margin: 3mm 0;
+  background: url("../images/cosmati-fascia.svg") repeat-x center / auto 9mm;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.divisa__nastro-scheda {
+  margin-bottom: 4mm;
+}
+
+.divisa__nastro-scheda .foglio__cornice-nota {
+  max-width: 58ch;
+  margin-inline: auto;
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+  .divisa__capi,
+  .divisa__colori ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .divisa__vetrina {
+    height: 40mm;
+  }
+}

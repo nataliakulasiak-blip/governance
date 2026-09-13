@@ -136,7 +136,7 @@ def traduci(html: str, dizionario: dict, frasi: list, lingua: str, pagina: str) 
     )
     # le pagine di servizio (QR, menu del giorno) stanno solo alla radice
     html = re.sub(
-        r'href="(qr|menu-del-giorno)\.html"', r'href="../\1.html"', html
+        r'href="(qr|menu-del-giorno|divisa)\.html"', r'href="../\1.html"', html
     )
 
     html = html.replace('<html lang="it">', f'<html lang="{lingua}">')

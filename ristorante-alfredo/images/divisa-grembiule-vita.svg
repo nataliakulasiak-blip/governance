@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 250" width="260" height="250" role="img">
+  <path d="M62 52 C34 56, 20 62, 8 74" fill="none" stroke="#5a1622" stroke-width="9" stroke-linecap="round"/>
+  <path d="M198 52 C226 56, 240 62, 252 74" fill="none" stroke="#5a1622" stroke-width="9" stroke-linecap="round"/>
+  <path d="M62 44 L198 44 L210 224 L50 224 Z" fill="#5a1622"/>
+  <path d="M62 44 L198 44 L210 224 L50 224 Z" fill="none" stroke="#3d0e17" stroke-width="1.2"/>
+  <path d="M69 52 L191 52 L202 217 L58 217 Z" fill="none" stroke="#b8914f" stroke-width=".7" opacity=".5" stroke-dasharray="3 2.5"/>
+  <rect x="68" y="44" width="124" height="8" fill="#3d0e17"/>
+  <path d="M68.0 51 L71.6 45 L75.2 51 Z" fill="#a32a2a"/>
+  <path d="M75.2 45 L78.8 51 L82.4 45 Z" fill="#eadfc8" opacity=".9"/>
+  <path d="M82.4 51 L86.0 45 L89.6 51 Z" fill="#d8b878"/>
+  <path d="M89.6 45 L93.2 51 L96.8 45 Z" fill="#eadfc8" opacity=".9"/>
+  <path d="M96.8 51 L100.4 45 L104.0 51 Z" fill="#a32a2a"/>
+  <path d="M104.0 45 L107.6 51 L111.2 45 Z" fill="#eadfc8" opacity=".9"/>
+  <path d="M111.2 51 L114.8 45 L118.4 51 Z" fill="#d8b878"/>
+  <path d="M118.4 45 L122.0 51 L125.6 45 Z" fill="#eadfc8" opacity=".9"/>
+  <path d="M125.6 51 L129.2 45 L132.8 51 Z" fill="#a32a2a"/>
+  <path d="M132.8 45 L136.4 51 L140.0 45 Z" fill="#eadfc8" opacity=".9"/>
+  <path d="M140.0 51 L143.6 45 L147.2 51 Z" fill="#d8b878"/>
+  <path d="M147.2 45 L150.8 51 L154.4 45 Z" fill="#eadfc8" opacity=".9"/>
+  <path d="M154.4 51 L158.0 45 L161.6 51 Z" fill="#a32a2a"/>
+  <path d="M161.6 45 L165.2 51 L168.8 45 Z" fill="#eadfc8" opacity=".9"/>
+  <path d="M168.8 51 L172.4 45 L176.0 51 Z" fill="#d8b878"/>
+  <path d="M176.0 45 L179.6 51 L183.2 45 Z" fill="#eadfc8" opacity=".9"/>
+  <path d="M183.2 51 L186.8 45 L190.4 51 Z" fill="#a32a2a"/>
+  <rect x="68" y="44" width="124" height="8" fill="none" stroke="#b8914f" stroke-width=".6"/>
+  <path d="M96 136 L164 136 L166 184 L94 184 Z" fill="#3d0e17" opacity=".5"/>
+  <path d="M96 136 L164 136 L166 184 L94 184 Z" fill="none" stroke="#b8914f" stroke-width=".7" opacity=".6"/>
+  <line x1="130" y1="136" x2="130" y2="184" stroke="#b8914f" stroke-width=".7" opacity=".6"/>
+  </svg>
