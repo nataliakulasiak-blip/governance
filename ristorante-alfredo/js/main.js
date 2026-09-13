@@ -216,9 +216,11 @@
 
     var ATTESA = 7000;
 
-    function lastraDa(percorso) {
+    function lastraDa(percorso, scena) {
       var lastra = document.createElement("div");
-      lastra.className = "copertina__lastra";
+      /* la scena finisce nella classe: una fotografia chiara puo' chiedere
+         una velatura piu' forte, altrimenti la scritta sopra non si legge */
+      lastra.className = "copertina__lastra copertina__lastra--" + scena;
       lastra.style.backgroundImage = 'url("' + percorso + '")';
       copertina.insertBefore(lastra, copertina.firstChild);
       return lastra;
@@ -234,7 +236,7 @@
         if (!scena) return null;
         var lastra = null;
         cercaFraNomi(scena, function (percorso) {
-          lastra = lastraDa(percorso);
+          lastra = lastraDa(percorso, scena.split(",")[0].trim());
           parola.lastra = lastra;
         });
         return null;

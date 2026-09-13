@@ -2182,6 +2182,12 @@ h4 {
   margin: 0.2rem 0 0.6rem;
 }
 
+/* Un nome di due parole non deve spezzarsi a meta': si stringe un po' */
+.marchio-poster__nome--lungo {
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  white-space: nowrap;
+}
+
 .copertina__parola .copertina__testo {
   margin-top: 1.4rem;
 }
@@ -2402,6 +2408,18 @@ h4 {
   width: min(216px, 30vw);
   margin: 0;
   filter: drop-shadow(0 18px 30px rgba(26, 6, 10, 0.6));
+}
+
+/* Un poster vero al posto dell'etichetta disegnata */
+.vetrina--poster {
+  overflow: hidden;
+  border: 1px solid rgba(216, 199, 166, 0.35);
+}
+
+.vetrina--poster img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .copertina__testi {
