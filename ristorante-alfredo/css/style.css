@@ -668,7 +668,7 @@ h4 {
 
 /* Il filmato della sala, in mezzo al racconto: esce un poco dalla colonna
    del testo, come una fotografia a piena pagina in un libro. */
-.filmato-sala {
+.filmato-racconto {
   /* il testo sta in una colonna stretta, il filmato no: si centra sulla
      pagina e la scavalca, come una fotografia a piena pagina in un libro */
   width: min(1040px, calc(100vw - 3rem));
@@ -678,7 +678,7 @@ h4 {
   padding: 0.9rem;
 }
 
-.filmato-sala::before {
+.filmato-racconto::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -687,7 +687,7 @@ h4 {
   pointer-events: none;
 }
 
-.filmato-sala video {
+.filmato-racconto video {
   position: relative;
   display: block;
   width: 100%;
@@ -698,12 +698,12 @@ h4 {
 
 /* Chi ha chiesto meno animazioni vede il fotogramma fermo */
 @media (prefers-reduced-motion: reduce) {
-  .filmato-sala video {
+  .filmato-racconto video {
     display: none;
   }
 
-  .filmato-sala {
-    background-image: url("../images/sala-filmato.jpg");
+  .filmato-racconto {
+    background-image: url("../images/piatti-filmato.jpg");
     background-size: cover;
     background-position: center;
     aspect-ratio: 16 / 9;

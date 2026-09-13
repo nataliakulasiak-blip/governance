@@ -136,13 +136,15 @@ volta e si fermano quando escono di scena: la copertina alterna il piatto, il bi
 e il rosso, sette secondi l'uno.
 
 **Il racconto in home** («Una trattoria diventata casa») si apre a metà su
-`images/sala-filmato.{webm,mp4,jpg}`: il piatto, poi il brindisi in sala. Il filmato
-esce dalla colonna del testo e si centra sulla pagina. La stellina che il generatore
-lascia in basso a destra è tolta con il filtro `delogo` di ffmpeg, che ricostruisce
-quel quadratino dai pixel intorno:
+`images/piatti-filmato.{webm,mp4,jpg}`: una sequenza di piatti, uno dopo l'altro. Il
+filmato esce dalla colonna del testo e si centra sulla pagina.
+
+Tutti i filmati del sito sono **muti**: l'audio non entra proprio nel file, si
+ricodifica con `-an`. Se un generatore lascia la sua stellina in un angolo si toglie
+con `delogo`, che ricostruisce quel quadratino dai pixel intorno:
 
 ```sh
-ffmpeg -i originale.mp4 -vf "delogo=x=1128:y=567:w=66:h=66" -an ... sala-filmato.mp4
+ffmpeg -i originale.mp4 -an -vf "delogo=x=1128:y=567:w=66:h=66" ... uscita.mp4
 ```
 
 **La pagina dei vini** ha il suo: `images/vino-filmato.{webm,mp4,jpg}`, il bianco e il
