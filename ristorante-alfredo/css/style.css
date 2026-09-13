@@ -647,6 +647,28 @@ h4 {
   align-items: center;
 }
 
+/* Una cornice senza fotografia dentro non lascia un riquadro vuoto */
+.cornice:not(:has(img)):not(:has(svg)):not(:has(.posto-foto.is-piena)) {
+  display: none;
+}
+
+/* Senza l'immagine accanto il testo non resta in mezza pagina: prende una
+   colonna sola, larga quanto si legge bene. */
+.presentazione:not(:has(img)):not(:has(.vetrina)):not(
+    :has(.posto-foto.is-piena)
+  ) {
+  grid-template-columns: minmax(0, 62ch);
+  justify-content: center;
+  text-align: center;
+}
+
+.presentazione:not(:has(img)):not(:has(.vetrina)):not(
+    :has(.posto-foto.is-piena)
+  )
+  .presentazione__firma {
+  margin-top: 2.4rem;
+}
+
 .presentazione__testo p + p {
   margin-top: 1.2rem;
 }
