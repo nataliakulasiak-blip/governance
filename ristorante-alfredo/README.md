@@ -85,6 +85,29 @@ collegamenti portano `hreflang="it"`, così il lettore lo sa prima di cliccare.
 Ogni pagina porta i `<link rel="alternate" hreflang>` per tutte e sei le lingue
 più `x-default` sull'italiano, e le stesse alternative sono nel `sitemap.xml`.
 
+## Il cosmatesco
+
+`images/cosmati-fascia.svg` e `images/cosmati-rosone.svg` (più `-nudo`, senza
+cornice, per la filigrana) sono l'ornamento della casa: i marmi geometrici dei
+pavimenti romani medievali. Non è una decorazione presa a caso — **Santa Maria
+Maggiore, che ha uno dei pavimenti cosmateschi più belli di Roma, sta a trecento
+metri da Via Principe Amedeo**, e i colori della casa sono i colori di quei marmi:
+porfido rosso, oro, marmo chiaro.
+
+La fascia si ripete in orizzontale senza giunte (tessera da 120×40) e compare:
+
+- sotto la copertina della home, dove il filmato incontra la pagina;
+- sopra il piè di pagina, su tutte e trentacinque le pagine (`.pie::before`, quindi
+  senza toccare l'HTML);
+- sul bordo del foglio del giorno e ai piedi della copertina della carta in PDF.
+
+Il rosone è il **quinconce**: un disco grande e quattro piccoli legati dai nastri, lo
+schema che si trova ovunque in quei pavimenti. Si usa in filigrana al 6%, come un
+marmo intravisto sotto la tovaglia.
+
+Sono disegni vettoriali: si ingrandiscono quanto si vuole senza perdere un filo, in
+stampa come sullo schermo.
+
 ## La carta in PDF
 
 Il PDF della carta **non è un file a parte**: è la stampa della pagina stessa, in

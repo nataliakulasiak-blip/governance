@@ -3087,3 +3087,117 @@ h4 {
     transform: none !important;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Il cosmatesco: i marmi geometrici dei pavimenti romani. Santa Maria
+   Maggiore, che ne ha uno dei più belli, sta a trecento metri da qui — e i
+   colori della casa sono i colori di quei marmi: porfido, oro, marmo chiaro.
+   Non è una decorazione presa altrove: è il quartiere.
+   -------------------------------------------------------------------------- */
+
+.fascia-cosmati {
+  height: 34px;
+  background: url("../images/cosmati-fascia.svg") repeat-x center / auto 34px;
+}
+
+/* La stessa fascia chiude ogni pagina, sopra il piè */
+.pie {
+  position: relative;
+  padding-top: 6rem;
+}
+
+.pie::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 34px;
+  background: url("../images/cosmati-fascia.svg") repeat-x center / auto 34px;
+}
+
+@media (max-width: 760px) {
+  .fascia-cosmati,
+  .pie::before {
+    height: 26px;
+    background-size: auto 26px;
+  }
+
+  .pie {
+    padding-top: 5rem;
+  }
+}
+
+/* Il rosone: filigrana appena accennata, dove serve un fondo che respiri */
+.rosone-filigrana {
+  position: absolute;
+  inset: 0;
+  background: url("../images/cosmati-rosone.svg") no-repeat center / 62% auto;
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+/* Il cosmatesco sulla carta stampata: la fascia sul bordo del foglio del
+   giorno, il rosone in filigrana sotto al nome. Appena accennato: deve
+   sentirsi come un marmo sotto la tovaglia, non vedersi come un disegno. */
+
+.foglio {
+  position: relative;
+  overflow: hidden;
+}
+
+.foglio::before {
+  content: "";
+  position: absolute;
+  /* dentro il bordo stampabile, non a filo di carta */
+  inset: 9mm 16mm auto 16mm;
+  height: 8mm;
+  background: url("../images/cosmati-fascia.svg") repeat-x center / auto 8mm;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.foglio::after {
+  content: "";
+  position: absolute;
+  inset: 20mm 0 auto 0;
+  height: 120mm;
+  background: url("../images/cosmati-rosone-nudo.svg") no-repeat center top /
+    88mm auto;
+  opacity: 0.055;
+  pointer-events: none;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.foglio__testa {
+  position: relative;
+  padding-top: 6mm;
+}
+
+@media print {
+  /* Anche la copertina della carta porta il suo rosone, e la fascia a piede */
+  .carta-copertina {
+    position: relative;
+  }
+
+  .carta-copertina::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("../images/cosmati-rosone-nudo.svg") no-repeat center /
+      130mm auto;
+    opacity: 0.06;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .carta-copertina::after {
+    content: "";
+    position: absolute;
+    /* dentro il bordo stampabile: a filo di carta molte stampanti tagliano */
+    inset: auto 22mm 18mm 22mm;
+    height: 10mm;
+    background: url("../images/cosmati-fascia.svg") repeat-x center / auto 12mm;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}
