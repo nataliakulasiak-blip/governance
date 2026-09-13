@@ -27,8 +27,10 @@ VALUTA = "EUR"
 
 def pulisci(frammento: str) -> str:
     """Il testo dentro un tag, senza marcatori e senza le etichette colorate."""
+    # l'etichetta colorata (vegetariano, la firma...) non fa parte del nome.
+    # Il ritaglio del nome puo' tagliarla a meta', quindi la chiusura e' facoltativa.
     frammento = re.sub(
-        r'<span class="piatto__etichetta">.*?</span>', "", frammento, flags=re.S
+        r'<span class="piatto__etichetta">[^<]*(?:</span\s*>)?', "", frammento, flags=re.S
     )
     testo = entita.unescape(" ".join(re.sub(r"<[^>]+>", " ", frammento).split()))
     # togliendo i tag resta uno spazio prima della punteggiatura: via
