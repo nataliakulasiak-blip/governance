@@ -8,6 +8,17 @@ Non serve toccare il codice: basta il nome giusto. All'apertura la pagina cerca 
 nome e, se lo trova, mette la fotografia; se non lo trova, il posto resta invisibile
 e non lascia buchi.
 
+## Quello che c'è già
+
+Undici fotografie sono dentro, prese da quelle mandate in chat: la sala, l'aperitivo,
+i crostini, le bruschette, i ravioli, la gricia, il ragù, le fettuccine, la cacio e
+pepe, la mozzarella e il tiramisù. Più i due poster del vino.
+
+**Mancano ancora**, e il loro posto resta invisibile finché non arrivano:
+`carciofi.jpg`, `scoglio.jpg`, `grigliata.jpg`, `gnocchi.jpg`, `cantina.jpg`,
+`esquilino.jpg`. Per sostituirne una che c'è già basta caricare un file con lo stesso
+nome.
+
 ## I nomi
 
 | Nome del file            | Dove appare                               | Taglio        |
@@ -18,7 +29,6 @@ e non lascia buchi.
 | `esquilino.jpg`          | diario e galleria                         | quadrato      |
 | `fettuccine-alfredo.jpg` | specialità della home                     | quadrato      |
 | `cacio-e-pepe.jpg`       | specialità, galleria, diario              | quadrato      |
-| `carbonara.jpg`          | specialità e galleria                     | quadrato      |
 | `carciofi.jpg`           | specialità, galleria, diario              | quadrato      |
 | `crostini.jpg`           | galleria                                  | quadrato      |
 | `mozzarella.jpg`         | galleria                                  | quadrato      |
