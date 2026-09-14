@@ -3666,3 +3666,12 @@ h4 {
 .articolo-scheda__immagine [data-foto="muro-roma"] {
   background-position: 62% center;
 }
+
+/* Una scheda senza fotografia resta più corta, ma la riga allinea tutte le
+   schede alla più alta: il «Leggi», spinto in fondo, lasciava un buco in
+   mezzo al testo. Senza fotografia il collegamento segue il testo e lo spazio
+   vuoto scende sotto, dove non sembra un errore. */
+.articolo-scheda:not(:has(img)):not(:has(.posto-foto.is-piena))
+  .articolo-scheda__link {
+  margin-top: 0;
+}

@@ -142,8 +142,8 @@ PUNTI = [
         "1962",
         "Alfredo",
         "Al numero 126 di via Principe Amedeo apre una trattoria di famiglia. "
-        "Porta di legno, tende color sabbia, nessuna insegna luminosa. "
-        "Sessant'anni dopo è ancora lì.",
+        "Porta di legno, tenda chiara con il nome sopra, nessuna insegna "
+        "luminosa. Sessant'anni dopo è ancora lì.",
         None,
     ),
     (
