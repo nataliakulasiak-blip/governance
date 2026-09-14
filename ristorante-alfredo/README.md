@@ -223,28 +223,31 @@ Chrome e Firefox) e `images/copertina-filmato.mp4` (per Safari), con
 parte e resta l'unica immagine se il browser blocca la riproduzione automatica o se
 l'utente ha chiesto meno animazioni.
 
-Il montaggio parte dal video originale dei due piatti e tiene solo gli spezzoni senza
-persone (10,2–14,8 s e 18–20 s), uniti in dissolvenza e poi ripetuti al contrario, così
-il giro non ha stacchi. Da lì si taglia la **metà sinistra** — il video sorgente è uno
-schermo diviso, pomodoro a sinistra e cacio e pepe a destra — fermandosi a 632 px per
-non prendere la riga chiara che divide i due piatti.
+Il montaggio tiene le **fettuccine a quadro intero** — i primi 2,3 s del video
+originale, prima che l'inquadratura passi allo spritz — rallentate di un quarto e poi
+ripetute al contrario: sei secondi e mezzo che girano senza stacchi. Quadro intero e
+non mezzo: la versione precedente tagliava una metà di schermo diviso e la
+riportava in su del doppio, e sul monitor grande la foglia di basilico riempiva lo
+schermo. A 1280 px il browser allarga di una volta e mezza invece che di due.
 
-**La scena dell'aperitivo** ha `images/aperitivo-filmato.*`: spritz, vermouth e le
-mura romane. Il video originale finiva con la scritta «The Authentic Taste of Rome»:
-tagliata via a 7,9 s, perché su un sito in sei lingue una scritta stampata in una
-lingua sola la leggono male le altre cinque — e quella frase il sito la scrive già di
-suo, tradotta, come slogan dei rossi.
+**La scena dell'aperitivo** non è un filmato ma una fotografia,
+`images/foto/aperitivo-sera.webp`: spritz e mojito davanti alle mura al tramonto. Ha
+una velatura sua (`.copertina__lastra--aperitivo-sera`) perché il cielo arancione,
+senza, si mangerebbe l'oro della scritta.
 
 **Le due scene del vino nella copertina** hanno i loro:
 `images/vino-bianco-filmato.*` e `images/vino-rosso-filmato.*`, le due metà del
-filmato del vino tagliate a 632 px per non prendere la riga che le divide. Partono
+filmato del vino, prese per intero in larghezza (640 px) e non più ritagliate strette,
+partendo da 150 px dall'alto per lasciare fuori la scritta. Partono
 solo quando tocca alla loro scritta (`preload="none"`), si rimettono da capo ogni
-volta e si fermano quando escono di scena: la copertina alterna il piatto, il bianco
-e il rosso, sette secondi l'uno.
+volta e si fermano quando escono di scena: la copertina alterna il piatto, l'aperitivo,
+il bianco e il rosso, sette secondi l'uno.
 
 **Il racconto in home** («Una trattoria diventata casa») si apre a metà su
 `images/piatti-filmato.{webm,mp4,jpg}`: una sequenza di piatti, uno dopo l'altro. Il
-filmato esce dalla colonna del testo e si centra sulla pagina.
+filmato esce dalla colonna del testo e si centra sulla pagina. Non parte al
+caricamento: da solo pesava quanto tutto il resto della home, quindi si scarica e si
+avvia quando arriva sotto gli occhi e si ferma quando esce.
 
 Tutti i filmati del sito sono **muti**: l'audio non entra proprio nel file, si
 ricodifica con `-an`. Se un generatore lascia la sua stellina in un angolo si toglie
@@ -274,7 +277,10 @@ allo stesso modo. Per mettere le fotografie **non serve modificare il codice**: 
 i nomi indicati in [`images/foto/LEGGIMI.md`](images/foto/LEGGIMI.md) e il sito, in
 apertura, cerca ogni nome e usa la fotografia se la trova (prova `.jpg`, `.jpeg`,
 `.webp`, `.png`, in quest'ordine). Se il file non c'è, resta il disegno: nessuna
-immagine rotta.
+immagine rotta. La ricerca però non parte tutta insieme: ogni posto aspetta di
+avvicinarsi allo schermo (400 px di anticipo). Un posto vuoto sta a `display: none`
+e quindi non entrerebbe mai in vista: si sorveglia allora il primo antenato che
+occupa davvero dello spazio.
 
 Nel markup ogni illustrazione dichiara il proprio posto con `data-foto="nome"`. La
 copertina è un caso a parte: cerca `copertina.jpg`, `copertina-2.jpg` … fino a

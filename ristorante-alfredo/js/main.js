@@ -196,8 +196,10 @@
     }
 
     /* Le sezioni: dove c'e' un'immagine la sostituisce, dove c'e' un posto
-       vuoto lo riempie e lo fa comparire. */
-    document.querySelectorAll("[data-foto]").forEach(function (posto) {
+       vuoto lo riempie e lo fa comparire. La ricerca parte solo quando il
+       posto si avvicina allo schermo: la galleria pesa piu' di mezzo mega e
+       chi legge la copertina non l'ha ancora chiesta. */
+    function riempi(posto) {
       cercaFraNomi(posto.dataset.foto, function (percorso) {
         if (posto.tagName === "IMG") {
           posto.removeAttribute("width");
@@ -208,7 +210,63 @@
         posto.style.backgroundImage = 'url("' + percorso + '")';
         posto.classList.add("is-piena");
       });
-    });
+    }
+
+    var posti = document.querySelectorAll("[data-foto]");
+    if (!("IntersectionObserver" in window)) {
+      posti.forEach(riempi);
+    } else {
+      var vedetta = new IntersectionObserver(
+        function (voci) {
+          voci.forEach(function (voce) {
+            if (!voce.isIntersecting) return;
+            vedetta.unobserve(voce.target);
+            (voce.target.postiInAttesa || [voce.target]).forEach(riempi);
+          });
+        },
+        { rootMargin: "400px" },
+      );
+      /* Un posto vuoto sta a display:none finche' non trova la sua
+         fotografia, e quello che non si disegna non entra mai in vista: si
+         sorveglia allora il primo antenato che occupa davvero dello spazio. */
+      posti.forEach(function (posto) {
+        var visto = posto;
+        while (visto && !visto.getClientRects().length)
+          visto = visto.parentElement;
+        vedetta.observe(visto || posto);
+        (visto || posto).postiInAttesa = (
+          (visto || posto).postiInAttesa || []
+        ).concat(posto);
+      });
+    }
+
+    /* Il filmato dentro il racconto pesa quanto tutta la pagina: parte — e
+       si scarica — solo quando arriva sotto gli occhi, e si ferma quando esce. */
+    var raccontati = document.querySelectorAll(".filmato-racconto video");
+    if (raccontati.length && "IntersectionObserver" in window) {
+      var guardia = new IntersectionObserver(
+        function (voci) {
+          voci.forEach(function (voce) {
+            var film = voce.target;
+            if (voce.isIntersecting) {
+              if (film.preload !== "auto") film.preload = "auto";
+              var prova = film.play();
+              if (prova && prova.catch) prova.catch(function () {});
+            } else if (!film.paused) {
+              film.pause();
+            }
+          });
+        },
+        { rootMargin: "200px" },
+      );
+      raccontati.forEach(function (film) {
+        guardia.observe(film);
+      });
+    } else {
+      raccontati.forEach(function (film) {
+        film.setAttribute("autoplay", "");
+      });
+    }
 
     /* La copertina: si cercano in fila, ci si ferma al primo numero mancante */
     var copertina = document.querySelector(".copertina");
