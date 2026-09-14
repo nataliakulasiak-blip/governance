@@ -391,8 +391,11 @@
   }
 
   /* ---- Il menu del giorno: la data la mette il foglio, non chi stampa ---- */
+  /* La data segue la lingua della pagina: sul foglio italiano resta it-IT,
+     sulle pagine tradotte diventa quella giusta. */
+  var LINGUA = document.documentElement.lang || "it";
   document.querySelectorAll("[data-oggi]").forEach(function (elemento) {
-    elemento.textContent = new Date().toLocaleDateString("it-IT", {
+    elemento.textContent = new Date().toLocaleDateString(LINGUA, {
       weekday: "long",
       day: "numeric",
       month: "long",

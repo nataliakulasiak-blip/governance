@@ -34,9 +34,11 @@ def da_tradurre(frase: str) -> bool:
     """Vero se la frase è testo, non un prezzo o un orario."""
     if frase in SIGLE:
         return False
-    if not re.search(r"[^\W\d_]{2,}", frase):  # almeno due lettere di fila
-        return False
-    return True
+    if re.search(r"[^\W\d_]{2,}", frase):  # almeno due lettere di fila
+        return True
+    # le abbreviazioni puntate — «64 d.C.» — sono testo anche loro, e cambiano
+    # con la lingua: AD, apr. J.-C., н. э.
+    return bool(re.search(r"[^\W\d_]\.[^\W\d_]\.", frase))
 
 
 def raccogli() -> list:

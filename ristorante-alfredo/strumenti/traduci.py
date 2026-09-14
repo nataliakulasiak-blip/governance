@@ -20,7 +20,14 @@ import pathlib
 import re
 
 RADICE = pathlib.Path(__file__).resolve().parent.parent
-PAGINE = ["index.html", "menu.html", "vini.html", "faq.html", "diario.html"]
+PAGINE = [
+    "index.html",
+    "menu.html",
+    "vini.html",
+    "faq.html",
+    "diario.html",
+    "esquilino.html",
+]
 LINGUE = {
     "en": "English",
     "fr": "Français",
@@ -132,9 +139,7 @@ def traduci(html: str, dizionario: dict, frasi: list, lingua: str, pagina: str) 
     # gli articoli del diario e i codici QR restano in italiano, alla radice:
     # li segnaliamo con hreflang="it" perché il lettore sappia cosa lo aspetta
     html = re.sub(
-        r'href="(diario-[a-z-]+\.html|esquilino\.html)"',
-        r'href="../\1" hreflang="it"',
-        html,
+        r'href="(diario-[a-z-]+\.html)"', r'href="../\1" hreflang="it"', html
     )
     # le pagine di servizio (QR, menu del giorno) stanno solo alla radice
     html = re.sub(
