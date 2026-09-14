@@ -400,6 +400,42 @@
     });
   });
 
+  /* ---- Il punto del giorno, nella cronologia del rione ----
+     Ogni giorno tocca a un punto diverso: si conta il giorno dell'anno e si
+     gira sull'elenco. Nessun caso: chi apre la pagina due volte nello stesso
+     giorno trova lo stesso punto, e a mezzanotte cambia da sé. */
+  (function () {
+    var riquadro = document.querySelector("[data-oggi-rione]");
+    var punti = document.querySelectorAll(".cronologia__voce");
+    if (!riquadro || !punti.length) return;
+
+    var adesso = new Date();
+    var capodanno = new Date(adesso.getFullYear(), 0, 0);
+    var giorno = Math.floor((adesso - capodanno) / 86400000);
+    var scelto = punti[giorno % punti.length];
+
+    scelto.classList.add("e-di-oggi");
+    scelto.id = scelto.id || "punto-" + scelto.dataset.punto;
+
+    var segno = document.createElement("span");
+    segno.className = "cronologia__oggi-segno";
+    segno.textContent = "Oggi";
+    scelto.insertBefore(segno, scelto.querySelector(".cronologia__quando"));
+
+    function scrivi(dove, da) {
+      var e = riquadro.querySelector(dove);
+      var f = scelto.querySelector(da);
+      if (e && f) e.textContent = f.textContent;
+    }
+    scrivi("[data-oggi-quando]", ".cronologia__quando");
+    scrivi("[data-oggi-titolo]", ".cronologia__titolo");
+
+    var collegamento = riquadro.querySelector("[data-oggi-collegamento]");
+    if (collegamento) collegamento.setAttribute("href", "#" + scelto.id);
+
+    riquadro.hidden = false;
+  })();
+
   var stampa = document.querySelector("[data-stampa]");
   if (stampa) {
     stampa.addEventListener("click", function () {

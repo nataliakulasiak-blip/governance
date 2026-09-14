@@ -3357,3 +3357,242 @@ h4 {
     height: 40mm;
   }
 }
+
+/* --------------------------------------------------------------------------
+   La cronologia del rione — esquilino.html
+
+   Nessun disegno: la pagina si regge sulla tipografia e sull'intarsio dei
+   Cosmati, che all'Esquilino non è un ornamento preso a prestito — il
+   pavimento di Santa Maria Maggiore è opera loro.
+   -------------------------------------------------------------------------- */
+
+.testata--rione::after {
+  background: radial-gradient(
+    120% 100% at 50% 20%,
+    rgba(42, 10, 16, 0.08) 0%,
+    rgba(42, 10, 16, 0.38) 100%
+  );
+}
+
+/* Il punto che tocca oggi: cambia da sé a mezzanotte */
+.oggi-rione {
+  max-width: 660px;
+  margin: 3.4rem auto 0;
+  padding: 2.1rem 2.4rem 1.9rem;
+  border: 1px solid var(--sabbia-scura);
+  border-top: 2px solid var(--oro);
+  background: var(--crema);
+  text-align: center;
+}
+
+.oggi-rione__soprascritta {
+  font-size: 0.66rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--rosso);
+  margin: 0 0 1.1rem;
+}
+
+.oggi-rione__quando {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin: 0 0 0.3rem;
+}
+
+.oggi-rione__titolo {
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  color: var(--bordeaux);
+  margin: 0;
+}
+
+.oggi-rione__invito {
+  margin: 1.2rem 0 0;
+}
+
+.oggi-rione__invito a {
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--rosso);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 3px;
+}
+
+/* Il filo del tempo: una riga d'oro con le perle dei Cosmati sopra */
+.cronologia {
+  list-style: none;
+  margin: 4.2rem auto 0;
+  padding: 0 0 0 3.4rem;
+  max-width: 760px;
+  position: relative;
+  counter-reset: punto;
+}
+
+.cronologia::before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 10px;
+  bottom: 10px;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--oro) 6%,
+    var(--oro) 94%,
+    transparent
+  );
+  opacity: 0.55;
+}
+
+.cronologia__voce {
+  position: relative;
+  padding: 0 0 3.1rem;
+  counter-increment: punto;
+}
+
+.cronologia__voce:last-child {
+  padding-bottom: 0;
+}
+
+/* La perla: un disco di porfido dentro un cerchio d'oro, come nei pavimenti */
+.cronologia__perla {
+  position: absolute;
+  left: -3.4rem;
+  top: 0.45rem;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  border: 1px solid var(--oro);
+  background: var(--sabbia-chiara);
+}
+
+.cronologia__perla::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: var(--rosso);
+  opacity: 0.85;
+}
+
+.cronologia__quando {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin: 0 0 0.25rem;
+}
+
+/* Il numero del punto, in filigrana dietro al titolo */
+.cronologia__titolo {
+  font-size: clamp(1.5rem, 3.4vw, 2rem);
+  color: var(--bordeaux);
+  margin: 0 0 0.7rem;
+  position: relative;
+}
+
+.cronologia__titolo::before {
+  content: counter(punto, decimal-leading-zero);
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: var(--sabbia-scura);
+}
+
+.cronologia__voce p {
+  margin: 0;
+  max-width: 58ch;
+}
+
+.cronologia__nota {
+  margin-top: 0.8rem !important;
+  padding-left: 1rem;
+  border-left: 1px solid var(--sabbia-scura);
+  font-family: var(--serif);
+  font-size: 1.04rem;
+  font-style: italic;
+  color: rgba(43, 27, 22, 0.72);
+}
+
+/* Il punto di oggi, in evidenza: un filo di sabbia attorno e la perla piena */
+.cronologia__voce.e-di-oggi {
+  background: var(--crema);
+  margin-left: -1.6rem;
+  padding: 1.4rem 1.6rem 1.8rem;
+  border: 1px solid var(--sabbia-scura);
+}
+
+.cronologia__voce.e-di-oggi .cronologia__perla {
+  left: -1.8rem;
+  top: 1.85rem;
+  background: var(--rosso);
+  box-shadow: 0 0 0 4px var(--crema);
+}
+
+.cronologia__voce.e-di-oggi .cronologia__perla::after {
+  background: var(--sabbia-chiara);
+  inset: 6px;
+}
+
+.cronologia__oggi-segno {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--crema);
+  background: var(--rosso);
+  padding: 0.28rem 0.8rem;
+  margin-bottom: 0.9rem;
+}
+
+/* Il rosone che chiude la cronologia, appena accennato */
+.rosone-stacco {
+  height: 96px;
+  margin: 4rem auto 3.2rem;
+  background: url("../images/cosmati-rosone.svg") no-repeat center / auto 96px;
+  opacity: 0.16;
+}
+
+@media (max-width: 640px) {
+  .cronologia {
+    padding-left: 2.4rem;
+  }
+
+  .cronologia__perla {
+    left: -2.4rem;
+    width: 15px;
+    height: 15px;
+  }
+
+  .cronologia::before {
+    left: 7px;
+  }
+
+  .cronologia__titolo::before {
+    display: none;
+  }
+
+  .cronologia__voce.e-di-oggi {
+    margin-left: -1rem;
+    padding: 1.2rem 1rem 1.4rem;
+  }
+
+  .cronologia__voce.e-di-oggi .cronologia__perla {
+    left: -1.4rem;
+  }
+
+  .oggi-rione {
+    padding: 1.6rem 1.3rem 1.4rem;
+  }
+}

@@ -132,7 +132,9 @@ def traduci(html: str, dizionario: dict, frasi: list, lingua: str, pagina: str) 
     # gli articoli del diario e i codici QR restano in italiano, alla radice:
     # li segnaliamo con hreflang="it" perché il lettore sappia cosa lo aspetta
     html = re.sub(
-        r'href="(diario-[a-z-]+\.html)"', r'href="../\1" hreflang="it"', html
+        r'href="(diario-[a-z-]+\.html|esquilino\.html)"',
+        r'href="../\1" hreflang="it"',
+        html,
     )
     # le pagine di servizio (QR, menu del giorno) stanno solo alla radice
     html = re.sub(

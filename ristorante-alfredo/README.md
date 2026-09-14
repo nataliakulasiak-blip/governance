@@ -28,6 +28,7 @@ Caratteri: _Cormorant Garamond_ (titoli), _Jost_ (testo), _Pinyon Script_ (corsi
 | `faq.html`                  | domande frequenti (dati strutturati `FAQPage`)                        |
 | `diario.html`               | indice del blog (dati strutturati `Blog`)                             |
 | `diario-*.html`             | tre articoli (dati strutturati `BlogPosting`)                         |
+| `esquilino.html`            | la storia del rione in diciassette punti (generata, vedi sotto)       |
 | `robots.txt`, `sitemap.xml` | indicizzazione                                                        |
 | `en/ fr/ es/ ru/ pl/`       | le stesse pagine tradotte (generate, non si modificano a mano)        |
 
@@ -98,6 +99,42 @@ collegamenti portano `hreflang="it"`, così il lettore lo sa prima di cliccare.
 
 Ogni pagina porta i `<link rel="alternate" hreflang>` per tutte e sei le lingue
 più `x-default` sull'italiano, e le stesse alternative sono nel `sitemap.xml`.
+
+## La storia del rione
+
+`esquilino.html` racconta l'Esquilino punto per punto: venticinque secoli in
+diciassette voci, dal terrapieno delle mura al mercato di stamattina. La pagina
+**non si scrive a mano**: i punti stanno in `strumenti/rione.py`, in ordine di
+tempo, e da lì si rigenera tutto.
+
+```sh
+python3 strumenti/rione.py
+npx prettier@3 --write esquilino.html
+```
+
+Per aggiungere un punto si scrive una riga nell'elenco `PUNTI` — quando, titolo,
+corpo, e la nota in corsivo se serve. L'intestazione, il piè di pagina e il
+pulsante di WhatsApp vengono ricopiati da `diario-esquilino.html`, così restano
+in accordo con il resto del sito senza doverli mantenere due volte. I dati
+strutturati (`Article` con dentro un `ItemList`) si rifanno da soli con il
+numero giusto di voci.
+
+**Il punto del giorno.** In cima c'è un riquadro che ogni giorno mostra una voce
+diversa. Non è a caso: si conta il giorno dell'anno e si gira sull'elenco, così
+chi apre la pagina due volte nello stesso giorno trova lo stesso punto e a
+mezzanotte cambia da sé. Il codice sta in `js/main.js`, sotto
+`[data-oggi-rione]`.
+
+**Niente disegni.** Le stampe antiche del rione non sono raggiungibili da qui, e
+un'incisione finta su una pagina di storia sarebbe peggio del vuoto: la pagina si
+regge sulla tipografia e sull'intarsio dei Cosmati — che all'Esquilino non è un
+ornamento preso a prestito, visto che il pavimento di Santa Maria Maggiore è
+opera loro. Se un giorno arrivano delle scansioni d'archivio vere, il posto è
+già pronto: basta metterle in `images/foto/` con il nome `esquilino-storia`.
+
+**La pagina resta in italiano**, come gli articoli del diario: `traduci.py` la
+lascia alla radice e le mette `hreflang="it"` addosso, così chi naviga in un'altra
+lingua sa cosa lo aspetta prima di cliccare.
 
 ## Il cosmatesco
 
@@ -325,6 +362,7 @@ Nell'ordine, che uno dipende dall'altro:
 
 ```sh
 python3 strumenti/dati.py       # i dati strutturati dalla carta e dalle domande
+python3 strumenti/rione.py      # la storia del rione, dai punti dell'elenco
 python3 strumenti/estrai.py     # l'elenco delle frasi, e cosa manca
 python3 strumenti/traduci.py    # le cinque cartelle tradotte
 python3 strumenti/sitemap.py    # il sitemap, con le date vere
