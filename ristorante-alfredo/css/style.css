@@ -3556,14 +3556,6 @@ h4 {
   margin-bottom: 0.9rem;
 }
 
-/* Il rosone che chiude la cronologia, appena accennato */
-.rosone-stacco {
-  height: 96px;
-  margin: 4rem auto 3.2rem;
-  background: url("../images/cosmati-rosone.svg") no-repeat center / auto 96px;
-  opacity: 0.16;
-}
-
 @media (max-width: 640px) {
   .cronologia {
     padding-left: 2.4rem;
@@ -3646,4 +3638,10 @@ h4 {
 
 .sezione--bordeaux .scheda-info__foto figcaption {
   color: var(--oro-chiaro);
+}
+
+/* La chiusa della cronologia: lo spazio che prima teneva il rosone */
+.cronologia__chiusa {
+  max-width: 620px;
+  margin: 4.4rem auto 0;
 }

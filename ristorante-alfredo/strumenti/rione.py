@@ -335,12 +335,7 @@ def costruisci():
 {voci}
           </ol>
 
-          <div class="rosone-stacco" aria-hidden="true"></div>
-
-          <div
-            class="centrato"
-            style="max-width: 620px; margin: 0 auto"
-          >
+          <div class="cronologia__chiusa centrato">
             <p class="mano" style="font-size: 1.9rem">
               Il rione si racconta meglio a tavola.
             </p>
