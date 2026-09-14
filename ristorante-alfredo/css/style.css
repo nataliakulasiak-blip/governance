@@ -3621,7 +3621,7 @@ h4 {
 }
 
 .scheda-info__foto .posto-foto {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
   max-width: 220px;
   background-size: cover;
   background-position: center;
@@ -3644,4 +3644,25 @@ h4 {
 .cronologia__chiusa {
   max-width: 620px;
   margin: 4.4rem auto 0;
+}
+
+/* --------------------------------------------------------------------------
+   L'inquadratura, foto per foto
+
+   Tutti i riquadri tagliano con «cover», che di suo tiene il centro. Per
+   qualche fotografia il centro non è il soggetto: qui si dice dove guardare.
+   -------------------------------------------------------------------------- */
+
+/* La sala della sera: i tavoli stanno in fondo alla fotografia, e sul
+   telefono la cella è larga e bassa — guardando al centro resterebbero fuori,
+   sotto la fascia della didascalia. Dove non c'è niente da tagliare in
+   altezza, questa riga non cambia nulla. */
+[data-foto="sala-sera"] {
+  background-position: center 72%;
+}
+
+/* Il muro dipinto nella scheda del diario: il tempio rotondo sta a destra
+   del pannello, e in un riquadro quasi quadrato sparirebbe. */
+.articolo-scheda__immagine [data-foto="muro-roma"] {
+  background-position: 62% center;
 }
