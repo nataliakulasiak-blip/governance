@@ -317,6 +317,20 @@ def costruisci():
             </p>
           </aside>
 
+          <figure class="muro-dipinto rivela">
+            <div
+              class="posto-foto"
+              data-foto="muro-roma"
+              role="img"
+              aria-label="La veduta di Roma dipinta sulla parete della sala"
+            ></div>
+            <figcaption>
+              Roma dipinta sulla parete della sala: il tempio rotondo del Foro
+              Boario, i pini, e il pannello con la poesia in romanesco. Non è
+              una stampa antica — è il muro di casa nostra.
+            </figcaption>
+          </figure>
+
           <ol class="cronologia rivela">
 {voci}
           </ol>

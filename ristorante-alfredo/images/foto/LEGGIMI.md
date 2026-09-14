@@ -10,9 +10,15 @@ e non lascia buchi.
 
 ## Quello che c'è già
 
-Undici fotografie sono dentro, prese da quelle mandate in chat: la sala, l'aperitivo,
-i crostini, le bruschette, i ravioli, la gricia, il ragù, le fettuccine, la cacio e
+Le fotografie dentro sono quelle mandate in chat: la sala di giorno e la sera, la
+facciata dalla strada, il muro dipinto, l'aperitivo sulle mura al tramonto, i
+crostini, le bruschette, i ravioli, la gricia, il ragù, le fettuccine, la cacio e
 pepe, la mozzarella e il tiramisù. Più i due poster del vino.
+
+**La sala, la sala della sera, la facciata e il muro dipinto sono fotografie vere
+del locale**, mandate dal proprietario. Hanno preso il posto di una `sala.jpg`
+d'archivio che non era questo ristorante — ci si leggeva «dal 1919» sull'insegna,
+mentre il sito dice dal 1962.
 
 **Mancano ancora**, e il loro posto resta invisibile finché non arrivano:
 `carciofi.jpg`, `scoglio.jpg`, `grigliata.jpg`, `gnocchi.jpg`, `cantina.jpg`,
@@ -21,22 +27,25 @@ nome.
 
 ## I nomi
 
-| Nome del file            | Dove appare                               | Taglio        |
-| ------------------------ | ----------------------------------------- | ------------- |
-| `sala.jpg`               | «Una trattoria diventata casa» e galleria | verticale 3:4 |
-| `aperitivo.jpg`          | «L'ora dell'aperitivo»                    | 3:2           |
-| `cantina.jpg`            | pagina dei vini                           | quadrato      |
-| `esquilino.jpg`          | diario e galleria                         | quadrato      |
-| `fettuccine-alfredo.jpg` | specialità della home                     | quadrato      |
-| `cacio-e-pepe.jpg`       | specialità, galleria, diario              | quadrato      |
-| `carciofi.jpg`           | specialità, galleria, diario              | quadrato      |
-| `crostini.jpg`           | galleria                                  | quadrato      |
-| `mozzarella.jpg`         | galleria                                  | quadrato      |
-| `scoglio.jpg`            | galleria                                  | quadrato      |
-| `ragu.jpg`               | galleria                                  | quadrato      |
-| `gnocchi.jpg`            | galleria                                  | quadrato      |
-| `grigliata.jpg`          | galleria                                  | quadrato      |
-| `tiramisu.jpg`           | galleria                                  | quadrato      |
+| Nome del file            | Dove appare                          | Taglio     |
+| ------------------------ | ------------------------------------ | ---------- |
+| `sala.jpg`               | galleria                             | quadrato   |
+| `sala-sera.jpg`          | galleria                             | quadrato   |
+| `facciata.jpg`           | «Come arrivare» e galleria           | 4:3        |
+| `muro-roma.jpg`          | pagina del rione e scheda del diario | panoramica |
+| `aperitivo.jpg`          | «L'ora dell'aperitivo»               | 3:2        |
+| `cantina.jpg`            | pagina dei vini                      | quadrato   |
+| `esquilino.jpg`          | diario e galleria                    | quadrato   |
+| `fettuccine-alfredo.jpg` | specialità della home                | quadrato   |
+| `cacio-e-pepe.jpg`       | specialità, galleria, diario         | quadrato   |
+| `carciofi.jpg`           | specialità, galleria, diario         | quadrato   |
+| `crostini.jpg`           | galleria                             | quadrato   |
+| `mozzarella.jpg`         | galleria                             | quadrato   |
+| `scoglio.jpg`            | galleria                             | quadrato   |
+| `ragu.jpg`               | galleria                             | quadrato   |
+| `gnocchi.jpg`            | galleria                             | quadrato   |
+| `grigliata.jpg`          | galleria                             | quadrato   |
+| `tiramisu.jpg`           | galleria                             | quadrato   |
 
 ## I due poster del vino
 
