@@ -31,6 +31,20 @@ Caratteri: _Cormorant Garamond_ (titoli), _Jost_ (testo), _Pinyon Script_ (corsi
 | `robots.txt`, `sitemap.xml` | indicizzazione                                                        |
 | `en/ fr/ es/ ru/ pl/`       | le stesse pagine tradotte (generate, non si modificano a mano)        |
 
+## Il sitemap
+
+```sh
+python3 strumenti/sitemap.py
+```
+
+Lo rifà dalle pagine che ci sono davvero. Salta da solo quelle con `noindex` — i
+codici QR, il menu del giorno, la scheda della divisa: servono alla casa, non a
+Google — e prende `lastmod` dalla data dell'ultima modifica **secondo git**, così
+dice il vero senza che nessuno se ne debba ricordare. Ogni indirizzo porta gli
+hreflang di tutte e sei le lingue.
+
+Da rilanciare quando si aggiunge o si toglie una pagina, e prima di pubblicare.
+
 ## I dati strutturati
 
 Prezzi, piatti e domande si scrivono **una volta sola**, nella pagina. I blocchi
@@ -292,6 +306,21 @@ I dati di contatto sono segnaposto realistici: vanno sostituiti con quelli veri.
    con fotografie reali (stesso nome file, oppure aggiornando `src` e
    `background-image` in `css/style.css` per `sala.svg`). Formato consigliato: JPEG o
    WebP, 1600 px di lato lungo per la galleria, 2000 px per la copertina.
+
+## Aggiornare tutto
+
+Nell'ordine, che uno dipende dall'altro:
+
+```sh
+python3 strumenti/dati.py       # i dati strutturati dalla carta e dalle domande
+python3 strumenti/estrai.py     # l'elenco delle frasi, e cosa manca
+python3 strumenti/traduci.py    # le cinque cartelle tradotte
+python3 strumenti/sitemap.py    # il sitemap, con le date vere
+npm run format                  # Prettier su tutto
+```
+
+`strumenti/caratteri.py` e `strumenti/genera-qr.py` si lanciano solo quando cambia
+qualcosa che li riguarda: non fanno parte del giro normale.
 
 ## Sviluppo
 
