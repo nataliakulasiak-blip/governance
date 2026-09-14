@@ -229,6 +229,12 @@ il giro non ha stacchi. Da lì si taglia la **metà sinistra** — il video sorg
 schermo diviso, pomodoro a sinistra e cacio e pepe a destra — fermandosi a 632 px per
 non prendere la riga chiara che divide i due piatti.
 
+**La scena dell'aperitivo** ha `images/aperitivo-filmato.*`: spritz, vermouth e le
+mura romane. Il video originale finiva con la scritta «The Authentic Taste of Rome»:
+tagliata via a 7,9 s, perché su un sito in sei lingue una scritta stampata in una
+lingua sola la leggono male le altre cinque — e quella frase il sito la scrive già di
+suo, tradotta, come slogan dei rossi.
+
 **Le due scene del vino nella copertina** hanno i loro:
 `images/vino-bianco-filmato.*` e `images/vino-rosso-filmato.*`, le due metà del
 filmato del vino tagliate a 632 px per non prendere la riga che le divide. Partono

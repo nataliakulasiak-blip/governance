@@ -445,6 +445,7 @@ h4 {
 
 /* I filmati del vino — bianco e rosso — entrano in dissolvenza solo quando
    tocca alla loro scritta, come faceva prima la fotografia. */
+.copertina__filmato--aperitivo,
 .copertina__filmato--bianco,
 .copertina__filmato--rosso {
   z-index: 1;
@@ -452,6 +453,7 @@ h4 {
   transition: opacity 1.8s ease;
 }
 
+.copertina__filmato--aperitivo.is-in-scena,
 .copertina__filmato--bianco.is-in-scena,
 .copertina__filmato--rosso.is-in-scena {
   opacity: 1;
